@@ -14,17 +14,10 @@ var path = require('path'),
  * Create an slide
  */
 exports.create = function(req, res) {
-  console.log("created!!!!");
-  console.log(req.body);
   var slide = new Slides(req.body);
-  console.log("slide created");
-
-
   slide.user = req.user;
-
   slide.save(function(err) {
     if (err) {
-      console.log(err);
       return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -38,12 +31,8 @@ exports.create = function(req, res) {
  * Show the current slide
  */
 exports.read = function(req, res) {
-  // convert mongoose document to JSON
   var slide = req.slide ? req.slide.toJSON() : {};
-  // Add a custom field to the slide, for determining if the current User is the "owner".
-  // NOTE: This field is NOT persisted to the database, since it doesn't exist in the slide model.
   slide.isCurrentUserOwner = !!(req.user && slide.user && slide.user._id.toString() === req.user._id.toString());
-
   res.json(slide);
 };
 
@@ -52,11 +41,9 @@ exports.read = function(req, res) {
  */
 exports.update = function(req, res) {
   var slide = req.slide;
-
   slide.title = req.body.title;
   slide.content = req.body.content;
   slide.public = req.body.public;
-
   slide.save(function(err) {
     if (err) {
       return res.status(422).send({
@@ -89,7 +76,6 @@ exports.delete = function(req, res) {
  * List of slides
  */
 exports.list = function(req, res) {
-  console.log(req.user);
   Slides.find().sort('-created').populate('user', 'displayName').exec(function(err, slides) {
     if (err) {
       return res.status(422).send({
@@ -100,6 +86,7 @@ exports.list = function(req, res) {
     }
   });
 };
+
 exports.myList = function(req, res) {
   Slides.find({ $or: [{ author: req.params.username }, { public: true }] }).sort('-created').populate('user', 'displayName').exec(function(err, slides) {
     if (err) {
@@ -110,12 +97,11 @@ exports.myList = function(req, res) {
       res.json(slides);
     }
   });
-}
+};
 /**
  * slide middleware
  */
 exports.slideByID = function(req, res, next, id) {
-
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
       message: 'slide is invalid'

@@ -2,13 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import {TooltipPosition} from '@angular/material';
 import { Observable } from 'rxjs/Observable';
-import { select } from '@angular-redux/store';
+
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
-
-import { SessionActions } from '../../actions';
+import { select } from '@angular-redux/store';
 import { IUser } from "../../store/session";
+import { SessionActions } from '../../actions';
 import { ToggleNavService } from '../../services';
 
 @Component({

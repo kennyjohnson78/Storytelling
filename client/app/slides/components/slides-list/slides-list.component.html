@@ -16,7 +16,7 @@
         </md-chip-list>
         <md-card-actions>
           <button md-button class="accent" [routerLink]="['slidesPresentation', s.id]">DISPLAY</button>
-          <md-checkbox *ngIf="loggedIn$|async" (change)="publish(s)" [checked]="s.public">PUBLIC</md-checkbox>
+          <md-checkbox *ngIf="loggedIn$|async" (change)="publish(s)" [disabled]="(username$|async) !== s.author" [checked]="s.public">PUBLIC</md-checkbox>
         </md-card-actions>
       </md-card>
     </div>

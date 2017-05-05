@@ -15,6 +15,7 @@ import {SlidesListItem} from '../../models/slides-list-item';
 })
 export class SlidesListComponent implements OnInit {
     @select(['session', 'token']) loggedIn$: Observable<string>;
+    @select(['session', 'user', 'username']) username$: Observable<Object>;
     slides: Array<SlidesListItem> = [];
     listHeight_style: any = {
         'height': '350px'
@@ -24,6 +25,7 @@ export class SlidesListComponent implements OnInit {
         private slidesService: SlidesService,
         private router: Router
     ) {
+
     }
 
     ngOnInit() {

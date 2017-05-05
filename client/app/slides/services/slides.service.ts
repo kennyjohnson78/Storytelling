@@ -4,28 +4,36 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../environments/environment';
 import { Slides } from '../models/index';
-import { UsersService } from '../../users/services/users.service';
+import { select } from '@angular-redux/store';
+import { IUser } from '../../core/store/session';
 @Injectable()
 export class SlidesService {
     private _baseUrl: string;
     private slides: any = {};
-    private user: any = {};
+    private user: any;
     private progress$;
     private progressObserver;
     private progress;
-    constructor(private http: Http, private usersService: UsersService) {
+    @select(['session', 'user']) user$: Observable<IUser>;
+    constructor(private http: Http) {
         this.progress$ = Observable.create(observer => {
             this.progressObserver = observer;
         }).share();
         this._baseUrl = `${environment.backend.protocol}://${environment.backend.host}`;
         if (environment.backend.port) {
             this._baseUrl += `:${environment.backend.port}`;
-        }
-        this.usersService.getProfile().subscribe(user => {
-            this.user = user;
+        };
+        this.user$.subscribe(user => {
+            console.log(user.username);
+            this.user = {
+                username : user.username,
+                firstName : user.firstName,
+                lastName : user.lastName,
+                roles : user.roles,
+                email : user.email
+            };
         });
     }
-
     me(): Observable<any> {
       const backendURL = `${this._baseUrl}${environment.backend.endpoints.users}/me` ;
       return this.http.get(backendURL).map((response: Response) => response.json());
@@ -37,7 +45,7 @@ export class SlidesService {
         return this.http.post(backendURL, slides).map((response: Response) => response.json());
     }
     getSlidesList(): Observable<any> {
-        console.log(this.user);
+        console.log('user', this.user.username);
         const backendURL = `${this._baseUrl}${environment.backend.endpoints.slides}/me/${this.user.username}`;
         return this.http.get(backendURL).map((response: Response) => response.json());
     }
