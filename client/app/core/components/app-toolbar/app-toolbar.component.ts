@@ -23,10 +23,9 @@ export class AppToolbarComponent implements OnInit {
   @Input() titleToolbar: string;
   @select(['session', 'token']) loggedIn$: Observable<string>;
   @select(['session', 'user']) user$: Observable<IUser>;
-   
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
-              private actions: SessionActions, 
+              private actions: SessionActions,
               private toggleNavService: ToggleNavService) {}
 
 
@@ -35,15 +34,15 @@ export class AppToolbarComponent implements OnInit {
       .filter(event => event instanceof NavigationEnd)
       .map(() => this.activatedRoute)
       .map(route => {
-        console.log('route: ',route);
+        console.log('route: ', route);
         while (route.firstChild) route = route.firstChild;
         return route;
       })
       .filter(route => route.outlet === 'primary')
       .mergeMap(route => route.data)
       .subscribe((event) => this.title = event['title'] );
-    //subscribe toggle service
-    this.isToggled= this.toggleNavService.toggle$;
+    // subscribe toggle service
+    this.isToggled = this.toggleNavService.toggle$;
 
   }
 

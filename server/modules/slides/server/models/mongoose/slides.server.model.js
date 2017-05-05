@@ -21,19 +21,24 @@ var SlidesSchema = new Schema({
     default: false,
     trim: true
   },
-  description:{
-    type:String,
-    defalut:'',
+  description: {
+    type: String,
+    defalut: '',
     trim: true
   },
-  tags:{
-    type:[String],
-    defalut:'',
+  tags: {
+    type: [String],
+    defalut: '',
     trim: true
   },
-  bannerPath:{
-    type:String,
-    defalut:'',
+  bannerPath: {
+    type: String,
+    defalut: '',
+    trim: true
+  },
+  author: {
+    type: String,
+    default: '',
     trim: true
   },
   slides: {

@@ -12,7 +12,7 @@ const USERSROUTES: Routes = [
     roles : ['user', 'admin'],
     title : 'Settings / Profile'
   } },
-  { path:'list-users', component: ListComponent, canActivateChild: [Auth],
+  { path: 'list-users', component: ListComponent, canActivateChild: [Auth],
   data : {
     roles : ['admin'],
     title : 'Users List'

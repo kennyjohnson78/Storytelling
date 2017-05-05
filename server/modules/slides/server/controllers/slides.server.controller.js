@@ -5,10 +5,11 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
+  http = require('http'),
   fs = require('fs'),
   Slides = mongoose.model('Slides'),
-  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
-
+  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
+  user = require(path.resolve('./modules/users/server/controllers/users/users.profile.server.controller'));
 /**
  * Create an slide
  */
@@ -88,6 +89,7 @@ exports.delete = function(req, res) {
  * List of slides
  */
 exports.list = function(req, res) {
+  console.log(req.user);
   Slides.find().sort('-created').populate('user', 'displayName').exec(function(err, slides) {
     if (err) {
       return res.status(422).send({
@@ -98,7 +100,17 @@ exports.list = function(req, res) {
     }
   });
 };
-
+exports.myList = function(req, res) {
+  Slides.find({ $or: [{ author: req.params.username }, { public: true }] }).sort('-created').populate('user', 'displayName').exec(function(err, slides) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(slides);
+    }
+  });
+}
 /**
  * slide middleware
  */

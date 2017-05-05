@@ -11,6 +11,8 @@ module.exports = function (app) {
   app.route('/api/slides').all(slidesPolicy.isAllowed)
     .get(slides.list)
     .post(slides.create);
+  app.route('/api/slides/me/:username').all(slidesPolicy.isAllowed)
+    .get(slides.myList);
 
   // Single slide routes
   app.route('/api/slides/:slideId').all(slidesPolicy.isAllowed)
@@ -24,5 +26,7 @@ module.exports = function (app) {
   // Finish by binding the slide middleware
   app.param('slideId', slides.slideByID);
   app.param('toSearch', slides.search);
+  app.param('username', slides.username);
+
 
 };

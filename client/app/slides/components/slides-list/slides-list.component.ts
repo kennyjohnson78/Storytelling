@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 import { select } from '@angular-redux/store';
 import {Observable} from 'rxjs/Observable';
 
-import {SlidesListItem} from '../../models/slides-list-item'
+import {SlidesListItem} from '../../models/slides-list-item';
+
 @Component({
     selector: 'app-slides-list',
     templateUrl: './slides-list.component.html',

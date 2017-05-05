@@ -13,11 +13,9 @@ import { IUser, IMessage } from "../../../core/store/session";
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit, OnChanges {
-  
   form: FormGroup;
   private model: any;
   state :IAppState;
-  
   @select(['session', 'isLoading']) isLoading$: Observable<boolean>;
   @select(['session', 'hasMessage']) hasMessage$: Observable<IMessage>;
 

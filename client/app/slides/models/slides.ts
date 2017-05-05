@@ -6,6 +6,7 @@ export class Slides {
     tags: Array<string>=[];
     bannerPath:String='';
     slides: Array<Slide> = [];
+    author: String='';
     constructor() {
 
     }

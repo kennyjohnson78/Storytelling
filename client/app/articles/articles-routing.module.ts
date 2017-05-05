@@ -1,4 +1,4 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // ARTICLES COMPONENTS
@@ -7,13 +7,13 @@ import { ArticlesComponent, ArticlesListComponent, ArticleDetailsComponent } fro
 import { Auth } from 'app/users';
 
 const articlesRoutes: Routes = [{
-        path: '', 
+        path: '',
         component: ArticlesComponent,
         canActivate: [Auth],
         data : {
-          roles : ['user', 'admin'], 
+          roles : ['user', 'admin'],
           title : 'Articles'
-        }, 
+        },
         children: [{
             path: '',
             component: ArticlesListComponent,
@@ -26,7 +26,7 @@ const articlesRoutes: Routes = [{
         }]
       }
     ];
-  
+
 @NgModule({
   imports: [
     RouterModule.forChild(articlesRoutes)
