@@ -124,7 +124,7 @@ exports.search = function (req, res) {
   var regexS = new RegExp(("^" + req.query.title) || '');
   if (req.query.state === 'Public') {
     console.log(req.query.state)
-    Slides.find({ $and: [{ title: regexS }, { public: true }] }).exec(function (err, slides) {
+    Slides.find({ $and: [{ $or: [{ title: regexS }, { tags: regexS }] }, { public: true }] }).exec(function (err, slides) {
       if (err) {
         return res.status(422).send({
           message: errorHandler.getErrorMessage(err)
@@ -135,7 +135,7 @@ exports.search = function (req, res) {
     });
   } else if (req.query.state === 'Private') {
     console.log('private', req.query.state);
-    Slides.find({ $and: [{ title: regexS }, { author: req.query.username }, { public: false }] }).exec(function (err, slides) {
+    Slides.find({ $and: [{ $or: [{ title: regexS }, { tags: regexS }] }, { author: req.query.username }, { public: false }] }).exec(function (err, slides) {
       if (err) {
         return res.status(422).send({
           message: errorHandler.getErrorMessage(err)
@@ -145,7 +145,7 @@ exports.search = function (req, res) {
       }
     });
   } else {
-    Slides.find({ $and: [{ title: regexS }, { $or: [{ author: req.query.username }, { public: true }] }] }).exec(function (err, slides) {
+    Slides.find({ $and: [{ $or: [{ title: regexS }, { tags: regexS }] }, { $or: [{ author: req.query.username }, { public: true }] }] }).exec(function (err, slides) {
       if (err) {
         return res.status(422).send({
           message: errorHandler.getErrorMessage(err)
