@@ -72,7 +72,6 @@ exports.isAllowed = function (req, res, next) {
 
   // Check for user roles
   acl.areAnyRolesAllowed(roles, req.route.path, req.method.toLowerCase(), function (err, isAllowed) {
-    console.log('isAllow', isAllowed, roles)
     if (err) {
       // An authorization error occurred
       return res.status(500).send('Unexpected authorization error');

@@ -1,5 +1,5 @@
 <div class="slides-list-container container-fluid">
-  <div class="row">
+  <div class="row space">
     <app-search (textSearch)="search($event)"></app-search>
     <app-filter *ngIf="loggedIn$|async" (filterState)="filterState($event)" [states]="states"></app-filter>
   </div>

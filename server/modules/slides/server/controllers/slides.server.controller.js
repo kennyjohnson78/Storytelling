@@ -121,7 +121,7 @@ exports.slideByID = function(req, res, next, id) {
   });
 };
 exports.search = function (req, res) {
-  var regexS = new RegExp(("^" + req.query.title) || '');
+  var regexS = new RegExp((req.query.title) || '');
   if (req.query.state === 'Public') {
     console.log(req.query.state)
     Slides.find({ $and: [{ $or: [{ title: regexS }, { tags: regexS }] }, { public: true }] }).exec(function (err, slides) {
