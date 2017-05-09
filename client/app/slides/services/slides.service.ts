@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Http, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../environments/environment';
@@ -33,6 +33,7 @@ export class SlidesService {
                 email : user.email
             };
         });
+
     }
     me(): Observable<any> {
       const backendURL = `${this._baseUrl}${environment.backend.endpoints.users}/me` ;
@@ -45,9 +46,10 @@ export class SlidesService {
         return this.http.post(backendURL, slides).map((response: Response) => response.json());
     }
     getSlidesList(): Observable<any> {
-        console.log('user', this.user.username);
-        const backendURL = `${this._baseUrl}${environment.backend.endpoints.slides}/me/${this.user.username}`;
-        return this.http.get(backendURL).map((response: Response) => response.json());
+        const params: URLSearchParams = new URLSearchParams();
+        params.set('username', this.user.username);
+        const backendURL = `${this._baseUrl}${environment.backend.endpoints.slides}/me`;
+        return this.http.get(backendURL, {search: params}).map((response: Response) => response.json());
     }
     getSlides(id): Observable<any> {
         const backendURL = `${this._baseUrl}${environment.backend.endpoints.slides}/${id}`;
@@ -90,7 +92,11 @@ export class SlidesService {
         return this.http.put(backendURL, slide).map((response: Response) => response.json());
     }
     getSlideToSearch(textToSearch): Observable<any> {
-        const backendURL = `${this._baseUrl}${environment.backend.endpoints.search}/${textToSearch}`;
-        return this.http.get(backendURL).map((response: Response) => response.json());
+        const params: URLSearchParams = new URLSearchParams();
+        params.set('title', textToSearch.title);
+        params.set('state', textToSearch.filter);
+        params.set('username', this.user.username);
+        const backendURL = `${this._baseUrl}${environment.backend.endpoints.search}`;
+        return this.http.get(backendURL, {params: params}).map((response: Response) => response.json());
     }
 }

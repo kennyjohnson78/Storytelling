@@ -20,6 +20,11 @@ export class SlidesListComponent implements OnInit {
     listHeight_style: any = {
         'height': '350px'
     };
+    toSearch = {
+        title: '',
+        filter: 'All'
+    };
+    states = ['All', 'Private', 'Public'];
     constructor(
         private windowResizeService: WindowResizeService,
         private slidesService: SlidesService,
@@ -40,29 +45,28 @@ export class SlidesListComponent implements OnInit {
             });
         console.log(this.slides);
     }
-    search(text) {
-        if (text) {
-            this.slidesService.getSlideToSearch(text)
+    search(paramsTosearch) {
+        this.toSearch.title = paramsTosearch || '';
+            this.slidesService.getSlideToSearch(this.toSearch)
                 .subscribe(slides => {
                     this.slides = [];
-                    slides.forEach(s => this.slides.push(new SlidesListItem(s)))
+                    slides.forEach(s => this.slides.push(new SlidesListItem(s)));
                 });
-        }
     }
-    shortText() {
-        this.slidesService.getSlidesList()
-            .subscribe(
-            slides => {
-                this.slides = [];
-                slides.forEach(s => this.slides.push(new SlidesListItem(s)));
-            },
-            error => {
-                console.log('fail to get Slides list');
-            });
-    }
+    // shortText() {
+    //     this.toSearch.title = '';
+    //     this.slidesService.getSlidesList()
+    //         .subscribe(
+    //         slides => {
+    //             this.slides = [];
+    //             slides.forEach(s => this.slides.push(new SlidesListItem(s)));
+    //         },
+    //         error => {
+    //             console.log('fail to get Slides list');
+    //         });
+    // }
     /*open Slide*/
     openSlides(e) {
-        console.log(e.target.tagName);
         let target = e.target;
         if (target.tagName !== 'MD-CARD') {
             target = target.parentNode;
@@ -74,6 +78,14 @@ export class SlidesListComponent implements OnInit {
         console.log('e', e.public);
         this.slidesService.updateSlide(e, e.id)
             .subscribe(elm => console.log(elm.public));
+    }
+    filterState(state) {
+        this.toSearch.filter = state;
+        this.slidesService.getSlideToSearch(this.toSearch)
+            .subscribe(slides => {
+                this.slides = [];
+                slides.forEach(s => this.slides.push(new SlidesListItem(s)));
+            });
     }
     test() {
         console.log(this.slides);

@@ -88,7 +88,7 @@ exports.list = function(req, res) {
 };
 
 exports.myList = function(req, res) {
-  Slides.find({ $or: [{ author: req.params.username }, { public: true }] }).sort('-created').populate('user', 'displayName').exec(function(err, slides) {
+  Slides.find({ $or: [{ author: req.query.username }, { public: true }] }).sort('-created').populate('user', 'displayName').exec(function(err, slides) {
     if (err) {
       return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
@@ -121,14 +121,38 @@ exports.slideByID = function(req, res, next, id) {
   });
 };
 exports.search = function (req, res) {
-  var regexS = new RegExp("^" + req.params.toSearch);
-  Slides.find({title: regexS}).exec(function (err, slides) {
-    if (err) {
-      return res.status(422).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      res.json(slides);
-    }
-  });
+  var regexS = new RegExp(("^" + req.query.title) || '');
+  if (req.query.state === 'Public') {
+    console.log(req.query.state)
+    Slides.find({ $and: [{ title: regexS }, { public: true }] }).exec(function (err, slides) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(slides);
+      }
+    });
+  } else if (req.query.state === 'Private') {
+    console.log('private', req.query.state);
+    Slides.find({ $and: [{ title: regexS }, { author: req.query.username }, { public: false }] }).exec(function (err, slides) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(slides);
+      }
+    });
+  } else {
+    Slides.find({ $and: [{ title: regexS }, { $or: [{ author: req.query.username }, { public: true }] }] }).exec(function (err, slides) {
+      if (err) {
+        return res.status(422).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+        res.json(slides);
+      }
+    });
+  }
 };

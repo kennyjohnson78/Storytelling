@@ -30,6 +30,7 @@ import { JsonValidatorDirective } from './components/slides-creator/json-validat
 import { CsvInputComponent } from './components/slides-creator/slide-creator/csv-input/csv-input.component';
 import { ImageUploadComponent } from './components/slides-creator/slide-creator/image-upload/image-upload.component';
 import { SlidePreviewComponent } from './components/slides-creator/slide-preview/slide-preview.component';
+import { FilterComponent } from './components/filter/filter.component';
 
 
 
@@ -57,7 +58,8 @@ import { SlidePreviewComponent } from './components/slides-creator/slide-preview
         BarChartComponent,
         ForceDirectedGraphComponent,
         LineChartComponent,
-        SlidePreviewComponent
+        SlidePreviewComponent,
+        FilterComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     providers: [OverlayContainer, SlidesService]

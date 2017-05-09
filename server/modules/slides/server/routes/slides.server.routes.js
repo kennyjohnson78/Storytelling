@@ -13,8 +13,11 @@ module.exports = function (app) {
     .post(slides.create);
 
   // Own slides
-  app.route('/api/slides/me/:username').all(slidesPolicy.isAllowed)
+  app.route('/api/slides/me').all(slidesPolicy.isAllowed)
     .get(slides.myList);
+
+  app.route('/api/search/slides').all(slidesPolicy.isAllowed)
+    .get(slides.search);
 
   // Single slide routes
   app.route('/api/slides/:slideId').all(slidesPolicy.isAllowed)
@@ -22,13 +25,7 @@ module.exports = function (app) {
     .put(slides.update)
     .delete(slides.delete);
 
-  app.route('/api/slides/search/:toSearch').all(slidesPolicy.isAllowed)
-    .get(slides.search);
 
   // Finish by binding the slide middleware
   app.param('slideId', slides.slideByID);
-  app.param('toSearch', slides.search);
-  app.param('username', slides.myList);
-
-
 };

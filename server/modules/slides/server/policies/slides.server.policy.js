@@ -21,7 +21,10 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/slides/:slideId',
       permissions: '*'
     }, {
-      resources: '/api/slides/search/:text',
+      resources: '/api/search/slides',
+      permissions: ['*']
+    }, {
+      resources: '/api/slides/me',
       permissions: ['*']
     }]
   }, {
@@ -33,10 +36,10 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/slides/:slideId',
       permissions: ['*']
     }, {
-      resources: '/api/slides/search/:text',
+      resources: '/api/search/slides',
       permissions: ['*']
     }, {
-      resources: '/api/slides/me/:username',
+      resources: '/api/slides/me',
       permissions: ['*']
     }]
   }, {
@@ -48,7 +51,10 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/slides/:slideId',
       permissions: ['*']
     }, {
-      resources: '/api/slides/search/:text',
+      resources: '/api/search/slides',
+      permissions: ['*']
+    }, {
+      resources: '/api/slides/me',
       permissions: ['*']
     }]
   }]);
@@ -66,6 +72,7 @@ exports.isAllowed = function (req, res, next) {
 
   // Check for user roles
   acl.areAnyRolesAllowed(roles, req.route.path, req.method.toLowerCase(), function (err, isAllowed) {
+    console.log('isAllow', isAllowed, roles)
     if (err) {
       // An authorization error occurred
       return res.status(500).send('Unexpected authorization error');
