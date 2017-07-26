@@ -17,7 +17,7 @@ Before you begin we recommend you read about the basic building blocks that asse
 
 ### Front-End
 
-* Angular CLI - The Angular 2 part of this project was generated with [angular-cli](https://github.com/angular/angular-cli)   version 1.0.0.
+* Angular CLI - The Angular 2 part of this project was generated with [angular-cli](https://github.com/angular/angular-cli)   version 1.0.1.
 
 ### Back-End
 
