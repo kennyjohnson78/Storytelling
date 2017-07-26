@@ -25,7 +25,7 @@ Before you begin we recommend you read about the basic building blocks that asse
 
 * Express - The best way to understand express is through its [Official Website](http://expressjs.com/), which has a [Getting Started](http://expressjs.com/starter/installing.html) guide, as well as an [ExpressJS](http://expressjs.com/en/guide/routing.html) guide for general express topics. You can also go through this [StackOverflow Thread](http://stackoverflow.com/questions/8144214/learning-express-for-node-js) for more resources.
 
-* Node.js - Start by going through [Node.js Official Website](http://nodejs.org/) version 7.7+ and this [StackOverflow Thread](http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js), which should get you going with the Node.js platform in no time.
+* Node.js - Start by going through [Node.js Official Website](http://nodejs.org/) version 7.10+ and this [StackOverflow Thread](http://stackoverflow.com/questions/2353818/how-do-i-get-started-with-node-js), which should get you going with the Node.js platform in no time.
 
 ## Prerequisites
 
@@ -59,7 +59,7 @@ $ yarn install
 ```
 
 ## Running Your Application
-   To run teh application , you need to start the front-End as serve and the API (back-End) as another nodejs server :
+   To run the application , you need to start the front-End as serve and the API (back-End) as another nodejs server :
 * **Front End** : Run `npm  run client` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 * **API** :  Run `npm run gulp` for back end server . The API is up on `http://localhost:3000/`.
 
@@ -69,6 +69,10 @@ $ yarn install
 * **Front End** : Run `npm run prod` to build the project. The build artifacts will be stored in the `server/public/` directory. Use the `--prod` flag for a production build and `--bh` for base href in the `index.html`.
 
 * **API** :  Run `npm run gulp` for back end server . The application is up on `http://localhost:3000/`.
+
+## Running the tests
+  To run the unit tests, you need to run npm run test, angular-cli is used to run tests.
+
 
 ## Contributing
 We welcome pull requests from the community!
