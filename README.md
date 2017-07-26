@@ -71,7 +71,7 @@ $ yarn install
 * **API** :  Run `npm run gulp` for back end server . The application is up on `http://localhost:3000/`.
 
 ## Running the tests
-  To run the unit tests, you need to run npm run test, angular-cli is used to run tests.
+  To run the unit tests, you need to run `npm run test`, angular-cli is used to run tests.
 
 
 ## Contributing
