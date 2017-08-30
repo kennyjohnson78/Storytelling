@@ -180,7 +180,10 @@ export class ChartsBuilderComponent implements OnInit, DoCheck {
         this.dataText = gapminder;
 
     }
-
+    useExampleDimension() {
+     this.dataDims = this.chartType.dimExemple;
+     this.processData();
+    }
     clear() {
         this.headerValues = [];
         this.rawData = [];
@@ -205,6 +208,7 @@ export class ChartsBuilderComponent implements OnInit, DoCheck {
             return;
         }
         this.data = this.chartType.convertData(this.dataDims, this.rawData);
+        console.log('datadim', this.dataDims);
         this.configGraph.emit({ data: this.rawData, chartOptions: { chartType: this.chartType, headerValues: this.headerValues, dataDims: this.dataDims, ...this.chartOptions } });
 
 if (this.isValidSlide) {
