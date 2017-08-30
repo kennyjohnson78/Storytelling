@@ -51,7 +51,9 @@ export const chartTypes = [
         description: 'Dendrograms are tree-like diagrams used to represent the distribution of a hierarchical clustering.' +
         ' The different depth levels represented by each node are visualized on the horizontal axes and it is useful to visualize a non-weighted hierarchy.',
         categorie: 'Hierarchy',
-        image: 'assets/img-graph/dendogram.jpg'
+        dimExemple:  [['continent', 'country'], ['pop']],
+
+    image: 'assets/img-graph/dendogram.jpg'
     }),
     createChartType({
         title: 'Zoomable Treemap', simpleData: true, cmpName: 'zoomableTreemapChart', convertData: ZoomableTreemapChartComponent.convertData, dimLabels: [{ column: 'Hierarchy', maxSize: 10, dataType: ["string", "number"] }, { column: 'Value', maxSize: 1, dataType: ["number"] },],
