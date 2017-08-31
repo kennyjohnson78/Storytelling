@@ -121,6 +121,4 @@ export class SlidesListComponent implements OnInit {
         }
         return { noResult: false, noPublish: false, noSlides: false, noPrivate: false };
     }
-
-
 }

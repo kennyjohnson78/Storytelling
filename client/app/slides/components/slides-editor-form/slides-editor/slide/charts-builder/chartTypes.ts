@@ -87,7 +87,6 @@ export const chartTypes = [
         dimExemple:  [['continent'],['country'], ['pop'], ['year']],
         image: 'assets/img-graph/ForceLayoutBubble.jpg'
     }),
-
     createChartType({
         title: 'Force Directed Graph', simpleData: true, cmpName: 'ForceDirectedGraph', convertData: ForceDirectedGraphComponent.convertData, dimLabels: [{ column: 'Group by', maxSize: 10, dataType: ["string", "number"] }, { column: 'Value', maxSize: 1, dataType: ["number"] }],
         description: 'Nested circles allow to represent hierarchies and compare values.' +
