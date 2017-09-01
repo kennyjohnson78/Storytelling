@@ -21,10 +21,13 @@ export class SlidesListComponent implements OnInit {
     };
     private pageSize = 6;
     private pageIndex = 0;
+    listCopy = [];
+    next: number = 0;
     private toSearch = {
         title: '',
         filter: 'All',
-        favorite: 'All'
+        favorite: 'All',
+        order : '0'
     };
     pageEvent: PageEvent;
     private slides: Array<Slides> = [];
@@ -64,35 +67,21 @@ export class SlidesListComponent implements OnInit {
     search(paramsTosearch) {
         //get search result
         this.toSearch.title = paramsTosearch || '';
-        this.slidesService.getSlideToSearch(this.toSearch, this.pageIndex, this.pageSize)
-            .subscribe(slides => {
-                this.slides = [];
-                this.slides = slides[0];
-                this.length = slides[1];
-                this.result = this.calculResult(this.slides.length, this.toSearch.filter, this.toSearch.title)
-            });
+        this.refreshList();
+
     }
 
     filterPub(state) {
         this.toSearch.filter = state;
-        this.slidesService.getSlideToSearch(this.toSearch, this.pageIndex, this.pageSize)
-            .subscribe(slides => {
-                this.slides = [];
-                this.slides = slides[0];
-                this.length = slides[1];
-                this.result = this.calculResult(this.slides.length, this.toSearch.filter, this.toSearch.title)
-            });
+        this.refreshList();
     }
     filterFavor(isFavorite) {
         this.toSearch.favorite = isFavorite;
-        this.slidesService.getSlideToSearch(this.toSearch, this.pageIndex, this.pageSize)
-            .subscribe(slides => {
-                this.slides = [];
-                this.slides = slides[0];
-                this.length = slides[1];
-                this.result = this.calculResult(this.slides.length, this.toSearch.filter, this.toSearch.title)
-            });
-
+        this.refreshList();
+    }
+    sortedOrder(order) {
+        this.toSearch.order = order;
+        this.refreshList();
     }
     refreshList() {
         this.slidesService.getSlideToSearch(this.toSearch, this.pageIndex, this.pageSize)
@@ -104,7 +93,6 @@ export class SlidesListComponent implements OnInit {
 
             });
     }
-
     calculResult(slidesLength, state, title) {
         if (slidesLength === 0) {
             if (title === "") {

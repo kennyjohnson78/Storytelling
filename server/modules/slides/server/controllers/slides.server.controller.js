@@ -144,7 +144,6 @@ exports.search = function(req, res) {
   var request = null;
   var totalResultsCount = null;
   var regexS = new RegExp((req.query.title) || '');
-  mongoose.set('debug', true)
   if (req.query.state === 'Public') {
     if (req.query.favorite === 'favorite') {
       request = Slides.find({
@@ -457,10 +456,15 @@ exports.search = function(req, res) {
       }).count();
     }
   }
+  console.log('req', req.query.order);
+  var order = '';
+  if (req.query.order === 'date') {
+    order = '-createdAt';
+  } else {
+    order = { 'slidesSetting.title': 1 };
+  }
   Promise.all([
-      request.sort({
-        "slidesSetting.title": 1
-      }).skip(pageIndex > 0 ? (pageIndex * pageSize) : 0).limit(pageSize).exec(),
+      request.sort(order).skip(pageIndex > 0 ? (pageIndex * pageSize) : 0).limit(pageSize).exec(),
       totalResultsCount])
       .then(function(items) {
         res.json(items);

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core'
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import { Slides } from '../../../models/slides';

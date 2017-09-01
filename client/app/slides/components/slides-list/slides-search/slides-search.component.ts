@@ -9,13 +9,15 @@ export class SlidesSearchComponent implements OnInit {
     @Output() textSearchOpt: EventEmitter<string> = new EventEmitter(); //event for change search text
     @Output() filterPubOpt = new EventEmitter(); //event for change pub filter
     @Output() filterFavorOpt = new EventEmitter(); //event for change favor filter
-    @Input() kind: string;
+    @Output() sortedByOpt = new EventEmitter(); //event for change sort filter
 
+    @Input() kind: string;
     private states = {
         checkFavor: true,
         checkNotFavor: true,
         checkPrivate: true,
-        checkPublic: true
+        checkPublic: true,
+        sortedBy: 'alphabetically'
     };
 
     private textToSearch: string;
@@ -51,6 +53,11 @@ export class SlidesSearchComponent implements OnInit {
             }
         }
 
+    }
+
+    sort(sortedBy) {
+        console.log(sortedBy);
+        this.sortedByOpt.emit(sortedBy);
     }
 
 
