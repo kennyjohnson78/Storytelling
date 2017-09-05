@@ -288,7 +288,6 @@ exports.search = function(req, res) {
       }).count();
     }
     else {
-      console.log('je suis ici normalement cest le cas?');
       request = Slides.find({
         $and: [{
           $or: [{
@@ -456,7 +455,6 @@ exports.search = function(req, res) {
       }).count();
     }
   }
-  console.log('req', req.query.order);
   var order = '';
   if (req.query.order === 'date') {
     order = '-createdAt';

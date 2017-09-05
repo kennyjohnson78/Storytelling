@@ -68,7 +68,6 @@ export class SlidesService {
         return this.http.delete(backendURL).map((response: Response) => response.json());
     }
     getSlideToSearch(textToSearch, pageIndex, pageSize): Observable<any> {
-        console.log(textToSearch.order);
         const params: URLSearchParams = new URLSearchParams();
         params.set('title', textToSearch.title);
         params.set('state', textToSearch.filter);
