@@ -111,10 +111,4 @@ export class SlidesCardComponent implements OnInit {
                 this.notifBarService.showNotif("Opps! fail to copy the slides. error :" + error);
             });
     }
-    animationStarted(event){
-        console.log('debut',event);
-    }
-    animationDone(event){
-        console.log('fin', event);
-    }
 }
