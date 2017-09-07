@@ -42,7 +42,7 @@ export class SlideCardComponent {
     }
 
     creatSlide() {
-        const dialog = this.dialog.open(SlideEditorComponent, {  height: '100%', width : '94%'});
+        const dialog = this.dialog.open(SlideEditorComponent, {  height: '100%', width : '100%'});
         dialog.componentInstance.slide = this.slide;
         dialog.componentInstance.slideIndex = this.slideIndex;
 
