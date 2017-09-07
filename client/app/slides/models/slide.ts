@@ -20,7 +20,8 @@ export class Slide {
     pageTitle: any = {
         title: "",
         align: ""
-    }
+    };
+    isValid: boolean = false;
     constructor(index?: number) {
         if (index) this.index = index;
     }

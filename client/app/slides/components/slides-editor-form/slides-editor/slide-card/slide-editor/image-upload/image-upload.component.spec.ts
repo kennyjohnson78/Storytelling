@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {FormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { SlidesService } from '../../../../../services/slides.service';
+import { SlidesService } from '../../../../../../services/slides.service';
 import { ImageUploadComponent } from './image-upload.component';
 import { NotifBarService } from 'app/core';
 import { MaterialModule } from '@angular/material';

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
+import {Component, OnInit, ViewChild, AfterViewChecked, ChangeDetectorRef, OnChanges} from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SlidesService } from '../../services/slides.service';
@@ -6,6 +6,7 @@ import { ValidService } from '../../services/valid.service';
 import { Slides } from '../../models/slides';
 import { SlidesEditorComponent} from './slides-editor/slides-editor.component';
 import {NotifBarService} from 'app/core';
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
     selector: 'app-slides-editor-form',
@@ -20,9 +21,9 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
     private slider: Slides = new Slides();//corresponding slides
     private editorValid: Subscription; //validation of slide editor
     private isValidated: boolean; //indicator:validation of slide editor
-    private errorMsg: Array<string>;//error
+    private errorMsg;//error
     private mode = '';//SAVE mode or CREATE mode
-
+    private isRequired = true;
     @ViewChild('editor') _editor: SlidesEditorComponent;
 
     constructor(private router: Router,
@@ -64,13 +65,20 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
 
         this.editorValid = this.validService.validAll$.subscribe(
             valid => {
-                this.isValidated = valid['status'];
-                if (!this.isValidated) this.errorMsg = valid['msg'];
-                else this.errorMsg = [];
+                this.isRequired = valid['msg'][0];
+                this.errorMsg = [];
+                if (this.isRequired) this.errorMsg.push({msg : valid['msg'], index: -1});
+                this.slider.slides.forEach(slide => !slide.isValid ? this.errorMsg.push({msg : 'Slide ' + slide.index + ' is not finished :(', index : slide.index} ) : false);
             });
     }
 
     // TODO rework service, rename in presentatiion
+    errorsHandle(currentSlide) {
+        if (currentSlide.isValid) {
+            this.errorMsg = [];
+            this.slider.slides.forEach(slide => !slide.isValid ? this.errorMsg.push({msg :'Slide ' + slide.index + ' is not finished :(', index : slide.index} ) : false);
+        }
+    }
 
     saveSlides(id) {
         if (id) {
@@ -94,5 +102,11 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
                 });
         }
     }
-
+    slideDeleted(index){
+        this.errorMsg.forEach((arrayMsg, i) => {
+         if (arrayMsg.index === index){
+             this.errorMsg.splice(i, 1);
+         }
+        });
+    }
 }

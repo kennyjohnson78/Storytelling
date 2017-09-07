@@ -56,6 +56,7 @@ describe('RightGraphLeftTextSlideComponent', () => {
       },
       "hasText" : true,
       "hasGraph" : true,
+      "isValid" : false,
       "config" : {
         "showSeriesOnHover" : true,
         "tooltipDisabled" : false,

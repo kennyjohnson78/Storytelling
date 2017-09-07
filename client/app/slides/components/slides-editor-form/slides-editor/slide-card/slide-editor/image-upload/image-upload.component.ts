@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, Input, OnChanges } from '@angular/core';
-import { SlidesService, ImagesService } from '../../../../../services';
+import { SlidesService, ImagesService } from '../../../../../../services';
 import {Http } from '@angular/http';
 import {NotifBarService} from 'app/core'
 const URL = 'localhost:3000/api/images/';

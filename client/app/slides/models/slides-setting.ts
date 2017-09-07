@@ -14,7 +14,7 @@ export class SlidesSetting {
             if (setting.public) this.public = setting.public;
             if (setting.favorite) this.favorite = setting.favorite;
             if (setting.author) this.author = setting.author;
-            if (setting.banner || setting.banner._id) this.banner = setting.banner._id;
+            if (setting.banner && setting.banner._id) this.banner = setting.banner._id;
         }
     }
 }

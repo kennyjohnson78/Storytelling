@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-
 @Injectable()
 export class ValidService {
     validAllSource = new BehaviorSubject<Object>({ status: false, msg: ["initial status all"] });
@@ -17,7 +16,7 @@ export class ValidService {
     readonly ERROR_MSG = {
         SLIDES_NAME: "Slides name is required",
         LAYOUT: "Please choose a layout type in slide page"
-    }
+    };
     private unvalidSlideList: Array<number> = []; //list of unvalid slide page index
 
     constructor() {
@@ -32,7 +31,7 @@ export class ValidService {
                 find = true;
                 find_index = i;
             }
-        })
+        });
         /* delete slide option*/
         if (option == "DELETE") {
             if (!find) return;
@@ -89,7 +88,6 @@ export class ValidService {
                 status: false,
                 msg: []
             };
-            this.unvalidSlideList.forEach(l=>validMsg.msg.push("Slide"+" "+l+" "+"is not finished :("));
             this.validSlideSource.next(validMsg);
         }
         else {
@@ -105,8 +103,8 @@ export class ValidService {
     changeSettingValid(status, option?) {
         let validMsg = {
             status: status,
-            msg: ["Slides name is required"]
-        }
+            msg: ["Slides name is required"],
+        };
         this.validSettingSource.next(validMsg);
         this.changeValidStatus();
     }

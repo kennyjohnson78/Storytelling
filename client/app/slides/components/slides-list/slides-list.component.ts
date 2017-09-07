@@ -109,4 +109,17 @@ export class SlidesListComponent implements OnInit {
         }
         return { noResult: false, noPublish: false, noSlides: false, noPrivate: false };
     }
+    duplicate(id){
+        this.slidesService.getSlides(id).subscribe(slides => {
+           this.slides.push(slides);
+        });
+    }
+    deletedSlides(id){
+        this.slides.forEach((slides, i) => {
+            if (slides._id === id) {
+                this.slides.splice(i, 1);
+                return;
+            }
+        });
+    }
 }

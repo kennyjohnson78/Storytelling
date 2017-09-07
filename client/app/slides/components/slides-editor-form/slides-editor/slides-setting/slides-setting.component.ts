@@ -53,7 +53,7 @@ export class SlidesSettingComponent implements OnInit, OnChanges {
         this.onSettingChange.emit(this.slidesSetting);
     }
     publicStatusChange(publicStatus) {
-        this.slidesSetting.public = publicStatus.checked;
+        this.slidesSetting.public = !this.slidesSetting.public;
         this.onSettingChange.emit(this.slidesSetting);
     }
     /* tag operation*/

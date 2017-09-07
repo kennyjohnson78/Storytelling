@@ -12,7 +12,7 @@ import { BarChartComponent, BubbleChartComponent, DendogramComponent, ForceDirec
   LineChartComponent, PieChartComponent, SunburstChartComponent,
   WordCloudComponent, ZoomableTreemapChartComponent, AdvancedPieChartComponent, AreaChartComponent, GaugeChartComponent, NumberCardComponent,
   PieGridChartComponent, TreemapChartComponent
-} from '../../../../../../charts';
+} from '../../../../../../../charts';
 
 import { CodeEditorComponent } from './code-editor';
 import {NgxChartsModule } from '@swimlane/ngx-charts';
