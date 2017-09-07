@@ -67,7 +67,7 @@ export class SlidesService {
         const backendURL = `${this._baseUrl}${environment.backend.endpoints.slides}/${id}`;
         return this.http.delete(backendURL).map((response: Response) => response.json());
     }
-    getSlideToSearch(textToSearch,  pageIndex, pageSize): Observable<any> {
+    getSlideToSearch(textToSearch, pageIndex, pageSize): Observable<any> {
         const params: URLSearchParams = new URLSearchParams();
         params.set('title', textToSearch.title);
         params.set('state', textToSearch.filter);
@@ -75,7 +75,9 @@ export class SlidesService {
         params.set('username', this.user.username);
         params.set('pageIndex', pageIndex);
         params.set('pageSize', pageSize);
+        params.set('order', textToSearch.order);
         const backendURL = `${this._baseUrl}${environment.backend.endpoints.search}`;
         return this.http.get(backendURL, { params: params }).map((response: Response) => response.json());
     }
+
 }

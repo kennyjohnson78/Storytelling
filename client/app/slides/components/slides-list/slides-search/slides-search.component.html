@@ -18,5 +18,9 @@
     <md-checkbox name="checkNotFavor" [(ngModel)]="states.checkNotFavor" (change)="onChangeState($event)" [disabled]="!states.checkFavor&&states.checkNotFavor">Unfavorite</md-checkbox>
     <md-checkbox name="checkPublic" [(ngModel)]="states.checkPublic" (change)="onChangeState($event)" [disabled]="states.checkPublic&&!states.checkPrivate">Public</md-checkbox>
     <md-checkbox name="checkPrivate" [(ngModel)]="states.checkPrivate" (change)="onChangeState($event)" [disabled]="!states.checkPublic&&states.checkPrivate">Private</md-checkbox>
+     <md-select [(ngModel)]="states.sortedBy" name="sortedBy"  placeholder="Sorted" (change)="sort(states.sortedBy)">
+       <md-option [value]="'alphabetically'" >alphabetically</md-option>
+       <md-option [value]="'date'">by date</md-option>
+     </md-select>
   </div>
 </form>

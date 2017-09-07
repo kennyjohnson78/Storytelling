@@ -104,12 +104,12 @@ var SlidesSchema = new Schema({
         default: false,
         trim: true
       },
-      pageTitle:{
-        title:{
+      pageTitle: {
+        title: {
           type: String,
           default: "",
         },
-        align:{
+        align: {
           type: String,
           default: "left",
         }
@@ -118,5 +118,7 @@ var SlidesSchema = new Schema({
     default: '',
     trim: true
   }
+}, {
+  timestamps: true
 });
 mongoose.model('Slides', SlidesSchema);
