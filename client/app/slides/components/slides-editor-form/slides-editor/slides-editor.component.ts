@@ -27,9 +27,18 @@ export class SlidesEditorComponent implements OnChanges {
     @Output() bannerImageUpload = new EventEmitter();
     @Output() slideDeleted =  new EventEmitter();
     @Output() errorsHandle =  new EventEmitter();
+    @Output() onShuffle = new EventEmitter();
     constructor(private dragulaService: DragulaService, private validService: ValidService, private notifBarService: NotifBarService) {
         dragulaService.setOptions('shuffle-bag', {
             moves: (el, source, handle, sibling) => !(this.slideOpendIndex != null && this.slideOpendIndex > 0)
+        });
+        dragulaService.drag.subscribe((value) => {
+            console.log(`drag: ${value[0]}`);
+            this.onShuffle.emit(true);
+        });
+        dragulaService.out.subscribe((value) => {
+            console.log(`drop: ${value[0]}`);
+            this.onShuffle.emit(false);
         });
     }
     ngOnChanges() {

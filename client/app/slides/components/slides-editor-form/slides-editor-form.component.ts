@@ -20,10 +20,10 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
     private id: string;//slides id in database
     private slider: Slides = new Slides();//corresponding slides
     private editorValid: Subscription; //validation of slide editor
-    private isValidated: boolean; //indicator:validation of slide editor
     private errorMsg;//error
     private mode = '';//SAVE mode or CREATE mode
     private isRequired = true;
+    private isInShuffle = false;
     @ViewChild('editor') _editor: SlidesEditorComponent;
 
     constructor(private router: Router,
@@ -68,7 +68,7 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
                 this.isRequired = valid['msg'][0];
                 this.errorMsg = [];
                 if (this.isRequired) this.errorMsg.push({msg : valid['msg'], index: -1});
-                this.slider.slides.forEach(slide => !slide.isValid ? this.errorMsg.push({msg : 'Slide ' + slide.index + ' is not finished :(', index : slide.index} ) : false);
+                this.slider.slides.forEach((slide, index) => !slide.isValid ? this.errorMsg.push({msg : 'Slide ' + (index+1) + ' is not finished', index : index + 1} ) : false);
             });
     }
 
@@ -76,7 +76,7 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
     errorsHandle(currentSlide) {
         if (currentSlide.isValid) {
             this.errorMsg = [];
-            this.slider.slides.forEach(slide => !slide.isValid ? this.errorMsg.push({msg :'Slide ' + slide.index + ' is not finished :(', index : slide.index} ) : false);
+            this.slider.slides.forEach((slide, index) => !slide.isValid ? this.errorMsg.push({msg :'Slide ' + (index + 1) + ' is not finished', index : index+1} ) : false);
         }
     }
 
@@ -108,5 +108,16 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
              this.errorMsg.splice(i, 1);
          }
         });
+    }
+
+    onShuffle(shuffle) {
+        this.isInShuffle = shuffle;
+        if (!shuffle) {
+            this.errorMsg = [];
+            this.slider.slides.forEach((slides, index) =>
+                !slides.isValid ?
+                    this.errorMsg.push({msg: 'Slide ' + (index + 1) + ' is not finished', index: index + 1})
+                    : false);
+        };
     }
 }
