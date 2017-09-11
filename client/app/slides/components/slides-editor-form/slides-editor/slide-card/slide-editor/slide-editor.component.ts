@@ -90,7 +90,6 @@ export class SlideEditorComponent implements OnInit, OnChanges {
       this.slide.data = this.dataBuilder.data;
       this.slide.config = this.dataBuilder.chartOptions;
       this.slide.slideImage = null;
-      this.slide.text = '';
     } else {
       this.slide.graph = 'noGraph';
       this.slide.data = [];

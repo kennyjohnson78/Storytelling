@@ -105,37 +105,18 @@ export class SlidesViewComponent implements OnInit {
 
 
     lastSlide() {
-        /*  if (this.charts.length == 0 || this.charts === undefined) {
-              this.initCharts();
-          }*/
         this.curSlideIndex = this.getCurSlideIndex();
         if (this.curSlideIndex > 0) {
-            // this.easeChart(this.curSlideIndex - 1);
-            // this.easeContent(this.curSlideIndex - 1);
             this.slideease$.next(this.curSlideIndex);
             this.curSlideIndex--;
-
-            // if (this.curSlideIndex != 0) {
-            //     this.loadChart(this.curSlideIndex - 1);
-            //     this.loadContent(this.curSlideIndex - 1);
-            // }
-
             this.slideload$.next(this.curSlideIndex);
 
         }
     }
 
     nextSlide() {
-        /*  if (this.charts.length == 0 || this.charts === undefined) {
-              this.initCharts();
-          }*/
-
         this.curSlideIndex = this.getCurSlideIndex();
         if (this.curSlideIndex < this.slideNum) {
-            // if (this.curSlideIndex != 0) {
-            //     this.easeChart(this.curSlideIndex - 1);
-            //     this.easeContent(this.curSlideIndex - 1);
-            // }
             this.slideease$.next(this.curSlideIndex);
             this.curSlideIndex++;
             this.slideload$.next(this.curSlideIndex);
