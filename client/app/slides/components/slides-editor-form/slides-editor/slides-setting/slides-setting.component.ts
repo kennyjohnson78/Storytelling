@@ -12,8 +12,8 @@ export class SlidesSettingComponent implements OnInit, OnChanges {
     @Input() setting: SlidesSetting;
     @Output() onSettingChange: EventEmitter<SlidesSetting> = new EventEmitter();
 
-    private form: FormGroup;
-    private slidesSetting: SlidesSetting;
+    form: FormGroup;
+    slidesSetting: SlidesSetting;
 
     constructor(private _fb: FormBuilder, private validService: ValidService) {
         this.slidesSetting = new SlidesSetting();

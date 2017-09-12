@@ -21,7 +21,7 @@ export class SlidesListComponent implements OnInit {
     };
     private pageSize = 6;
     private pageIndex = 0;
-    private loading =true;
+    loading =true;
     listCopy = [];
     next: number = 0;
     private toSearch = {

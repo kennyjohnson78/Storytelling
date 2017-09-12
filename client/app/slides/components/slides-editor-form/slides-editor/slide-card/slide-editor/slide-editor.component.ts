@@ -16,11 +16,11 @@ export class SlideEditorComponent implements OnInit, OnChanges {
   public slideIndex: number;  //slide index
   public slideSetting: Slide; //if it's not a new slide, the previous setting of the slide
   public slide: Slide; //slide setting
-  private form: FormGroup;//slide setting form
+  form: FormGroup;//slide setting form
   private showForm: boolean; // indicator:showing slide form
   private dataBuilder: any; //data builder of graph
-  private pageLayoutOption: Array<any>; // page layout option of the slide
-  private titleAlignOption: Array<string>; //title align option of the slide
+  pageLayoutOption: Array<any>; // page layout option of the slide
+  titleAlignOption: Array<string>; //title align option of the slide
   private editorOptions: Object;//option of the text editor
   private isChartBuilderValid: boolean;//indicator for validation of chart builder
 

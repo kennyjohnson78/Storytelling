@@ -24,7 +24,7 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
     private mode = '';//SAVE mode or CREATE mode
     private isRequired = true;
     private isInShuffle = false;
-    private loading = true;
+     loading = true;
     @ViewChild('editor') _editor: SlidesEditorComponent;
 
     constructor(private router: Router,

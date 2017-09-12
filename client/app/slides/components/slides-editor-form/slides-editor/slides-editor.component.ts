@@ -69,7 +69,7 @@ export class SlidesEditorComponent implements OnChanges {
         }
     }
     /*add a new page of slide*/
-    addSlide(slide) {
+    addSlide() {
         let s = new Slide(this.curSlideIndex++);
         this.slider.slides.push(s);
         this.isValidatedSlide = false;

@@ -16,8 +16,8 @@ export class LeftGraphRightTextSlideComponent implements OnInit, AfterContentIni
 
     @ViewChild('parent', { read: ViewContainerRef })
     parent: ViewContainerRef;
-    private componentRef: ComponentRef<any>;
-    private config: PageConfig;
+    componentRef: ComponentRef<any>;
+    config: PageConfig;
 
     constructor(
         private _componentFactoryResolver: ComponentFactoryResolver,
