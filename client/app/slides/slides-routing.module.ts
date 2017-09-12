@@ -22,7 +22,7 @@ const slidesRoutes: Routes = [
     component: SlidesEditorFormComponent,
     data: { title: 'Slides Creator' }
   }, {
-    path: 'slides/:id',
+    path: 'display/:id',
     component: SlidesEditorFormComponent,
     data: {
       roles: ['user'],

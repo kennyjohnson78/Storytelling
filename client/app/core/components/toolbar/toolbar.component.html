@@ -4,7 +4,9 @@
       <ul class="left">
         <b>{{title}}</b>
       </ul>
+
       <ul class="right">
+        <li><a (click)="help()"><i class="fa fa-question" mdTooltip="Help" size="1x"></i></a></li>
         <li *ngIf="!(loggedIn$ | async)" mdTooltip="Sign in">
           <a [routerLink]="['user/login']" class="login">
             <fa name="sign-in" size="1x"></fa>
@@ -25,5 +27,4 @@
       </ul>
     </div>
   </div>
-
 </div>

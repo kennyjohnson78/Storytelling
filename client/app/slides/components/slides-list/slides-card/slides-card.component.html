@@ -18,7 +18,7 @@
           <a class="option-btn" (click)="deleteSlides($event, slides._id); false" mdTooltip="Delete">
             <md-icon md-ripple mdRippleCentered="true" mdRippleUnbounded="true">delete</md-icon>
           </a>
-          <a class="option-btn" (click)="false" [routerLink]="['slides', slides._id]" mdTooltip="Edit">
+          <a class="option-btn" (click)="false" [routerLink]="['display', slides._id]" mdTooltip="Edit">
             <md-icon md-ripple mdRippleCentered="true" mdRippleUnbounded="true">edit</md-icon>
           </a>
           <a class="option-btn" (click)="duplicateSlides($event,slides); false" mdTooltip="Copy">
