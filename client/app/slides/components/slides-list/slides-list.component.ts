@@ -21,6 +21,7 @@ export class SlidesListComponent implements OnInit {
     };
     private pageSize = 6;
     private pageIndex = 0;
+    private loading =true;
     listCopy = [];
     next: number = 0;
     private toSearch = {
@@ -62,7 +63,7 @@ export class SlidesListComponent implements OnInit {
             },
             error => {
                 this.notifBarService.showNotif("fail to load slides list");
-            });
+            },() => { this.loading = false;});
     }
     search(paramsTosearch) {
         //get search result

@@ -24,6 +24,7 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
     private mode = '';//SAVE mode or CREATE mode
     private isRequired = true;
     private isInShuffle = false;
+    private loading = true;
     @ViewChild('editor') _editor: SlidesEditorComponent;
 
     constructor(private router: Router,
@@ -42,7 +43,6 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
     }
 
     ngOnInit() {
-
         this.route.params.subscribe(params => {
             if (params['id']) {
                 this.id = params['id'];
@@ -57,10 +57,11 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
                 },
                 error => {
                     this.notifBarService.showNotif('fail to load slides list. error is ' + error);
-                });
+                }, () => this.loading = false);
         } else {
             this.mode = 'CREATE';
             this.slider = new Slides();
+            this.loading = false;
         }
 
         this.editorValid = this.validService.validAll$.subscribe(

@@ -1,4 +1,5 @@
-<md-card-content>
+<div *ngIf="!loading">
+  <md-card-content>
   <app-slides-editor #editor [sliderIpt]="slider" (slideDeleted)="slideDeleted($event)" (errorsHandle)="errorsHandle($event)" (onShuffle)="onShuffle($event, slider)"></app-slides-editor>
 </md-card-content>
 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around">
@@ -9,4 +10,8 @@
     </md-card-actions>
     <p *ngFor="let msg of errorMsg" class="error">*{{msg.msg}}</p>
   </div>
+</div>
+</div>
+<div id="spinner" *ngIf="loading">
+  <div></div>
 </div>
