@@ -51,6 +51,7 @@ describe('FullScreenChartSlideComponent', () => {
         "align" : "",
         "title" : "line chart"
       },
+      "isValid" : false,
       "hasText" : true,
       "hasGraph" : true,
       "config" : {

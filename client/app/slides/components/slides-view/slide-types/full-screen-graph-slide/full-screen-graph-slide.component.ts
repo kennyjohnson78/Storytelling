@@ -13,8 +13,8 @@ export class FullScreenGraphSlideComponent implements OnInit, AfterContentInit, 
 
     @Input() slide: Slide;
     @ViewChild('parent', { read: ViewContainerRef }) parent: ViewContainerRef;
-    private componentRef: ComponentRef<any>;
-    private config: PageConfig;
+    componentRef: ComponentRef<any>;
+    config: PageConfig;
 
     constructor(
         private _componentFactoryResolver: ComponentFactoryResolver,

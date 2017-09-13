@@ -101,10 +101,11 @@ export class SlidesCardComponent implements OnInit {
     duplicateSlides(e, slides) {
         e.stopPropagation();
         let newSlide: Slides = new Slides(slides);
+        console.log(newSlide);
         this.slidesService.submitSlides(newSlide)
             .subscribe(
             data => {
-                this.duplicateslidesOpt.emit();
+                this.duplicateslidesOpt.emit(data._id);
                 this.notifBarService.showNotif("slides has been copied");
             },
             error => {

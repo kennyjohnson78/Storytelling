@@ -10,7 +10,8 @@ import 'rxjs/add/operator/mergeMap';
 import { SessionActions } from '../../actions';
 import { IUser } from '../../store/session';
 import { ToggleNavService } from '../../services';
-
+import { MdDialog } from '@angular/material';
+import {HelpComponent} from './help/help.component';
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
@@ -26,7 +27,7 @@ export class ToolbarComponent implements OnInit {
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private actions: SessionActions,
-              private toggleNavService: ToggleNavService) {}
+              private toggleNavService: ToggleNavService, private dialog: MdDialog) {}
 
 
   ngOnInit() {
@@ -48,6 +49,10 @@ export class ToolbarComponent implements OnInit {
   logout() {
    this.actions.logoutUser();
    this.router.navigate(['/']);
+  }
+  help() {
+    const dialog = this.dialog.open(HelpComponent, {  height: '90%', width : '90%'});
+
   }
 
 }

@@ -13,8 +13,8 @@ import { Chart } from "../../../../../charts/chart.class";
 export class TextSlideComponent implements OnInit, OnChanges {
 
     @Input() slide: Slide;
-    private config: PageConfig;
-    private slideBkg: string;
+    config: PageConfig;
+    slideBkg: string;
 
     constructor(private sanitizer: DomSanitizer) {
         this.initConfig();

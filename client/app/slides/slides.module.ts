@@ -29,11 +29,11 @@ import { SlidesViewComponent,
     RightGraphLeftTextSlideComponent,
     TextSlideComponent,
     SlidesEditorFormComponent,
-    SlideComponent
+    SlideCardComponent
 } from '.';
 
 // SLIDES SERVICES
-import {SlidesService,ImagesService, ValidService, ChartsService} from '.';
+import {SlidesService, ImagesService, ValidService, ChartsService} from '.';
 
 // SLIDES ROUTES MODULE
 import { SlidesRoutingModule } from '.';
@@ -65,10 +65,10 @@ import { WordCloudComponent } from '../charts';
 
 import { AreaChartComponent } from '../charts/ngx-charts/area-chart';
 
-import { ImageUploadComponent } from './components/slides-editor-form/slides-editor/slide/image-upload/image-upload.component';
+import { ImageUploadComponent } from './components/slides-editor-form/slides-editor/slide-card/slide-editor/image-upload/image-upload.component';
 
 import { SlidesSettingComponent } from './components/slides-editor-form/slides-editor/slides-setting/slides-setting.component';
-import { ChartsBuilderComponent, CodeEditorComponent, DataTableComponent } from './components/slides-editor-form/slides-editor/slide/charts-builder';
+import { ChartsBuilderComponent, CodeEditorComponent, DataTableComponent } from './components/slides-editor-form/slides-editor/slide-card/slide-editor/charts-builder';
 import { SlidesEditorComponent } from './components/slides-editor-form/slides-editor/slides-editor.component';
 
 import { SlidesListComponent } from './components/slides-list/slides-list.component';
@@ -77,6 +77,7 @@ import { DeleteDialogComponent } from './components/slides-list/slides-card/dele
 import { ToggleFullscreenDirective } from './components/slides-view/toggle-fullscreen.directive';
 
 import { ValidateOnBlurDirective } from './components/slides-editor-form/slides-editor/slides-setting/validate-on-blur.directive';
+import { SlideEditorComponent } from './components/slides-editor-form/slides-editor/slide-card/slide-editor/slide-editor.component';
 
 @NgModule({
     imports: [
@@ -117,13 +118,14 @@ import { ValidateOnBlurDirective } from './components/slides-editor-form/slides-
         WordCloudComponent,
         SunburstChartComponent,
         AreaChartComponent,
-        ImageComponent],
+        ImageComponent,
+        SlideEditorComponent],
 
     declarations: [
         KeySwitchDirective,
         SlidesViewComponent,
         SlidesEditorFormComponent,
-        SlideComponent,
+        SlideCardComponent,
         ImageUploadComponent,
         SlidesSearchComponent,
         BarChartComponent,
@@ -159,14 +161,15 @@ import { ValidateOnBlurDirective } from './components/slides-editor-form/slides-
         KeySwitchDirective,
         ToggleFullscreenDirective,
         ImageComponent,
-        ValidateOnBlurDirective
+        ValidateOnBlurDirective,
+        SlideEditorComponent
     ],
     exports: [
       SlidesCardComponent,
       SlidesSearchComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    providers: [OverlayContainer, SlidesService,ImagesService, ChartsService]
+    providers: [OverlayContainer, SlidesService, ImagesService, ChartsService, ValidService]
 
 })
 export class SlidesModule {

@@ -7,23 +7,22 @@ import { SlidesService } from '../../services/slides.service';
 import { ValidService } from '../../services/valid.service';
 import {NotifBarService} from 'app/core';
 import { MaterialModule } from '@angular/material';
-import {SlideComponent} from './slides-editor/slide/slide.component';
 import {SlidesSettingComponent} from './slides-editor/slides-setting/slides-setting.component'
 import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {ChartsBuilderComponent} from './slides-editor/slide/charts-builder';
-import { DataTableComponent } from './slides-editor/slide/charts-builder/data-table';
+import {ChartsBuilderComponent} from './slides-editor/slide-card/slide-editor/charts-builder';
+import { DataTableComponent } from './slides-editor/slide-card/slide-editor/charts-builder/data-table';
 import { CodemirrorModule } from 'ng2-codemirror';
 import { DndModule } from 'ng2-dnd';
 import { HotTableModule } from 'ng2-handsontable';
-import { ImageUploadComponent } from './slides-editor/slide/image-upload/image-upload.component';
+import { ImageUploadComponent } from './slides-editor/slide-card/slide-editor/image-upload/image-upload.component';
 import { BarChartComponent, BubbleChartComponent, DendogramComponent, ForceDirectedGraphComponent, HierarchicalEdgeBundlingComponent,
     LineChartComponent, PieChartComponent, SunburstChartComponent,
     WordCloudComponent, ZoomableTreemapChartComponent, AdvancedPieChartComponent, AreaChartComponent, GaugeChartComponent, NumberCardComponent,
     PieGridChartComponent, TreemapChartComponent
 } from '../../../charts';
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
-import { CodeEditorComponent } from './slides-editor/slide/charts-builder/code-editor';
+import { CodeEditorComponent } from './slides-editor/slide-card/slide-editor/charts-builder/code-editor';
 import {NgxChartsModule } from '@swimlane/ngx-charts';
 import { APP_BASE_HREF } from '@angular/common';
 import {HttpModule} from '@angular/http';
@@ -37,7 +36,7 @@ describe('SlidesEditorFormComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [SlidesEditorFormComponent, ImageUploadComponent, DataTableComponent, CodeEditorComponent, SlidesEditorComponent, SlideComponent, SlidesSettingComponent,
+            declarations: [SlidesEditorFormComponent, ImageUploadComponent, DataTableComponent, CodeEditorComponent, SlidesEditorComponent, SlidesSettingComponent,
                 ChartsBuilderComponent, BarChartComponent, BubbleChartComponent, DendogramComponent, ForceDirectedGraphComponent, HierarchicalEdgeBundlingComponent,
                 LineChartComponent, PieChartComponent, SunburstChartComponent,
                 WordCloudComponent, ZoomableTreemapChartComponent, AdvancedPieChartComponent, AreaChartComponent, GaugeChartComponent, NumberCardComponent,

@@ -113,6 +113,11 @@ var SlidesSchema = new Schema({
           type: String,
           default: "left",
         }
+      },
+      isValid: {
+        type: Boolean,
+        default: false,
+        trim: true
       }
     }],
     default: '',

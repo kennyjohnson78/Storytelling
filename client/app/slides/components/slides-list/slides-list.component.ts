@@ -21,6 +21,7 @@ export class SlidesListComponent implements OnInit {
     };
     private pageSize = 6;
     private pageIndex = 0;
+    loading =true;
     listCopy = [];
     next: number = 0;
     private toSearch = {
@@ -62,7 +63,7 @@ export class SlidesListComponent implements OnInit {
             },
             error => {
                 this.notifBarService.showNotif("fail to load slides list");
-            });
+            },() => { this.loading = false;});
     }
     search(paramsTosearch) {
         //get search result
@@ -108,5 +109,18 @@ export class SlidesListComponent implements OnInit {
             }
         }
         return { noResult: false, noPublish: false, noSlides: false, noPrivate: false };
+    }
+    duplicate(id){
+        this.slidesService.getSlides(id).subscribe(slides => {
+           this.slides.push(slides);
+        });
+    }
+    deletedSlides(id){
+        this.slides.forEach((slides, i) => {
+            if (slides._id === id) {
+                this.slides.splice(i, 1);
+                return;
+            }
+        });
     }
 }

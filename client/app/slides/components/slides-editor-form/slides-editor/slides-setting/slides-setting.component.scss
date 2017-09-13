@@ -1,3 +1,5 @@
+@import 'client/stylesheets/theme.scss';
+
 md-input-container {
   padding: 0 10px;
 }
@@ -24,4 +26,15 @@ md-input-container {
       padding: 0;
     }
   }
+}
+.published {
+  color: mat-color($accent);
+}
+
+.unpublished {
+  color: mat-color($primary);
+  opacity: 0.5;
+}
+.published-icon{
+  margin-top: 90%;
 }

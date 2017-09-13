@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
+import {Component, OnInit, ViewChild, AfterViewChecked, ChangeDetectorRef, OnChanges} from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SlidesService } from '../../services/slides.service';
@@ -6,6 +6,7 @@ import { ValidService } from '../../services/valid.service';
 import { Slides } from '../../models/slides';
 import { SlidesEditorComponent} from './slides-editor/slides-editor.component';
 import {NotifBarService} from 'app/core';
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
     selector: 'app-slides-editor-form',
@@ -19,10 +20,11 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
     private id: string;//slides id in database
     private slider: Slides = new Slides();//corresponding slides
     private editorValid: Subscription; //validation of slide editor
-    private isValidated: boolean; //indicator:validation of slide editor
-    private errorMsg: Array<string>;//error
+    private errorMsg;//error
     private mode = '';//SAVE mode or CREATE mode
-
+    private isRequired = false;
+    private isInShuffle = false;
+     loading = true;
     @ViewChild('editor') _editor: SlidesEditorComponent;
 
     constructor(private router: Router,
@@ -41,7 +43,6 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
     }
 
     ngOnInit() {
-
         this.route.params.subscribe(params => {
             if (params['id']) {
                 this.id = params['id'];
@@ -56,21 +57,29 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
                 },
                 error => {
                     this.notifBarService.showNotif('fail to load slides list. error is ' + error);
-                });
+                }, () => this.loading = false);
         } else {
             this.mode = 'CREATE';
             this.slider = new Slides();
+            this.loading = false;
         }
 
         this.editorValid = this.validService.validAll$.subscribe(
             valid => {
-                this.isValidated = valid['status'];
-                if (!this.isValidated) this.errorMsg = valid['msg'];
-                else this.errorMsg = [];
+                this.isRequired = valid['msg'][0];
+                this.errorMsg = [];
+                if (this.isRequired) this.errorMsg.push({msg : valid['msg'], index: -1});
+                this.slider.slides.forEach((slide, index) => !slide.isValid ? this.errorMsg.push({msg : 'Slide ' + (index+1) + ' is not finished', index : index + 1} ) : false);
             });
     }
 
     // TODO rework service, rename in presentatiion
+    errorsHandle(currentSlide) {
+        if (currentSlide.isValid) {
+            this.errorMsg = [];
+            this.slider.slides.forEach((slide, index) => !slide.isValid ? this.errorMsg.push({msg :'Slide ' + (index + 1) + ' is not finished', index : index+1} ) : false);
+        }
+    }
 
     saveSlides(id) {
         if (id) {
@@ -94,5 +103,22 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
                 });
         }
     }
+    slideDeleted(index){
+        this.errorMsg.forEach((arrayMsg, i) => {
+         if (arrayMsg.index === index){
+             this.errorMsg.splice(i, 1);
+         }
+        });
+    }
 
+    onShuffle(shuffle) {
+        this.isInShuffle = shuffle;
+        if (!shuffle) {
+            this.errorMsg = [];
+            this.slider.slides.forEach((slides, index) =>
+                !slides.isValid ?
+                    this.errorMsg.push({msg: 'Slide ' + (index + 1) + ' is not finished', index: index + 1})
+                    : false);
+        };
+    }
 }

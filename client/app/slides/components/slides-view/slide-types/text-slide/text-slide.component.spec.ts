@@ -27,6 +27,7 @@ describe('TextSlideComponent', () => {
       "data" : [
         null
       ],
+      "isValid" : false,
       "pageLayout" : "textInCenter",
       "graph" : "",
       "textVerAlign" : "TOP",

@@ -15,7 +15,6 @@ export class SlidesEditorComponent implements OnChanges {
 
     slider: Slides = new Slides(); // the whole slides
     curSlideIndex = 1; // the slide that will be created(the amounts of slides pages +1 )
-
     isValidated = false;
     isValidatedSlide = true;
     isValidatedSetting = false;
@@ -26,13 +25,22 @@ export class SlidesEditorComponent implements OnChanges {
     @Input() sliderIpt: Slides;
     @Output() submit = new EventEmitter();
     @Output() bannerImageUpload = new EventEmitter();
-
+    @Output() slideDeleted =  new EventEmitter();
+    @Output() errorsHandle =  new EventEmitter();
+    @Output() onShuffle = new EventEmitter();
     constructor(private dragulaService: DragulaService, private validService: ValidService, private notifBarService: NotifBarService) {
         dragulaService.setOptions('shuffle-bag', {
             moves: (el, source, handle, sibling) => !(this.slideOpendIndex != null && this.slideOpendIndex > 0)
         });
+        dragulaService.drag.subscribe((value) => {
+            console.log(`drag: ${value[0]}`);
+            this.onShuffle.emit(true);
+        });
+        dragulaService.out.subscribe((value) => {
+            console.log(`drop: ${value[0]}`);
+            this.onShuffle.emit(false);
+        });
     }
-    
     ngOnChanges() {
         if (this.sliderIpt) {
             this.slider = this.sliderIpt;
@@ -40,11 +48,6 @@ export class SlidesEditorComponent implements OnChanges {
             this.isValidated = true;
         }
     }
-    /* update current slides index*/
-    openSlideIndex(index) {
-        this.slideOpendIndex = index;
-    }
-
     /* trigger when slides setting change*/
     slidesSettingChange(setting) {
         this.slider.slidesSetting = setting;
@@ -70,6 +73,7 @@ export class SlidesEditorComponent implements OnChanges {
         let s = new Slide(this.curSlideIndex++);
         this.slider.slides.push(s);
         this.isValidatedSlide = false;
+        this.validService.changeSlideValid(false, this.curSlideIndex - 1);
         this.checkValid();
     }
 
@@ -90,8 +94,12 @@ export class SlidesEditorComponent implements OnChanges {
                 this.curSlideIndex--;
             }
             this.validService.changeSlideValid(true, index, "DELETE");
+            this.slideDeleted.emit(this.curSlideIndex);
         } catch (err) {
             this.notifBarService.showNotif('delete fail : ' + err);
         }
+    }
+    saveSlide(result) {
+        this.errorsHandle.emit(result);
     }
 }

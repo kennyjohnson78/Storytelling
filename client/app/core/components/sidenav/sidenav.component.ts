@@ -58,7 +58,6 @@ export class SidenavComponent {
         this.sideNavLock = true;
       }
     }
-    console.log("pin", document.cookie);
   }
   /*Cookie operation*/
   setCookie(cname, cvalue, exdays) {
