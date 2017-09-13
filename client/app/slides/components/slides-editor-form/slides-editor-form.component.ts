@@ -22,7 +22,7 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
     private editorValid: Subscription; //validation of slide editor
     private errorMsg;//error
     private mode = '';//SAVE mode or CREATE mode
-    private isRequired = true;
+    private isRequired = false;
     private isInShuffle = false;
      loading = true;
     @ViewChild('editor') _editor: SlidesEditorComponent;

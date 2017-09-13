@@ -7,7 +7,6 @@ import {MdDialogRef} from '@angular/material';
   styleUrls: ['./help.component.scss']
 })
 export class HelpComponent implements OnInit {
-
   constructor(public dialogRef: MdDialogRef<HelpComponent>) { }
 
   ngOnInit() {
