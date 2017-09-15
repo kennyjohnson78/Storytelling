@@ -1,12 +1,12 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { FormControl, Validators, FormGroup } from "@angular/forms";
-import {UsersService} from '../../index';
+import {UsersService} from '../../../index';
 import { Observable } from 'rxjs/Observable';
 import { select } from '@angular-redux/store';
-import { SessionActions } from '../../../core/actions';
+import { SessionActions } from '../../../../core/actions';
 import { NgRedux } from '@angular-redux/store';
-import { IAppState, ISessionRecord } from '../../../core/store';
-import { IUser, IMessage } from "../../../core/store/session";
+import { IAppState, ISessionRecord } from '../../../../core/store';
+import { IUser, IMessage } from "../../../../core/store/session";
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',

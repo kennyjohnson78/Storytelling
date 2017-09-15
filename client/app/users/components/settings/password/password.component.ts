@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { NgRedux, select } from '@angular-redux/store';
-import { IAppState } from '../../../core/store';
-import { IMessage } from "../../../core/store/session";
+import { IAppState } from '../../../../core/store';
+import { IMessage } from "../../../../core/store/session";
 import {EqualValidator} from './equal-validator.directive';
-import { SessionActions } from '../../../core/actions';
+import { SessionActions } from '../../../../core/actions';
 
 @Component({
   selector: 'app-password',

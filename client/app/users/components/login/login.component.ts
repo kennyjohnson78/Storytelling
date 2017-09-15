@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SessionActions } from '../../core/actions';
+import { SessionActions } from 'app/core';
 import { select } from '@angular-redux/store';
 import {Observable} from 'rxjs/Observable';
-import { IMessage } from "../../core/store/session";
+import { IMessage } from 'app/core';
 
 
 @Component({
