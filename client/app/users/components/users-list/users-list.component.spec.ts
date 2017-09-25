@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable } from "rxjs";
-import { ListComponent } from './list.component';
+import { UsersListComponent } from './users-list.component';
 import { MaterialModule } from '@angular/material';
-import {UsersService} from '../services';
+import {UsersService} from '../../services';
 import {HttpModule} from '@angular/http';
 class UsersServiceStub {
     getUsers():Observable<any>{
@@ -12,13 +12,13 @@ class UsersServiceStub {
       }])
   }
 }
-describe('ListComponent', () => {
-    let component: ListComponent;
-    let fixture: ComponentFixture<ListComponent>;
+describe('UsersListComponent', () => {
+    let component: UsersListComponent;
+    let fixture: ComponentFixture<UsersListComponent>;
     let usersService: UsersService;
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ListComponent],
+            declarations: [UsersListComponent],
             imports: [MaterialModule, HttpModule],
             providers: [{ provide: UsersService, useClass: UsersServiceStub }]
         })
@@ -26,7 +26,7 @@ describe('ListComponent', () => {
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ListComponent);
+        fixture = TestBed.createComponent(UsersListComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
         usersService = TestBed.get(UsersService);

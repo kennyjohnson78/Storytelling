@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { MaterialModule } from '@angular/material';
 import { RouterTestingModule } from '@angular/router/testing';
-import {SessionActions} from '../../core';
+import {SessionActions} from '../../../core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgReduxTestingModule } from '@angular-redux/store/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

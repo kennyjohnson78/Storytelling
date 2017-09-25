@@ -47,14 +47,14 @@ export class InterceptedHttp extends Http {
         switch (error.status) {
             case 400:
                 router.navigate(['/bad-request']);
-                return Observable.of();
+                break;
             case 401:
                 actions.logoutUser();
                 router.navigate(['/']);
                 return Observable.of();
             case 404:
                 router.navigate(['/not-found']);
-                return Observable.of();
+                break;
         }
         return Observable.throw(error);
     }

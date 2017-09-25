@@ -50,7 +50,7 @@ export class SlidesListComponent implements OnInit {
                     this.result = this.calculResult(this.slides.length, this.toSearch.filter, this.toSearch.title);
                 },
                 error => {
-                    this.notifBarService.showNotif("fail to load slides list");
+                    this.notifBarService.showNotif("fail to load slides users-list");
                 });
     }
     ngOnInit() {
@@ -62,7 +62,7 @@ export class SlidesListComponent implements OnInit {
                 this.result = this.calculResult(this.slides.length, this.toSearch.filter, this.toSearch.title);
             },
             error => {
-                this.notifBarService.showNotif("fail to load slides list");
+                this.notifBarService.showNotif("fail to load slides users-list");
             },() => { this.loading = false;});
     }
     search(paramsTosearch) {

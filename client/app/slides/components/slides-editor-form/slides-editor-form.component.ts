@@ -56,7 +56,7 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
                     this.slider = slides;
                 },
                 error => {
-                    this.notifBarService.showNotif('fail to load slides list. error is ' + error);
+                    this.notifBarService.showNotif('fail to load slides users-list. error is ' + error);
                 }, () => this.loading = false);
         } else {
             this.mode = 'CREATE';

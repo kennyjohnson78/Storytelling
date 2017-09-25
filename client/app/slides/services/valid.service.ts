@@ -17,13 +17,13 @@ export class ValidService {
         SLIDES_NAME: "Slides name is required",
         LAYOUT: "Please choose a layout type in slide page"
     };
-    private unvalidSlideList: Array<number> = []; //list of unvalid slide page index
+    private unvalidSlideList: Array<number> = []; //users-list of unvalid slide page index
 
     constructor() {
     }
 
     handleNewChange(status, index, option) {
-        /* set the unvalid slide list*/
+        /* set the unvalid slide users-list*/
         let find = false;
         let find_index = 0;
         this.unvalidSlideList.forEach((l, i) => {

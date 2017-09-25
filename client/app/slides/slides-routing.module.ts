@@ -4,28 +4,28 @@ import { RouterModule, Routes } from '@angular/router';
 // SLIDES COMPONENTS
 import { SlidesViewComponent, SlidesEditorFormComponent, SlidesListComponent, SlideEditorComponent } from '.';
 
-import { Auth } from 'app/users';
+import { AuthGuard } from 'app/users';
 
 
 const slidesRoutes: Routes = [
   {
     path: '',
     component: SlidesListComponent,
-    canActivate: [Auth],
+    canActivate: [AuthGuard],
     data: {
-      roles: ['*'],
+      roles: ['user',  'admin'],
       title: 'slides List'
     },
     pathMatch: 'full'
   }, {
     path: 'createSlides',
     component: SlidesEditorFormComponent,
-    data: { title: 'Slides Creator' }
+    data: { roles: ['user',  'admin'], title: 'Slides Creator' }
   }, {
     path: 'display/:id',
     component: SlidesEditorFormComponent,
     data: {
-      roles: ['user'],
+      roles: ['user',  'admin'],
       title: 'Slides Editor'
     }
   }, {

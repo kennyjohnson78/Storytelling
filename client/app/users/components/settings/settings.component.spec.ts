@@ -5,9 +5,9 @@ import {ProfileComponent} from './profile';
 import {PasswordComponent} from './password';
 import { MaterialModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {UsersService} from '../services';
+import {UsersService} from '../../services';
 import {HttpModule} from '@angular/http';
-import {SessionActions} from '../../core';
+import {SessionActions} from '../../../core';
 import { NgReduxTestingModule } from '@angular-redux/store/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 

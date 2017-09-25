@@ -10,7 +10,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awes
 import { HttpModule, Http, XHRBackend, RequestOptions } from "@angular/http";
 
 // CORE COMPONENTS
-import { ToolbarComponent, SidenavComponent, NotFoundPageComponent, BadRequestPageComponent } from '.';
+import { ToolbarComponent, SidenavComponent, NotFoundPageComponent, BadRequestPageComponent, ForbidenComponent } from '.';
 
 // CORE SERVICES
 import { SessionActions, MenuService, NotifBarService, ToggleNavService, InterceptedHttp } from '.';
@@ -35,7 +35,8 @@ export function httpFactory(xhrBackend: XHRBackend, requestOptions: RequestOptio
     SidenavComponent,
     NotFoundPageComponent,
     BadRequestPageComponent,
-    HelpComponent
+    HelpComponent,
+    ForbidenComponent
   ],
   entryComponents: [
     HelpComponent
@@ -51,7 +52,8 @@ export function httpFactory(xhrBackend: XHRBackend, requestOptions: RequestOptio
     ToolbarComponent,
     SidenavComponent,
     NotFoundPageComponent,
-    BadRequestPageComponent
+    BadRequestPageComponent,
+    ForbidenComponent
   ]
 })
 

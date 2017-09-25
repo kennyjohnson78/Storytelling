@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { SessionActions } from '../../core/actions';
-import { UsersService } from '../services/index';
-import { User } from '../models/index';
+import { SessionActions } from 'app/core/actions';
+import { UsersService } from '../../services';
+import { User } from '../../models';
 
 
 @Component({
