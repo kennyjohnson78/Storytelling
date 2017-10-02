@@ -21,11 +21,17 @@ md-card {
   min-height: 200px;
   min-width: 250px;
   padding: 20px;
-
   ul {
     background: #ecf0f1;
     list-style: none;
     padding: 20px;
+    min-height: 260px;
+    .drop-zone {
+      min-height: 35px;
+      min-width: 260px;
+      border: 1px dotted #bda9a9;
+      margin-bottom: 4px;
+    }
   }
 
   ul li {
