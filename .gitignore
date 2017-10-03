@@ -10,7 +10,7 @@ Thumbs.db
 .nodemonignore
 .sass-cache/
 node_modules/
-public/lib/
+server/public/
 app/tests/coverage/
 .bower-*/
 .idea/
@@ -86,4 +86,3 @@ mongod
 *.ntvs*
 *.njsproj
 *.sln
-
