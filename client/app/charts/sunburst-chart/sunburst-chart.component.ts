@@ -88,7 +88,7 @@ export class SunburstChartComponent extends Chart implements OnInit, OnChanges {
             if (upperLevel) {
                 level = upperLevel;
             } else {
-                level = Object.assign(level, { value: _.reduce(d, (total, el) => total + value$(el), 0) })
+                level = Object.assign(level, { value: /*_.reduce(d, (total, el) => total + value$(el), 0)*/_.reject(d, el => {}).length, })
             }
 
             return level;

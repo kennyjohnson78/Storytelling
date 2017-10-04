@@ -80,14 +80,12 @@ export class ForceDirectedGraphComponent extends Chart implements OnInit, AfterV
             }
             return level.concat({
                 id: prefix + fetchId$(d[0]),
-                value: _.reduce(d, (total, el) => total + value$(el), 0)
-            })
+                value: _.reject(d, el => {}).length,
+            });
         }
         let result = root.concat(level0);
 
-
         return result;
-
     }
 
     init() {
