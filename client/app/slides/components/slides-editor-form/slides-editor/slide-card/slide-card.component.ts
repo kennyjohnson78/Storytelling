@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { Slide } from '../../../../models/slide';
-import {SlideEditorComponent} from './slide-editor/slide-editor.component';
+import { SlideEditorComponent } from './slide-editor/slide-editor.component';
 import { MdDialog } from '@angular/material';
 
 @Component({

@@ -64,7 +64,7 @@ export class DendogramComponent extends Chart implements OnInit, OnChanges {
             }
             return level.concat({
                 id: prefix + fetchId$(d[0]),
-                value: /*_.reduce(d, (total, el) => total + value$(el), 0)*/ _.reject(d, el => {}).length,
+                value: _.filter(d, el => _.isEmpty(el)).length,
             })
         }
 

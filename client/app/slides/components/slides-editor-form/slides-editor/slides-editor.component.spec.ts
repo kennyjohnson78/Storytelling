@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {SlidesSettingComponent} from './slides-setting/slides-setting.component'
 import { SlidesEditorComponent } from './slides-editor.component';
 import { DragulaModule, DragulaService } from 'ng2-dragula/ng2-dragula';
-import { MaterialModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ChartsBuilderComponent} from './slide-card/slide-editor/charts-builder';
 import { ImageUploadComponent } from './slide-card/slide-editor/image-upload/image-upload.component';
@@ -37,7 +36,7 @@ describe('SlidesEditorComponent', () => {
         WordCloudComponent, ZoomableTreemapChartComponent, AdvancedPieChartComponent, AreaChartComponent, GaugeChartComponent, NumberCardComponent,
         PieGridChartComponent, TreemapChartComponent, DataTableComponent, SlidesSettingComponent, ChartsBuilderComponent, ImageUploadComponent ],
       providers: [DragulaService, ValidService, NotifBarService, {provide: SlidesService, useValue:slidesServiceStub }],
-      imports : [DragulaModule, BrowserAnimationsModule, HttpModule, MaterialModule, NgxChartsModule, CodemirrorModule, DndModule, HotTableModule, FormsModule, ReactiveFormsModule, FroalaEditorModule, FroalaViewModule]
+      imports : [DragulaModule, BrowserAnimationsModule, HttpModule, NgxChartsModule, CodemirrorModule, DndModule, HotTableModule, FormsModule, ReactiveFormsModule, FroalaEditorModule, FroalaViewModule]
     })
     .compileComponents();
   }));

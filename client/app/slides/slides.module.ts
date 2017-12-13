@@ -3,7 +3,8 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER, ModuleWithProviders 
 import { CommonModule } from '@angular/common';
 
 // MATERIAL DESIGN MODULES
-import { MaterialModule, OverlayContainer, TooltipPosition } from '@angular/material';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {XHRBackend, RequestOptions} from '@angular/http';
@@ -44,14 +45,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { KeySwitchDirective } from './components/slides-view/key-switch.directive';
 
 import { DragulaModule } from 'ng2-dragula';
-import { BarChartComponent } from '../charts';
-import { GaugeChartComponent } from '../charts';
-import { NgGraphComponent } from '../charts';
-import { TreemapChartComponent } from '../charts';
-import { ZoomableTreemapChartComponent } from '../charts';
-import { PieGridChartComponent } from '../charts';
-import { NumberCardComponent } from '../charts';
-import { SunburstChartComponent } from '../charts';
+import {
+    BarChartComponent,
+    GaugeChartComponent,
+    NgGraphComponent,
+    TreemapChartComponent,
+    ZoomableTreemapChartComponent,
+    PieGridChartComponent,
+    NumberCardComponent,
+    SunburstChartComponent } from '../charts';
 import { HierarchicalEdgeBundlingComponent } from '../charts/hierarchical-edge-bundling/hierarchical-edge-bundling.component';
 
 import { AdvancedPieChartComponent } from '../charts';
@@ -82,7 +84,7 @@ import { SlideEditorComponent } from './components/slides-editor-form/slides-edi
 @NgModule({
     imports: [
         CommonModule,
-        MaterialModule,
+        MatTooltipModule,
         FormsModule,
         ReactiveFormsModule,
         CoreModule,

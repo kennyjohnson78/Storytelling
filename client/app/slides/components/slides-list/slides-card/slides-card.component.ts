@@ -1,3 +1,4 @@
+/*
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core'
 import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
@@ -51,7 +52,7 @@ export class SlidesCardComponent implements OnInit {
     }
 
     ngOnInit() {
-      /*after load slides info, load slides banner*/
+      /*after load slides info, load slides banner
         if (this.slides.slidesSetting.banner) {
             this.imagesService.getImage(this.slides.slidesSetting.banner).subscribe(
                 _banner => {
@@ -61,7 +62,7 @@ export class SlidesCardComponent implements OnInit {
         }
     }
 
-    /*publish/unpublish slides*/
+    /*publish/unpublish slides
     togglePublish(e) {
         e.stopPropagation();
         this.slides.slidesSetting.public = !this.slides.slidesSetting.public;
@@ -71,7 +72,7 @@ export class SlidesCardComponent implements OnInit {
             error => this.notifBarService.showNotif("fail to set upload status, error is " + error)
             );
     }
-    /*set like/dislike slides*/
+    /*set like/dislike slides
     toggleFavorite(e) {
         e.stopPropagation();
         this.slides.slidesSetting.favorite = !this.slides.slidesSetting.favorite;
@@ -81,7 +82,7 @@ export class SlidesCardComponent implements OnInit {
             error => this.notifBarService.showNotif("fail to set favorite status, error is " + error)
             );
     }
-    /*delete the whole slides*/
+    /*delete the whole slides
     deleteSlides(e, id) {
         e.stopPropagation();
         const dialog = this.dialog.open(DeleteDialogComponent);
@@ -97,7 +98,7 @@ export class SlidesCardComponent implements OnInit {
         });
 
     }
-    /*duplicate slides*/
+    /*duplicate slides
     duplicateSlides(e, slides) {
         e.stopPropagation();
         let newSlide: Slides = new Slides(slides);
@@ -113,3 +114,4 @@ export class SlidesCardComponent implements OnInit {
             });
     }
 }
+/*

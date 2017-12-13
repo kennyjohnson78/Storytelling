@@ -10,16 +10,16 @@ export const environment = {
         host: '127.0.0.1',
         port: '3000',
         endpoints: {
-            signup: '/api/auth/signup',
-            signin: '/api/auth/signin',
-            articles : '/api/articles',
-            users : '/api/users',
-            slides: '/api/slides',
-            slidesFix: '/api/slidesFix',
-            images: '/api/images',
-            imagesServer : '/api/imagesServer',
-            search : '/api/search/slides',
-            banner : '/api/banner'
+            base: 'api',
+            signup: 'auth/signup',
+            signin: 'auth/signin',
+            users : 'users',
+            slides: 'slides',
+            slidesFix: 'slidesFix',
+            images: 'images',
+            imagesServer : 'imagesServer',
+            search : 'search/slides',
+            banner : 'banner'
         }
     }
 };

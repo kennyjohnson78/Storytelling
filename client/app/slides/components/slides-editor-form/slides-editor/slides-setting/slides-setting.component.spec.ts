@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SlidesSettingComponent } from './slides-setting.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ImageUploadComponent } from '../slide-card/slide-editor/image-upload/image-upload.component';
-import { MaterialModule } from '@angular/material';
 import {ValidService} from '../../../../services/valid.service';
 import { SlidesService } from '../../../../services/slides.service';
 import {HttpModule} from '@angular/http';
@@ -19,7 +18,7 @@ describe('SlidesSettingComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SlidesSettingComponent, ImageUploadComponent ],
-      imports: [FormsModule, ReactiveFormsModule, BrowserAnimationsModule, HttpModule,  MaterialModule ],
+      imports: [FormsModule, ReactiveFormsModule, BrowserAnimationsModule, HttpModule ],
       providers: [ValidService, {provide: SlidesService, useValue:slidesServiceStub }, NotifBarService]
     })
     .compileComponents();

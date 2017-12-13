@@ -6,7 +6,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { SlidesService } from '../../services/slides.service';
 import { ValidService } from '../../services/valid.service';
 import {NotifBarService} from 'app/core';
-import { MaterialModule } from '@angular/material';
 import {SlidesSettingComponent} from './slides-editor/slides-setting/slides-setting.component'
 import {DragulaModule, DragulaService} from 'ng2-dragula/ng2-dragula';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -41,7 +40,7 @@ describe('SlidesEditorFormComponent', () => {
                 LineChartComponent, PieChartComponent, SunburstChartComponent,
                 WordCloudComponent, ZoomableTreemapChartComponent, AdvancedPieChartComponent, AreaChartComponent, GaugeChartComponent, NumberCardComponent,
                 PieGridChartComponent, TreemapChartComponent],
-            imports: [RouterTestingModule, MaterialModule, BrowserAnimationsModule, HttpModule, ReactiveFormsModule, FroalaEditorModule, FroalaViewModule, DragulaModule, NgxChartsModule, FormsModule, HotTableModule, DndModule, CodemirrorModule],
+            imports: [RouterTestingModule, BrowserAnimationsModule, HttpModule, ReactiveFormsModule, FroalaEditorModule, FroalaViewModule, DragulaModule, NgxChartsModule, FormsModule, HotTableModule, DndModule, CodemirrorModule],
             providers: [{provide: SlidesService, useValue:slidesServiceStub }, ValidService, NotifBarService, DragulaService, { provide: APP_BASE_HREF, useValue: '/' }]
         })
             .compileComponents();

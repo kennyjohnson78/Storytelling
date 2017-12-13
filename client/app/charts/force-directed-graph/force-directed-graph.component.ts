@@ -80,7 +80,7 @@ export class ForceDirectedGraphComponent extends Chart implements OnInit, AfterV
             }
             return level.concat({
                 id: prefix + fetchId$(d[0]),
-                value: _.reject(d, el => {}).length,
+                value: _.filter(d, el => _.isEmpty(el)).length,
             });
         }
         let result = root.concat(level0);
@@ -124,7 +124,7 @@ export class ForceDirectedGraphComponent extends Chart implements OnInit, AfterV
         }
         function simplizeLink(links) {
             let result = _.chain(links)
-                .map(d => {
+                .map((d: any) => {
                     return {
                         source: d.source.data.id,
                         target: d.target.data.id

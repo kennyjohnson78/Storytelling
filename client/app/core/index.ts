@@ -1,7 +1,3 @@
-export * from './components';
-export * from './epics';
-export * from './store';
-export * from './services';
-export * from './actions';
-export * from './core.module';
-export * from './store/store.module';
+export { coreConfiguration } from './core.configuration';
+export { MenuItem } from './models/menu-item.model';
+export { CoreModule } from './core.module';

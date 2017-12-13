@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MaterialModule } from '@angular/material';
 import { SlidesListComponent } from './slides-list.component';
 import { SlidesSearchComponent } from './slides-search/slides-search.component';
 import { SlidesCardComponent } from './slides-card/slides-card.component';
@@ -101,7 +100,6 @@ describe('SlidesListComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [
-                MaterialModule,
                 FormsModule,
                 BrowserAnimationsModule,
                 RouterTestingModule,

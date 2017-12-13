@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChartsBuilderComponent } from './charts-builder.component';
-import { MaterialModule } from '@angular/material';
 import { DataTableComponent } from './data-table';
 import { CodemirrorModule } from 'ng2-codemirror';
 import { FormsModule } from '@angular/forms';
@@ -27,7 +26,6 @@ describe('ChartsBuilderComponent', () => {
         LineChartComponent, PieChartComponent, SunburstChartComponent, WordCloudComponent, ZoomableTreemapChartComponent, AdvancedPieChartComponent, AreaChartComponent, GaugeChartComponent, NumberCardComponent,
         PieGridChartComponent, TreemapChartComponent ],
       imports: [
-        MaterialModule,
         NgxChartsModule,
         CodemirrorModule,
         FormsModule,

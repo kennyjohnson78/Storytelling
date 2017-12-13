@@ -1,60 +1,72 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER, ModuleWithProviders } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { CoreRoutingModule } from 'app/core/+routing/core-routing.module';
+import { AuthenticationModule } from 'app/authentication/authentication.module';
+import { Store, StoreModule } from '@ngrx/store';
+import {
+  MatButtonModule,
+  MatTooltipModule,
+  MatToolbarModule,
+  MatTableModule,
+  MatSortModule,
+  MatPaginatorModule,
+  MatDialogModule,
+  MatIconModule,
+  MatCardModule,
+  MatInputModule,
+  MatListModule
+ } from '@angular/material';
+ import { SharedModule } from 'app/shared/shared.module';
 
-// MATERIAL DESIGN MODULES
-import { MaterialModule } from '@angular/material';
-import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
+export const COMPONENTS = [
+  LayoutComponent,
+  HomeComponent,
+  NotFoundComponent
+];
 
-// HTTP PROVIDER
-import { HttpModule, Http, XHRBackend, RequestOptions } from "@angular/http";
-
-// CORE COMPONENTS
-import { ToolbarComponent, SidenavComponent, NotFoundPageComponent, BadRequestPageComponent, ForbidenComponent } from '.';
-
-// CORE SERVICES
-import { SessionActions, MenuService, NotifBarService, ToggleNavService, InterceptedHttp } from '.';
-import { HelpComponent } from './components/toolbar/help/help.component';
-
-export function httpFactory(xhrBackend: XHRBackend, requestOptions: RequestOptions,  router: Router, actions: SessionActions): Http {
-    return new InterceptedHttp(xhrBackend, requestOptions, router, actions);
- }
-
-
+const MATERIAL_MODULES = [
+  MatButtonModule,
+  MatTooltipModule,
+  MatToolbarModule,
+  MatTableModule,
+  MatSortModule,
+  MatPaginatorModule,
+  MatDialogModule,
+  MatIconModule,
+  MatCardModule,
+  MatInputModule,
+  MatListModule
+ ];
 
 @NgModule({
   imports: [
+    CommonModule,
     RouterModule,
-    AngularFontAwesomeModule,
-    HttpModule,
-    MaterialModule,
-    CommonModule
+    SharedModule,
+    AuthenticationModule,
+    ...MATERIAL_MODULES,
+    FlexLayoutModule,
   ],
-  declarations: [
-    ToolbarComponent,
-    SidenavComponent,
-    NotFoundPageComponent,
-    BadRequestPageComponent,
-    HelpComponent,
-    ForbidenComponent
-  ],
-  entryComponents: [
-    HelpComponent
-  ],
-    schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  providers: [
-    NotifBarService,
-    MenuService,
-    ToggleNavService,
-    { provide: Http,  useFactory: httpFactory, deps: [XHRBackend, RequestOptions, Router, SessionActions]}
-  ],
-  exports: [
-    ToolbarComponent,
-    SidenavComponent,
-    NotFoundPageComponent,
-    BadRequestPageComponent,
-    ForbidenComponent
+  declarations: COMPONENTS,
+  exports: COMPONENTS,
+})
+export class CoreModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: RootCoreModule,
+    }
+  }
+}
+
+@NgModule({
+  imports: [
+    CoreModule,
+    CoreRoutingModule
   ]
 })
-
-export class CoreModule {}
+export class RootCoreModule { }

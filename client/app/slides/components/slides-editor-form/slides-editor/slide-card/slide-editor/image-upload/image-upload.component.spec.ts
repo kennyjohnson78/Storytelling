@@ -4,7 +4,6 @@ import { HttpModule } from '@angular/http';
 import { SlidesService } from '../../../../../../services/slides.service';
 import { ImageUploadComponent } from './image-upload.component';
 import { NotifBarService } from 'app/core';
-import { MaterialModule } from '@angular/material';
 describe('ImageUploadComponent', () => {
   let component: ImageUploadComponent;
   let fixture: ComponentFixture<ImageUploadComponent>;
@@ -13,7 +12,7 @@ describe('ImageUploadComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ImageUploadComponent ],
-      imports: [FormsModule, HttpModule, MaterialModule],
+      imports: [FormsModule, HttpModule],
       providers: [{provide: SlidesService, useValue:slidesServiceStub }, NotifBarService]
     })
     .compileComponents();
