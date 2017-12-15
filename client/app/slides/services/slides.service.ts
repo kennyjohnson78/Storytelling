@@ -3,6 +3,7 @@ import { Http, Headers, RequestOptions, Response, URLSearchParams } from '@angul
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/share';
+import 'rxjs/add/operator/take';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../environments/environment';
 import { Slides } from '../models/index';
@@ -32,6 +33,7 @@ export class SlidesService {
         if (environment.backend.port) {
             this._baseUrl += `:${environment.backend.port}`;
         };
+        this._baseUrl += `/${environment.backend.endpoints.base}/`
         this.user$.subscribe(user => {
             this.user = {
                 username: user.username,
@@ -61,7 +63,7 @@ export class SlidesService {
         params.set('pageSize', pageSize);
 
         const backendURL = `${this._baseUrl}${environment.backend.endpoints.search}`;
-        return this.http.get(backendURL, { search: params }).map((response: Response) => response.json());
+        return this.http.get(backendURL, { search: params }).map((response: Response) => response.json()).take(1);
     }
     getSlides(id): Observable<any> {
         const backendURL = `${this._baseUrl}${environment.backend.endpoints.slides}/${id}`;

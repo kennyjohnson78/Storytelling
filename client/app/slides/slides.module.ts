@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { OverlayContainer } from '@angular/cdk/overlay';
 import {
     MatTooltipModule,
+    MatInputModule,
     MatCardModule,
     MatSelectModule,
     MatIconModule,
@@ -114,6 +115,7 @@ import { SlideEditorComponent } from './components/slides-editor-form/slides-edi
         MatButtonModule,
         MatChipsModule,
         MatToolbarModule,
+        MatInputModule,
         HttpModule
     ],
     entryComponents: [

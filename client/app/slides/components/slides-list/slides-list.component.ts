@@ -13,7 +13,7 @@ import {PageEvent} from '@angular/material';
 
 export class SlidesListComponent implements OnInit {
 //    @select(['session', 'token']) loggedIn$: Observable<string>;
-    public loggedIn$ = Observable.of('true');
+    public loggedIn$ = Observable.of('me');
     private result = {
         noResult: false,
         noPublish: false,
@@ -64,7 +64,8 @@ export class SlidesListComponent implements OnInit {
             },
             error => {
 //                this.notifBarService.showNotif("fail to load slides users-list");
-            },() => { this.loading = false;});
+            },
+            () => { this.loading = false; });
     }
     search(paramsTosearch) {
         //get search result

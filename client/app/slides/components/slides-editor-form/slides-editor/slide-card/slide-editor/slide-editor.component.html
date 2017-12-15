@@ -2,7 +2,7 @@
   <form novalidate [formGroup]="form" (ngSubmit)="f.form.valid" #f="ngForm">
     <div class="titleDiv">
           <mat-form-field>
-            <input mdInput [(ngModel)]="slide.pageTitle.title" formControlName="pageTitle" name="pageTitle" placeholder="Title" />
+            <input matInput [(ngModel)]="slide.pageTitle.title" formControlName="pageTitle" name="pageTitle" placeholder="Title" />
           </mat-form-field>
           <mat-select formControlName="titleAlign" [(ngModel)]="slide.pageTitle.align" name="titleAlign" placeholder="Title Align">
             <mat-option *ngFor="let align of titleAlignOption" [value]="align">
