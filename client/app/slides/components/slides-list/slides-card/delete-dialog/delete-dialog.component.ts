@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-//import {MdDialogRef} from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-delete-dialog',
@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteDialogComponent implements OnInit {
 
-//  constructor(public dialogRef: MdDialogRef<DeleteDialogComponent>) { }
+  constructor(public dialogRef: MatDialogRef<DeleteDialogComponent>) { }
 
   ngOnInit() {
   }

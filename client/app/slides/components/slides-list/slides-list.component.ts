@@ -61,11 +61,11 @@ export class SlidesListComponent implements OnInit {
                 this.slides = slides[0];
                 this.length = slides[1];
                 this.result = this.calculResult(this.slides.length, this.toSearch.filter, this.toSearch.title);
+                this.loading = false;
             },
             error => {
 //                this.notifBarService.showNotif("fail to load slides users-list");
-            },
-            () => { console.log('XXXXXXX'); this.loading = false; });
+            });
     }
     search(paramsTosearch) {
         //get search result
@@ -118,11 +118,11 @@ export class SlidesListComponent implements OnInit {
         });
     }
     deletedSlides(id){
-        this.slides.forEach((slides, i) => {
-            if (slides._id === id) {
+        this.slides.forEach((slide, i) => {
+            if (slide._id === id) {
                 this.slides.splice(i, 1);
-                return;
             }
         });
+        console.log("?????")
     }
 }

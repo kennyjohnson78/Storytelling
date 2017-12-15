@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core'
 import { Observable } from 'rxjs/Observable';
 import { Slides } from '../../../models/slides';
 import { SlidesService, ImagesService } from '../../../services';
-//import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { DeleteDialogComponent} from './delete-dialog/delete-dialog.component';
 //import { NotifBarService } from 'app/core';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
@@ -49,7 +49,7 @@ export class SlidesCardComponent implements OnInit {
     constructor(
         private slidesService: SlidesService,
         private imagesService: ImagesService,
-//        private dialog: MdDialog,
+        private dialog: MatDialog
 //        private notifBarService: NotifBarService
     ) {
           this.banner=""
@@ -89,7 +89,7 @@ export class SlidesCardComponent implements OnInit {
     /*delete the whole slides*/
     deleteSlides(e, id) {
         e.stopPropagation();
-        /*
+        
         const dialog = this.dialog.open(DeleteDialogComponent);
         dialog.afterClosed().subscribe(result => {
             if (result === 'YES') {
@@ -102,7 +102,7 @@ export class SlidesCardComponent implements OnInit {
                     );
             }
         });
-*/
+
     }
     /*duplicate slides*/
     duplicateSlides(e, slides) {

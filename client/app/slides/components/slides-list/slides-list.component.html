@@ -4,8 +4,8 @@
   </div>
 
   <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around">
-    <div *ngFor="let s of slides" [class.display-div]="!(loggedIn$|async)&& !s.slidesSetting.public" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="33" fxFlex.xl="33">
-      <app-slides-card (deletedSlides)="deletedSlides($event)" [slides]="s" [editable]="true" (duplicateslidesOpt)="duplicate($event)"></app-slides-card>
+    <div *ngFor="let slide of slides" [class.display-div]="!(loggedIn$|async)&& !slide.slidesSetting.public" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="33" fxFlex.xl="33">
+      <app-slides-card (deletedSlides)="deletedSlides($event)" [slides]="slide" [editable]="true" (duplicateslidesOpt)="duplicate($event)"></app-slides-card>
     </div>
 
   </div>

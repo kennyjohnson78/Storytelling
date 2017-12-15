@@ -3,7 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators, FormArray  } from '@an
 import {ValidService} from '../../../../../services/valid.service';
 import { environment } from '../../../../../../../environments/environment';
 import * as slideOption from './slideOption';
-//import { MdDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 
 import { Slide } from '../../../../../models/slide';
 @Component({
@@ -25,7 +25,7 @@ export class SlideEditorComponent implements OnInit, OnChanges {
   private isChartBuilderValid: boolean;//indicator for validation of chart builder
 
 
-  constructor( /*public dialogRef: MdDialogRef<SlideEditorComponent>,*/ private _fb: FormBuilder, private validService: ValidService) {
+  constructor( public dialogRef: MatDialogRef<SlideEditorComponent>, private _fb: FormBuilder, private validService: ValidService) {
     this.slide = new Slide();
     this.form = this._buildForm();
     this.showForm = true;
@@ -104,7 +104,7 @@ export class SlideEditorComponent implements OnInit, OnChanges {
     this.slide.pageTitle.align = this.form.value.titleAlign;
     this.validService.changeSlideValid(true, this.slideIndex);
     this.slide.isValid = true;
-//    this.dialogRef.close(this.slide);
+    this.dialogRef.close(this.slide);
   }
   /*confirm graph setting*/
   confirmeSlideGRaphConfig(data) {
