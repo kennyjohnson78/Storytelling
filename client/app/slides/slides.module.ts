@@ -14,7 +14,7 @@ import {
     MatToolbarModule } from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { XHRBackend, RequestOptions } from '@angular/http';
+import { HttpModule, XHRBackend, RequestOptions } from '@angular/http';
 
 // NGX-CHARTS MODULE
 import { PieChartModule, GaugeModule, NgxChartsModule } from '@swimlane/ngx-charts';
@@ -113,7 +113,8 @@ import { SlideEditorComponent } from './components/slides-editor-form/slides-edi
         MatIconModule,
         MatButtonModule,
         MatChipsModule,
-        MatToolbarModule
+        MatToolbarModule,
+        HttpModule
     ],
     entryComponents: [
         BarChartComponent,
