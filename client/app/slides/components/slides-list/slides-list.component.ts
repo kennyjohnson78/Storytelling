@@ -88,13 +88,12 @@ export class SlidesListComponent implements OnInit {
     }
     refreshList() {
         this.slidesService.getSlideToSearch(this.toSearch, this.pageIndex, this.pageSize)
-            .subscribe(slides => {
-                this.slides = [];
-                this.slides = slides[0];
-                this.length = slides[1];
-                this.result = this.calculResult(this.slides.length, this.toSearch.filter, this.toSearch.title);
-
-            });
+        .subscribe(slides => {
+            this.slides = [];
+            this.slides = slides[0];
+            this.length = slides[1];
+            this.result = this.calculResult(this.slides.length, this.toSearch.filter, this.toSearch.title);
+        });
     }
     calculResult(slidesLength, state, title) {
         if (slidesLength === 0) {
