@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, Input, OnChanges } from '@angular/core';
 import { SlidesService, ImagesService } from '../../../../../../services';
 import {Http } from '@angular/http';
-import {NotifBarService} from 'app/core'
+//import {NotifBarService} from 'app/core'
 const URL = 'localhost:3000/api/images/';
 
 @Component({
@@ -27,7 +27,8 @@ export class ImageUploadComponent implements OnInit, OnChanges {
       private el: ElementRef,
       private slidesService: SlidesService,
       private imagesService:ImagesService,
-      private notifBarService: NotifBarService) {
+//      private notifBarService: NotifBarService
+    ) {
     }
     ngOnInit() {
     }
@@ -40,7 +41,7 @@ export class ImageUploadComponent implements OnInit, OnChanges {
                     this.imgPreview = image;
                 },
                 error => {
-                    this.notifBarService.showNotif("fail to get image, the error is : " + error);
+//                    this.notifBarService.showNotif("fail to get image, the error is : " + error);
                 });
         }
     }
@@ -61,16 +62,16 @@ export class ImageUploadComponent implements OnInit, OnChanges {
                         this.uploadImage.emit(image._id);
                         this.imgPreview = image.path;
                         this.setImage.emit(image._id);
-                        this.notifBarService.showNotif("upload image successfully")
+//                        this.notifBarService.showNotif("upload image successfully")
                     },
                     error => {
-                        this.notifBarService.showNotif("opps! fail to upload image: " + error);
+//                        this.notifBarService.showNotif("opps! fail to upload image: " + error);
                     });
 
             };
             reader.readAsDataURL(file);
         } else {
-            this.notifBarService.showNotif("sorry, the image format is not supported")
+//            this.notifBarService.showNotif("sorry, the image format is not supported")
         }
     }
 }

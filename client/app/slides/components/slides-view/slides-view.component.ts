@@ -13,7 +13,7 @@ import { PageConfig, HALF_HALF_LAYOUT, FULL_LAYOUT} from './pageConfig';
 
 import { slideTransition } from "./slide.animation";
 import * as screenfull from 'screenfull';
-import {NotifBarService} from "app/core";
+//import {NotifBarService} from "app/core";
 @Component({
     selector: 'app-slides-view',
     templateUrl: './slides-view.component.html',
@@ -61,7 +61,7 @@ export class SlidesViewComponent implements OnInit {
         private sanitizer: DomSanitizer,
         private router: Router,
         private route: ActivatedRoute,
-        private notifBarService: NotifBarService
+//        private notifBarService: NotifBarService
     ) {
         this.windowResizeService.height$.subscribe(height => {
             this.slideHeight_style = {
@@ -97,7 +97,7 @@ export class SlidesViewComponent implements OnInit {
                 })
             },
             error => {
-                this.notifBarService.showNotif("fail to load slides, error is " + error);
+//                this.notifBarService.showNotif("fail to load slides, error is " + error);
             });
         window.scrollTo(0, 0);//scroll to top everytime open the slides
 

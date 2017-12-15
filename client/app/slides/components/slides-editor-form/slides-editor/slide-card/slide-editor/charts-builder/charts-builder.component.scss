@@ -9,10 +9,10 @@
     font-weight:normal;
   }
 }
-md-card {
+mat-card {
   padding: 0;
 
-  md-card-content {
+  mat-card-content {
     padding: 15px;
   }
 }
@@ -338,7 +338,7 @@ $color-text-lighter: #fff;
   max-height: 700px;
   margin-right: 1%;
 }
-md-chip {
+mat-chip {
   background: rgb(36, 39, 45);
   background: rgba(36, 39, 45, .7);
   border-radius: 10px;
@@ -407,7 +407,7 @@ md-chip {
     width: 100%;
   }
 
-  .md-card-image {
+  .mat-card-image {
     background-position: center;
     background-size: cover;
     height: 200px;
@@ -419,7 +419,7 @@ md-chip {
     width: 90% !important;
     margin: 0 auto;
   }
-  md-card-content {
+  mat-card-content {
     margin: 0;
     .categorie {
       text-align: justify;

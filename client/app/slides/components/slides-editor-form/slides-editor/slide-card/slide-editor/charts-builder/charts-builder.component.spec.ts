@@ -5,7 +5,7 @@ import { DataTableComponent } from './data-table';
 import { CodemirrorModule } from 'ng2-codemirror';
 import { FormsModule } from '@angular/forms';
 import { DndModule } from 'ng2-dnd';
-import { HotTableModule } from 'ng2-handsontable';
+//import { HotTableModule } from 'ng2-handsontable';
 
 import { BarChartComponent, BubbleChartComponent, DendogramComponent, ForceDirectedGraphComponent, HierarchicalEdgeBundlingComponent,
   LineChartComponent, PieChartComponent, SunburstChartComponent,
@@ -30,7 +30,7 @@ describe('ChartsBuilderComponent', () => {
         CodemirrorModule,
         FormsModule,
         DndModule.forRoot(),
-        HotTableModule],
+        ],
     })
     .compileComponents();
   }));

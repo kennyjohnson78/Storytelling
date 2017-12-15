@@ -2,16 +2,20 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // SLIDES COMPONENTS
-import { SlidesViewComponent, SlidesEditorFormComponent, SlidesListComponent, SlideEditorComponent } from '.';
+import {
+SlidesViewComponent,
+  SlidesEditorFormComponent,
+  SlidesListComponent,
+  SlideEditorComponent } from './components';
 
-import { AuthGuard } from 'app/users';
+//import { AuthGuard } from 'app/users';
 
 
 const slidesRoutes: Routes = [
   {
     path: '',
     component: SlidesListComponent,
-    canActivate: [AuthGuard],
+//    canActivate: [AuthGuard],
     data: {
       roles: ['user',  'admin'],
       title: 'slides List'

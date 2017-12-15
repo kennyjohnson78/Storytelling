@@ -1,6 +1,6 @@
 @import 'client/stylesheets/theme.scss';
 
-md-input-container {
+mat-form-field {
   padding: 0 10px;
 }
 
@@ -9,10 +9,10 @@ md-input-container {
 
   .tag-group {
     display: inline-block;
-    md-chip:first-child {
+    mat-chip:first-child {
       margin-left: 20px;
     }
-    md-chip:last-child {
+    mat-chip:last-child {
       margin-right: 10px;
     }
     .close-tag {
@@ -22,7 +22,7 @@ md-input-container {
       }
     }
 
-    md-input-container {
+    mat-form-field {
       padding: 0;
     }
   }

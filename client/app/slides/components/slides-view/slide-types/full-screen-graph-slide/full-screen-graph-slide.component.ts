@@ -3,7 +3,7 @@ import { Observable } from "rxjs/Observable";
 import { Slide } from "../../../../models";
 import { PageConfig, FULL_LAYOUT } from "../../pageConfig";
 import { Chart } from "../../../../../charts/chart.class";
-import { ChartsService } from "../../../../services";
+import { ChartsService } from "../../../../services/charts.service";
 @Component({
     selector: 'app-full-screen-graph-slide',
     templateUrl: './full-screen-graph-slide.component.html',

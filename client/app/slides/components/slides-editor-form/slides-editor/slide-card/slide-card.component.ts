@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { Slide } from '../../../../models/slide';
 import { SlideEditorComponent } from './slide-editor/slide-editor.component';
-import { MdDialog } from '@angular/material';
+// import { MdDialog } from '@angular/material';
 
 @Component({
     selector: 'app-slide-card',
@@ -35,13 +35,13 @@ export class SlideCardComponent {
     @Input() slideIndex: number;  //slide index
     @Input() slide: Slide; //if it's not a new slide, the previous setting of the slide
 
-    constructor(private dialog: MdDialog){}
+//    constructor(private dialog: MdDialog){}
     /*delete slide*/
     deleteSlide(e) {
         this.deleteSlideOpt.emit(this.slideIndex);
     }
 
-    creatSlide() {
+    creatSlide() {/*
         const dialog = this.dialog.open(SlideEditorComponent, {  height: '100%', width : '100%'});
         dialog.componentInstance.slide = this.slide;
         dialog.componentInstance.slideIndex = this.slideIndex;
@@ -51,6 +51,6 @@ export class SlideCardComponent {
                 this.saveSlide.emit(result);
             }
         });
-
+*/
     }
 }

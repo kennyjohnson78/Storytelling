@@ -3,7 +3,7 @@ import {Slides} from '../../../models/slides';
 import {Slide} from '../../../models/slide';
 import { DragulaService } from 'ng2-dragula';
 import {ValidService} from '../../../services/valid.service';
-import {NotifBarService} from 'app/core';
+//import {NotifBarService} from 'app/core';
 @Component({
     selector: 'app-slides-editor',
     templateUrl: './slides-editor.component.html',
@@ -28,7 +28,7 @@ export class SlidesEditorComponent implements OnChanges {
     @Output() slideDeleted =  new EventEmitter();
     @Output() errorsHandle =  new EventEmitter();
     @Output() onShuffle = new EventEmitter();
-    constructor(private dragulaService: DragulaService, private validService: ValidService, private notifBarService: NotifBarService) {
+    constructor(private dragulaService: DragulaService, private validService: ValidService/*, private notifBarService: NotifBarService*/) {
         dragulaService.setOptions('shuffle-bag', {
             moves: (el, source, handle, sibling) => !(this.slideOpendIndex != null && this.slideOpendIndex > 0)
         });
@@ -96,7 +96,7 @@ export class SlidesEditorComponent implements OnChanges {
             this.validService.changeSlideValid(true, index, "DELETE");
             this.slideDeleted.emit(this.curSlideIndex);
         } catch (err) {
-            this.notifBarService.showNotif('delete fail : ' + err);
+//            this.notifBarService.showNotif('delete fail : ' + err);
         }
     }
     saveSlide(result) {

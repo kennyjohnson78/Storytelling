@@ -1,3 +1,4 @@
+/*
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SlidesEditorFormComponent } from './slides-editor-form.component';
@@ -57,3 +58,4 @@ describe('SlidesEditorFormComponent', () => {
         expect(component).toBeTruthy();
     });
 });
+*/

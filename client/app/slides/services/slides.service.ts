@@ -4,8 +4,8 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../environments/environment';
 import { Slides } from '../models/index';
-import { select } from '@angular-redux/store';
-import { IUser } from '../../core/store/session';
+//import { select } from '@angular-redux/store';
+//import { IUser } from '../../core/store/session';
 @Injectable()
 export class SlidesService {
     private _baseUrl: string;
@@ -14,7 +14,14 @@ export class SlidesService {
     private progress$;
     private progressObserver;
     private progress;
-    @select(['session', 'user']) user$: Observable<IUser>;
+//    @select(['session', 'user']) user$: Observable<IUser>;
+    public user$ = Observable.of({
+        username: 'test',
+        firstName: 'test',
+        lastName: 'test',
+        roles: ['admin', 'user'],
+        email: ['a@a.com']
+    });
     constructor(private http: Http) {
         this.progress$ = Observable.create(observer => {
             this.progressObserver = observer;

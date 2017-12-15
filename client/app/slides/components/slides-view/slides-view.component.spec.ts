@@ -3,7 +3,6 @@ import {TitleSlideComponent, FullScreenGraphSlideComponent, LeftGraphRightTextSl
 import { SlidesViewComponent } from './slides-view.component';
 import { HttpModule } from '@angular/http';
 import { RouterTestingModule } from '@angular/router/testing';
-import { NotifBarService } from "app/core";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('SlidesViewComponent', () => {
@@ -23,7 +22,7 @@ describe('SlidesViewComponent', () => {
         RouterTestingModule,
         BrowserAnimationsModule
       ],
-      providers :[NotifBarService]
+      providers :[]
     })
     .compileComponents();
   }));

@@ -6,7 +6,7 @@ import {
   BubbleChartComponent, SunburstChartComponent, WordCloudComponent, AreaChartComponent, NumberCardComponent
 
 } from 'app/charts';
-import { ImageComponent } from '../components/slides-view/slide-types/';
+import { ImageComponent } from '../components/slides-view/slide-types/full-screen-graph-slide/image';
 
 @Injectable()
 export class ChartsService {

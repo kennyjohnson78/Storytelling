@@ -43,7 +43,7 @@ export class LayoutComponent {
     this.menuItems$ = items$.pipe(
       combineLatest(user$),
       map(([items, user]) => values(items)
-        .filter(item => isEmpty(item.roles) || user && !isEmpty(difference(item.roles, user.roles)))
+//        .filter(item => isEmpty(item.roles) || user && !isEmpty(difference(item.roles, user.roles)))
         .filter(items => !isEmpty(items))
       )
     );

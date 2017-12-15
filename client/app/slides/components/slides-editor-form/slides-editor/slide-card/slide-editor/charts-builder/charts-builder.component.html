@@ -1,23 +1,23 @@
 <div>
   <div class="sub-title-bar">
-    <md-toolbar-row>
+    <mat-toolbar-row>
       <span><i class="fa fa-check-circle-o fa-fw" [class.checked]="hasValidBuilder"></i>Graph builder* <span class="warnMsg">{{warnMsg}}</span></span>
       <small class="pull-right">
-        <button md-raised-button type="button" (click)="clearAll()"  color="primary">Reset</button>
+        <button mat-raised-button type="button" (click)="clearAll()"  color="primary">Reset</button>
       </small>
-    </md-toolbar-row>
+    </mat-toolbar-row>
   </div>
-  <md-card class="ng-section">
-    <md-card-header class="section-header">
-      <md-card-title> Your Data </md-card-title>
-    </md-card-header>
-    <md-card-content class="section-content">
+  <mat-card class="ng-section">
+    <mat-card-header class="section-header">
+      <mat-card-title> Your Data </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="section-content">
       <span>
           Copy and paste your tabular (TSV, CSV) data here.
           <button class="btn btn-link" (click)="useExample()">(Use example data)</button>
         </span>
-      <i class="format fa fa-align-left breath-left" [class.checked]="!formatTable" mdTooltip="View as Text" mdTooltipPosition="above" (click)="formatTable = false"></i>
-      <i class="format fa fa-table breath-left" [class.checked]="formatTable" mdTooltip="View as Table" mdTooltipPosition="above" (click)="formatTable = true"></i>
+      <i class="format fa fa-align-left breath-left" [class.checked]="!formatTable" matTooltip="View as Text" matTooltipPosition="above" (click)="formatTable = false"></i>
+      <i class="format fa fa-table breath-left" [class.checked]="formatTable" matTooltip="View as Table" matTooltipPosition="above" (click)="formatTable = true"></i>
       <app-codemirror *ngIf="!formatTable" [(ngModel)]="dataText" [config]="editorConfig">
       </app-codemirror>
 
@@ -32,49 +32,48 @@
           {{rawData.length}} records have been successfully parsed!
         </span>
       </p>
-    </md-card-content>
-  </md-card>
+    </mat-card-content>
+  </mat-card>
 
-  <md-card class="ng-section" *ngIf="hasValidData">
-    <md-card-header class="section-header">
-      <md-card-title> Select your Chart </md-card-title>
-    </md-card-header>
+  <mat-card class="ng-section" *ngIf="hasValidData">
+    <mat-card-header class="section-header">
+      <mat-card-title> Select your Chart </mat-card-title>
+    </mat-card-header>
     <div class="container-fluid">
       <div fxflex="25" class="card-view" *ngIf="chartType">
-        <md-card class="chart-card">
-          <md-card-header>
-            <md-card-title class="card-sub-header"> Chart selected : </md-card-title>
-          </md-card-header>
+        <mat-card class="chart-card">
+          <mat-card-header>
+            <mat-card-title class="card-sub-header"> Chart selected : </mat-card-title>
+          </mat-card-header>
           <h2>{{chartType.title}}</h2>
-          <div class="md-card-image image-selected" [style.background-image]="'url('+ chartType.image + ')'">
+          <div class="mat-card-image image-selected" [style.background-image]="'url('+ chartType.image + ')'">
           </div>
-          <md-card-content>
+          <mat-card-content>
             <p class="categorie">{{chartType.description}}</p>
-          </md-card-content>
-        </md-card>
+          </mat-card-content>
+        </mat-card>
 
       </div>
       <div class="content">
-        <md-card class="chart-card" (click)="choseChartType(chart)" *ngFor="let chart of chartTypes">
+        <mat-card class="chart-card" (click)="choseChartType(chart)" *ngFor="let chart of chartTypes">
           <h2>{{chart.title}}</h2>
-          <div class="md-card-image" [ngStyle]="{'background-image': 'url('+ chart.image+')'}">
+          <div class="mat-card-image" [ngStyle]="{'background-image': 'url('+ chart.image+')'}">
           </div>
-          <md-card-content>
-            <md-chip class="categorie">{{chart.categorie}}</md-chip>
-          </md-card-content>
+          <mat-card-content>
+            <mat-chip class="categorie">{{chart.categorie}}</mat-chip>
+          </mat-card-content>
           <div class="layout-check" [ngClass]="{'selected': chartType===chart} ">
-            <md-icon class="check-icon">done</md-icon>
+            <mat-icon class="check-icon">done</mat-icon>
           </div>
-        </md-card>
-
+        </mat-card>
       </div>
     </div>
-  </md-card>
-  <md-card class="ng-section" *ngIf="hasChartSelected">
-    <md-card-header class="section-header">
-      <md-card-title> Map your Dimensions </md-card-title>
-    </md-card-header>
-    <md-card-content *ngIf="hasChartSelected" class="section-content">
+  </mat-card>
+  <mat-card class="ng-section" *ngIf="hasChartSelected">
+    <mat-card-header class="section-header">
+      <mat-card-title> Map your Dimensions </mat-card-title>
+    </mat-card-header>
+    <mat-card-content *ngIf="hasChartSelected" class="section-content">
        <span>
           Drag and drop the dimensions of graph
          <button class="btn btn-link" (click)="useExampleDimension()">(Use example dimension)</button>
@@ -105,25 +104,25 @@
 
 
       </div>
-    </md-card-content>
-  </md-card>
+    </mat-card-content>
+  </mat-card>
 
 
-  <md-card class="ng-section" *ngIf="isValidSlide">
-    <md-card-header class="section-header">
-      <md-card-title> Your Visualization </md-card-title>
-    </md-card-header>
-    <md-card-content class="section-content viz-container">
+  <mat-card class="ng-section" *ngIf="isValidSlide">
+    <mat-card-header class="section-header">
+      <mat-card-title> Your Visualization </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="section-content viz-container">
       <div fxFlex="100%">
         <ngx-charts-bar-vertical-2d *ngIf="chartType.name === 'bar-vertical-2d'" class="chart-container" [scheme]="chartOptions.colorScheme" [schemeType]="chartOptions.schemeType" [results]="data" [gradient]="chartOptions.gradient" [xAxis]="chartOptions.showXAxis"
-            [yAxis]="chartOptions.showYAxis" [legend]="chartOptions.showLegend" [legendTitle]="chartOptions.legendTitle" [showXAxisLabel]="chartOptions.showXAxisLabel" [showYAxisLabel]="chartOptions.showYAxisLabel" [tooltipDisabled]="chartOptions.tooltipDisabled"
+            [yAxis]="chartOptions.showYAxis" [legend]="chartOptions.showLegend" [legendTitle]="chartOptions.legendTitle" [showXAxisLabel]="chartOptions.showXAxisLabel" [showYAxisLabel]="chartOptions.showYAxisLabel" [matTooltipDisabled]="chartOptions.tooltipDisabled"
             [xAxisLabel]="chartOptions.xAxisLabel" [yAxisLabel]="chartOptions.yAxisLabel" [showGridLines]="chartOptions.showGridLines" xxxbarPadding="chartOptions.barPadding" xxxgroupPadding="chartOptions.groupPadding" [roundDomains]="chartOptions.roundDomains">
         </ngx-charts-bar-vertical-2d>
-        <ngx-charts-bar-horizontal-2d *ngIf="chartType.name === 'bar-horizontal-2d'" class="chart-container" [scheme]="chartOptions.colorScheme" [schemeType]="chartOptions.schemeType" [results]="data" [gradient]="chartOptions.gradient" [tooltipDisabled]="chartOptions.tooltipDisabled"
+        <ngx-charts-bar-horizontal-2d *ngIf="chartType.name === 'bar-horizontal-2d'" class="chart-container" [scheme]="chartOptions.colorScheme" [schemeType]="chartOptions.schemeType" [results]="data" [gradient]="chartOptions.gradient" [matTooltipDisabled]="chartOptions.tooltipDisabled"
             [xAxis]="chartOptions.showXAxis" [yAxis]="chartOptions.showYAxis" [legend]="chartOptions.showLegend" [legendTitle]="chartOptions.legendTitle" [showXAxisLabel]="chartOptions.showXAxisLabel" [showYAxisLabel]="chartOptions.showYAxisLabel" [xAxisLabel]="chartOptions.xAxisLabel"
             [yAxisLabel]="chartOptions.yAxisLabel" [showGridLines]="chartOptions.showGridLines" [roundDomains]="chartOptions.roundDomains">
         </ngx-charts-bar-horizontal-2d>
-        <ngx-charts-bar-vertical-stacked *ngIf="chartType.name === 'bar-vertical-stacked'" class="chart-container" [scheme]="chartOptions.colorScheme" [schemeType]="chartOptions.schemeType" [results]="data" [gradient]="chartOptions.gradient" [tooltipDisabled]="chartOptions.tooltipDisabled"
+        <ngx-charts-bar-vertical-stacked *ngIf="chartType.name === 'bar-vertical-stacked'" class="chart-container" [scheme]="chartOptions.colorScheme" [schemeType]="chartOptions.schemeType" [results]="data" [gradient]="chartOptions.gradient" [matTooltipDisabled]="chartOptions.tooltipDisabled"
             [xAxis]="chartOptions.showXAxis" [yAxis]="chartOptions.showYAxis" [legend]="chartOptions.showLegend" [legendTitle]="chartOptions.legendTitle" [showXAxisLabel]="chartOptions.showXAxisLabel" [showYAxisLabel]="chartOptions.showYAxisLabel" [xAxisLabel]="chartOptions.xAxisLabel"
             [yAxisLabel]="chartOptions.yAxisLabel" [showGridLines]="chartOptions.showGridLines" [roundDomains]="chartOptions.roundDomains">
         </ngx-charts-bar-vertical-stacked>
@@ -131,30 +130,30 @@
             [yAxis]="chartOptions.showYAxis" [legend]="chartOptions.showLegend" [legendTitle]="chartOptions.legendTitle" [showXAxisLabel]="chartOptions.showXAxisLabel" [showYAxisLabel]="chartOptions.showYAxisLabel" [xAxisLabel]="chartOptions.xAxisLabel" [yAxisLabel]="chartOptions.yAxisLabel"
             [showGridLines]="chartOptions.showGridLines" [roundDomains]="chartOptions.roundDomains">
         </ngx-charts-bar-horizontal-stacked>
-        <ngx-charts-bar-vertical-normalized *ngIf="chartType.name === 'bar-vertical-normalized'" class="chart-container" [scheme]="chartOptions.colorScheme" [schemeType]="chartOptions.schemeType" [results]="data" [gradient]="chartOptions.gradient" [tooltipDisabled]="chartOptions.tooltipDisabled"
+        <ngx-charts-bar-vertical-normalized *ngIf="chartType.name === 'bar-vertical-normalized'" class="chart-container" [scheme]="chartOptions.colorScheme" [schemeType]="chartOptions.schemeType" [results]="data" [gradient]="chartOptions.gradient" [matTooltipDisabled]="chartOptions.tooltipDisabled"
             [xAxis]="chartOptions.showXAxis" [yAxis]="chartOptions.showYAxis" [legend]="chartOptions.showLegend" [legendTitle]="chartOptions.legendTitle" [showXAxisLabel]="chartOptions.showXAxisLabel" [showYAxisLabel]="chartOptions.showYAxisLabel" [xAxisLabel]="chartOptions.xAxisLabel"
             [yAxisLabel]="chartOptions.yAxisLabel" [showGridLines]="chartOptions.showGridLines" [roundDomains]="chartOptions.roundDomains">
         </ngx-charts-bar-vertical-normalized>
-        <ngx-charts-bar-horizontal-normalized *ngIf="chartType.name === 'bar-horizontal-normalized'" class="chart-container" [scheme]="chartOptions.colorScheme" [schemeType]="chartOptions.schemeType" [results]="data" [gradient]="chartOptions.gradient" [tooltipDisabled]="chartOptions.tooltipDisabled"
+        <ngx-charts-bar-horizontal-normalized *ngIf="chartType.name === 'bar-horizontal-normalized'" class="chart-container" [scheme]="chartOptions.colorScheme" [schemeType]="chartOptions.schemeType" [results]="data" [gradient]="chartOptions.gradient" [matTooltipDisabled]="chartOptions.tooltipDisabled"
             [xAxis]="chartOptions.showXAxis" [yAxis]="chartOptions.showYAxis" [legend]="chartOptions.showLegend" [legendTitle]="chartOptions.legendTitle" [showXAxisLabel]="chartOptions.showXAxisLabel" [showYAxisLabel]="chartOptions.showYAxisLabel" [xAxisLabel]="chartOptions.xAxisLabel"
             [yAxisLabel]="chartOptions.yAxisLabel" [showGridLines]="chartOptions.showGridLines" [roundDomains]="chartOptions.roundDomains">
         </ngx-charts-bar-horizontal-normalized>
         <ngx-charts-polar-chart *ngIf="chartType.name === 'polar-chart'" class="chart-container" [scheme]="chartOptions.colorScheme" [schemeType]="chartOptions.schemeType" [results]="data" [legend]="chartOptions.showLegend" [legendTitle]="chartOptions.legendTitle"
             [gradient]="chartOptions.gradient" [xAxis]="chartOptions.showXAxis" [yAxis]="chartOptions.showYAxis" [showXAxisLabel]="chartOptions.showXAxisLabel" [showYAxisLabel]="chartOptions.showYAxisLabel" [xAxisLabel]="chartOptions.xAxisLabel" [yAxisLabel]="chartOptions.yAxisLabel"
-            [autoScale]="chartOptions.autoScale" [showGridLines]="chartOptions.showGridLines" [rangeFillOpacity]="chartOptions.rangeFillOpacity" [roundDomains]="chartOptions.roundDomains" [tooltipDisabled]="chartOptions.tooltipDisabled" [curve]="chartOptions.curveClosed"
+            [autoScale]="chartOptions.autoScale" [showGridLines]="chartOptions.showGridLines" [rangeFillOpacity]="chartOptions.rangeFillOpacity" [roundDomains]="chartOptions.roundDomains" [matTooltipDisabled]="chartOptions.tooltipDisabled" [curve]="chartOptions.curveClosed"
             [showSeriesOnHover]="chartOptions.showSeriesOnHover">
         </ngx-charts-polar-chart>
         <ngx-charts-line-chart *ngIf="chartType.name === 'line-chart'" class="chart-container" [scheme]="chartOptions.colorScheme" [schemeType]="chartOptions.schemeType" [results]="data" [legend]="chartOptions.showLegend" [legendTitle]="chartOptions.legendTitle"
             [gradient]="chartOptions.gradient" [xAxis]="chartOptions.showXAxis" [yAxis]="chartOptions.showYAxis" [showXAxisLabel]="chartOptions.showXAxisLabel" [showYAxisLabel]="chartOptions.showYAxisLabel" [xAxisLabel]="chartOptions.xAxisLabel" [yAxisLabel]="chartOptions.yAxisLabel"
-            [autoScale]="chartOptions.autoScale" [showGridLines]="chartOptions.showGridLines" [curve]="chartOptions.curve" [rangeFillOpacity]="chartOptions.rangeFillOpacity" [roundDomains]="chartOptions.roundDomains" [tooltipDisabled]="chartOptions.tooltipDisabled"
+            [autoScale]="chartOptions.autoScale" [showGridLines]="chartOptions.showGridLines" [curve]="chartOptions.curve" [rangeFillOpacity]="chartOptions.rangeFillOpacity" [roundDomains]="chartOptions.roundDomains" [matTooltipDisabled]="chartOptions.tooltipDisabled"
             [showSeriesOnHover]="chartOptions.showSeriesOnHover">
         </ngx-charts-line-chart>
         <ngx-charts-heat-map *ngIf="chartType.name === 'heat-map'" class="chart-container" [scheme]="chartOptions.colorScheme" [results]="data" [legend]="chartOptions.showLegend" [gradient]="chartOptions.gradient" [xAxis]="chartOptions.showXAxis" [yAxis]="chartOptions.showYAxis"
-            [showXAxisLabel]="chartOptions.showXAxisLabel" [showYAxisLabel]="chartOptions.showYAxisLabel" [xAxisLabel]="chartOptions.xAxisLabel" [yAxisLabel]="chartOptions.yAxisLabel" xxxinnerPadding="chartOptions.innerPadding" [tooltipDisabled]="chartOptions.tooltipDisabled">
+            [showXAxisLabel]="chartOptions.showXAxisLabel" [showYAxisLabel]="chartOptions.showYAxisLabel" [xAxisLabel]="chartOptions.xAxisLabel" [yAxisLabel]="chartOptions.yAxisLabel" xxxinnerPadding="chartOptions.innerPadding" [matTooltipDisabled]="chartOptions.tooltipDisabled">
         </ngx-charts-heat-map>
         <ngx-charts-bubble-chart *ngIf="chartType.name === 'bubble-chart'" [view]="null" class="chart-container" [results]="data" [showGridLines]="chartOptions.showGridLines" [legend]="chartOptions.showLegend" [legendTitle]="chartOptions.legendTitle" [xAxis]="chartOptions.showXAxis"
             [yAxis]="chartOptions.showYAxis" [showXAxisLabel]="chartOptions.showXAxisLabel" [showYAxisLabel]="chartOptions.showYAxisLabel" [xAxisLabel]="chartOptions.xAxisLabel" [yAxisLabel]="chartOptions.yAxisLabel" [autoScale]="chartOptions.autoScale" [scheme]="chartOptions.colorScheme"
-            [schemeType]="chartOptions.schemeType" [roundDomains]="chartOptions.roundDomains" [tooltipDisabled]="chartOptions.tooltipDisabled" [minRadius]="3" [maxRadius]="20">
+            [schemeType]="chartOptions.schemeType" [roundDomains]="chartOptions.roundDomains" [matTooltipDisabled]="chartOptions.tooltipDisabled" [minRadius]="3" [maxRadius]="20">
         </ngx-charts-bubble-chart>
         <ngx-charts-tree-map *ngIf="chartType.name === 'treemap'" [view]="null" [scheme]="chartOptions.colorScheme" [results]="data">
         </ngx-charts-tree-map>
@@ -187,6 +186,6 @@
         <app-line-chart *ngIf="chartType.name === 'line-chart-d3'" [dataInput]="data">
         </app-line-chart>
       </div>
-    </md-card-content>
-  </md-card>
+    </mat-card-content>
+  </mat-card>
 </div>

@@ -5,7 +5,7 @@ import { SlidesService } from '../../services/slides.service';
 import { ValidService } from '../../services/valid.service';
 import { Slides } from '../../models/slides';
 import { SlidesEditorComponent} from './slides-editor/slides-editor.component';
-import {NotifBarService} from 'app/core';
+//import { NotifBarService } from 'app/core';
 import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
@@ -31,7 +31,7 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
         private slidesService: SlidesService,
         private validService: ValidService,
         private route: ActivatedRoute,
-        private notifBarService: NotifBarService,
+//        private notifBarService: NotifBarService,
         private cdRef: ChangeDetectorRef) {
         this.id = null;
         this.slider = new Slides();
@@ -56,7 +56,7 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
                     this.slider = slides;
                 },
                 error => {
-                    this.notifBarService.showNotif('fail to load slides users-list. error is ' + error);
+//                    this.notifBarService.showNotif('fail to load slides users-list. error is ' + error);
                 }, () => this.loading = false);
         } else {
             this.mode = 'CREATE';
@@ -86,20 +86,21 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
             this.slidesService.updateSlide(this.slider, this.slider._id)
                 .subscribe(
                 () => {
-                    this.notifBarService.showNotif('your changes in slides has been saved.');
+//                    this.notifBarService.showNotif('your changes in slides has been saved.');
                     this.router.navigate(['/slides']);
                 },
-                error => this.notifBarService.showNotif('fail to save your changes. the error is ' + error));
+//                error => this.notifBarService.showNotif('fail to save your changes. the error is ' + error)
+                );
         } else {
             this.slider = this._editor.slider;
             this.editorValid = this.slidesService.submitSlides(this.slider)
                 .subscribe(
                 () => {
-                    this.notifBarService.showNotif('create slides successfully!');
+//                    this.notifBarService.showNotif('create slides successfully!');
                     this.router.navigate(['/slides']);
                 },
                 error => {
-                    this.notifBarService.showNotif('fail to create slides. the error is ' + error);
+//                    this.notifBarService.showNotif('fail to create slides. the error is ' + error);
                 });
         }
     }

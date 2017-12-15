@@ -27,7 +27,7 @@ const coreRoutes: Routes = [{
     pathMatch: 'full'
   }, {
     path: 'slides',
-    loadChildren: 'app/slides/slides.module#SlidesModule'
+    loadChildren: '../../slides/slides.module#SlidesModule'
   }, {
     path: 'not-found',
     component: NotFoundComponent,

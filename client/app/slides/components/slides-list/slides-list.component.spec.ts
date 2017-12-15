@@ -7,7 +7,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import {SlidesService} from '../../services/index';
 import {HttpModule} from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {NotifBarService} from 'app/core';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { By }              from '@angular/platform-browser';
@@ -106,7 +105,7 @@ describe('SlidesListComponent', () => {
                 HttpModule
             ],
             declarations: [ SlidesListComponent, SlidesSearchComponent, SlidesCardComponent ],
-            providers : [{provide : SlidesService, useClass : SlidesServiceMock}, NotifBarService]
+            providers : [{provide : SlidesService, useClass : SlidesServiceMock}]
         })
             .compileComponents();
     }));

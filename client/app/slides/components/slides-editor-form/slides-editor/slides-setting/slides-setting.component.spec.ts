@@ -7,7 +7,6 @@ import {ValidService} from '../../../../services/valid.service';
 import { SlidesService } from '../../../../services/slides.service';
 import {HttpModule} from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {NotifBarService} from 'app/core';
 
 
 describe('SlidesSettingComponent', () => {
@@ -19,7 +18,7 @@ describe('SlidesSettingComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ SlidesSettingComponent, ImageUploadComponent ],
       imports: [FormsModule, ReactiveFormsModule, BrowserAnimationsModule, HttpModule ],
-      providers: [ValidService, {provide: SlidesService, useValue:slidesServiceStub }, NotifBarService]
+      providers: [ValidService, {provide: SlidesService, useValue:slidesServiceStub }]
     })
     .compileComponents();
   }));

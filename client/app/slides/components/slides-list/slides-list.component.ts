@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { select } from '@angular-redux/store';
+//import { select } from '@angular-redux/store';
 import {Observable} from 'rxjs/Observable';
 import {SlidesService, ImagesService} from '../../services/index';
 import {Slides} from '../../models/index';
-import {NotifBarService} from "app/core";
+//import {NotifBarService} from "app/core";
 import {PageEvent} from '@angular/material';
 @Component({
     selector: 'app-slides-list',
@@ -12,7 +12,8 @@ import {PageEvent} from '@angular/material';
 })
 
 export class SlidesListComponent implements OnInit {
-    @select(['session', 'token']) loggedIn$: Observable<string>;
+//    @select(['session', 'token']) loggedIn$: Observable<string>;
+    public loggedIn$ = Observable.of('true');
     private result = {
         noResult: false,
         noPublish: false,
@@ -37,7 +38,7 @@ export class SlidesListComponent implements OnInit {
     constructor(
         private slidesService: SlidesService,
         private imagesService: ImagesService,
-        private notifBarService: NotifBarService
+//        private notifBarService: NotifBarService
     ) { }
     nextPage($event) {
         this.pageEvent = $event;
@@ -50,7 +51,7 @@ export class SlidesListComponent implements OnInit {
                     this.result = this.calculResult(this.slides.length, this.toSearch.filter, this.toSearch.title);
                 },
                 error => {
-                    this.notifBarService.showNotif("fail to load slides users-list");
+//                    this.notifBarService.showNotif("fail to load slides users-list");
                 });
     }
     ngOnInit() {
@@ -62,7 +63,7 @@ export class SlidesListComponent implements OnInit {
                 this.result = this.calculResult(this.slides.length, this.toSearch.filter, this.toSearch.title);
             },
             error => {
-                this.notifBarService.showNotif("fail to load slides users-list");
+//                this.notifBarService.showNotif("fail to load slides users-list");
             },() => { this.loading = false;});
     }
     search(paramsTosearch) {

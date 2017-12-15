@@ -13,6 +13,7 @@ import { RouterEffects } from './effects/router.effects';
 import { AuthenticationStoreModule } from 'app/authentication/+store/authentication-store.module';
 import { coreConfiguration } from 'app/core';
 import { CoreStoreModule } from 'app/core/+store/core-store.module';
+import { slidesConfiguration } from 'app/slides/slides.configuration';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { CoreStoreModule } from 'app/core/+store/core-store.module';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AuthenticationStoreModule.forRoot(),
     CoreStoreModule.forRoot([
-      ...coreConfiguration.self
+      ...coreConfiguration.self,
+      ...slidesConfiguration.core
     ])
     // DBModule.provideDB(schema),
   ],

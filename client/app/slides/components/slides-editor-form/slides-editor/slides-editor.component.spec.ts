@@ -8,7 +8,7 @@ import { ImageUploadComponent } from './slide-card/slide-editor/image-upload/ima
 import { DataTableComponent } from './slide-card/slide-editor/charts-builder/data-table';
 import { CodemirrorModule } from 'ng2-codemirror';
 import { DndModule } from 'ng2-dnd';
-import { HotTableModule } from 'ng2-handsontable';
+//import { HotTableModule } from 'ng2-handsontable';
 import { BarChartComponent, BubbleChartComponent, DendogramComponent, ForceDirectedGraphComponent, HierarchicalEdgeBundlingComponent,
   LineChartComponent, PieChartComponent, SunburstChartComponent,
   WordCloudComponent, ZoomableTreemapChartComponent, AdvancedPieChartComponent, AreaChartComponent, GaugeChartComponent, NumberCardComponent,
@@ -18,7 +18,6 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 import { CodeEditorComponent } from './slide-card/slide-editor/charts-builder/code-editor';
 import {NgxChartsModule } from '@swimlane/ngx-charts';
 import {ValidService} from '../../../services/valid.service';
-import {NotifBarService} from 'app/core';
 import { SlidesService } from '../../../services/slides.service';
 import {HttpModule} from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -35,8 +34,8 @@ describe('SlidesEditorComponent', () => {
         LineChartComponent, PieChartComponent, SunburstChartComponent,
         WordCloudComponent, ZoomableTreemapChartComponent, AdvancedPieChartComponent, AreaChartComponent, GaugeChartComponent, NumberCardComponent,
         PieGridChartComponent, TreemapChartComponent, DataTableComponent, SlidesSettingComponent, ChartsBuilderComponent, ImageUploadComponent ],
-      providers: [DragulaService, ValidService, NotifBarService, {provide: SlidesService, useValue:slidesServiceStub }],
-      imports : [DragulaModule, BrowserAnimationsModule, HttpModule, NgxChartsModule, CodemirrorModule, DndModule, HotTableModule, FormsModule, ReactiveFormsModule, FroalaEditorModule, FroalaViewModule]
+      providers: [DragulaService, ValidService, {provide: SlidesService, useValue:slidesServiceStub }],
+      imports : [DragulaModule, BrowserAnimationsModule, HttpModule, NgxChartsModule, CodemirrorModule, DndModule, FormsModule, ReactiveFormsModule, FroalaEditorModule, FroalaViewModule]
     })
     .compileComponents();
   }));

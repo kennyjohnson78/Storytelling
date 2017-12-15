@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material';
 
 import { ApplicationComponent } from './components/application/application.component';
 
@@ -18,6 +19,7 @@ import { SharedModule } from 'app/shared/shared.module';
     BrowserModule,
     RouterModule,
     BrowserAnimationsModule,
+    MatIconModule,
     // DBModule.provideDB(schema),
     ApplicationStoreModule,    
     SharedModule.forRoot(),

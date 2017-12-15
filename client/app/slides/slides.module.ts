@@ -4,10 +4,17 @@ import { CommonModule } from '@angular/common';
 
 // MATERIAL DESIGN MODULES
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import {
+    MatTooltipModule,
+    MatCardModule,
+    MatSelectModule,
+    MatIconModule,
+    MatButtonModule,
+    MatChipsModule,
+    MatToolbarModule } from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import {XHRBackend, RequestOptions} from '@angular/http';
+import { XHRBackend, RequestOptions } from '@angular/http';
 
 // NGX-CHARTS MODULE
 import { PieChartModule, GaugeModule, NgxChartsModule } from '@swimlane/ngx-charts';
@@ -17,12 +24,13 @@ import { CodemirrorModule } from 'ng2-codemirror';
 import { DndModule } from 'ng2-dnd';
 
 // HANDSONTABLE MODULE
-import { HotTableModule } from 'ng2-handsontable';
+//import { HotTableModule } from 'ng2-handsontable';
 
 
 import {SlidesSearchComponent} from './components/slides-list/slides-search/slides-search.component';
 // SLIDES COMPONENTS
-import { SlidesViewComponent,
+import {
+    SlidesViewComponent,
     FullScreenGraphSlideComponent,
     ImageComponent,
     TitleSlideComponent,
@@ -31,13 +39,13 @@ import { SlidesViewComponent,
     TextSlideComponent,
     SlidesEditorFormComponent,
     SlideCardComponent
-} from '.';
+} from './components';
 
 // SLIDES SERVICES
-import {SlidesService, ImagesService, ValidService, ChartsService} from '.';
+import { SlidesService, ImagesService, ValidService, ChartsService } from './services';
 
 // SLIDES ROUTES MODULE
-import { SlidesRoutingModule } from '.';
+import { SlidesRoutingModule } from './slides-routing.module';
 import { CoreModule } from 'app/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -96,9 +104,16 @@ import { SlideEditorComponent } from './components/slides-editor-form/slides-edi
         CodemirrorModule,
         FlexLayoutModule,
         DndModule.forRoot(),
-        HotTableModule,
+//        HotTableModule,
         FroalaEditorModule.forRoot(),
-        FroalaViewModule.forRoot()
+        FroalaViewModule.forRoot(),
+        MatTooltipModule,
+        MatCardModule,
+        MatSelectModule,
+        MatIconModule,
+        MatButtonModule,
+        MatChipsModule,
+        MatToolbarModule
     ],
     entryComponents: [
         BarChartComponent,

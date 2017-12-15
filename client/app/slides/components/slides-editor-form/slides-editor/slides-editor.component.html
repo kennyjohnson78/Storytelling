@@ -3,7 +3,7 @@
   <app-slide-card fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50"  fxFlex.lg="33" fxFlex.xl="33" *ngFor="let slide of slider.slides;let i=index" [slide]="slide" [slideIndex]="i+1" (saveSlide)="saveSlide($event)"  (deleteSlideOpt)="deleteSlide($event)"></app-slide-card>
 </div>
 <div class="base " fxLayout="row" fxLayoutAlign="center center">
-  <a md-fab class="fixed" (click)="addSlide()" mdTooltip="add a new slide" >
-    <md-icon>add</md-icon>
+  <a mat-fab class="fixed" (click)="addSlide()" matTooltip="add a new slide" >
+    <mat-icon>add</mat-icon>
   </a>
 </div>

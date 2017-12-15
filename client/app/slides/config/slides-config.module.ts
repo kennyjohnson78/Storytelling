@@ -1,17 +1,16 @@
 import { NgModule, APP_INITIALIZER, ModuleWithProviders, Injectable } from '@angular/core';
-import { MenuService } from 'app/core';
+//import { MenuService } from 'app/core';
 
 @Injectable()
 export class SlidesConfig {
-  constructor(private menuService: MenuService) {
-  }
-  addMenu() {
+//  constructor(private menuService: MenuService){}
+  addMenu() {/*
     this.menuService.addMenuItem('sideNav', {
       state: 'slides',
       title: 'slides',
       icon: 'fa-desktop',
       roles: ['user', 'admin'],
-    });
+    });*/
   }
 }
 

@@ -27,13 +27,13 @@ export class ApplicationComponent {
   }
 
   constructor(
-    private mdIconRegistry: MatIconRegistry,
+    private matIconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer
   ) {
-    ['file', 'editor', 'action', 'navigation', 'av', 'image', 'content']
+    ['file', 'editor', 'action', 'navigation', 'av', 'image', 'content', 'hardware']
     .forEach(iconSet =>
-      mdIconRegistry.addSvgIconSetInNamespace(iconSet, sanitizer.bypassSecurityTrustResourceUrl(`assets/svg-sprite-${iconSet}.svg`
+      matIconRegistry.addSvgIconSetInNamespace(iconSet, sanitizer.bypassSecurityTrustResourceUrl(`assets/svg-sprite-${iconSet}.svg`
     )));
-    mdIconRegistry.addSvgIcon('file-image', sanitizer.bypassSecurityTrustResourceUrl(`assets/file.svg`));
+    matIconRegistry.addSvgIcon('file-image', sanitizer.bypassSecurityTrustResourceUrl(`assets/file.svg`));
   }
 }

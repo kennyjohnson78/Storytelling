@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SlidesCardComponent } from './slides-card.component';
 import { SlidesService } from '../../../services/slides.service';
-import {NotifBarService} from 'app/core';
 import { HttpModule } from '@angular/http';
 import { Slides } from '../../../models/slides';
 describe('SlidesCardComponent', () => {
@@ -17,7 +16,7 @@ describe('SlidesCardComponent', () => {
                 HttpModule,
             ],
             declarations: [SlidesCardComponent],
-            providers: [{provide: SlidesService, useValue:slidesServiceStub },NotifBarService]
+            providers: [{provide: SlidesService, useValue:slidesServiceStub }]
         })
             .compileComponents();
     }));

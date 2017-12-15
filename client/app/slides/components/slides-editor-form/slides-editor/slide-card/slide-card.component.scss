@@ -21,7 +21,7 @@
 
         &:hover {
             box-shadow: 0px 0px 15px mat-color($primary,300);
-            .md-card-image .banner-mask i{
+            .mat-card-image .banner-mask i{
                 opacity: 1;
                 font-size: 90px;
             }
@@ -46,7 +46,7 @@
             width: 100%;
         }
 
-        .md-card-image {
+        .mat-card-image {
             background-position: center;
             background-size: cover;
             height: 225px;
