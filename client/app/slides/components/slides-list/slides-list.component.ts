@@ -65,7 +65,7 @@ export class SlidesListComponent implements OnInit {
             error => {
 //                this.notifBarService.showNotif("fail to load slides users-list");
             },
-            () => { this.loading = false; });
+            () => { console.log('XXXXXXX'); this.loading = false; });
     }
     search(paramsTosearch) {
         //get search result

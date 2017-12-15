@@ -16,10 +16,10 @@
     <p *ngIf="result.noPublish">Sorry, no one publish slides yet! <br>Would you want to be the pioneer?</p>
     <p *ngIf="result.noResult">Opps, no result for these key words</p>
   </div>
-  <md-paginator [length]="length"
+  <mat-paginator [length]="length"
                 [pageSize]="pageSize"
                 (page)="nextPage($event)">
-  </md-paginator>
+  </mat-paginator>
   <button class="buttonBottom" *ngIf="loggedIn$|async" [routerLink]="['createSlides']"  mat-fab><mat-icon>add</mat-icon> </button>
   <button class="buttonBottom" *ngIf="!(loggedIn$|async)" [routerLink]="['/user/login']" [queryParams]="{returnUrl: '/slides/createSlides'}"  mat-fab><mat-icon>add</mat-icon> </button>
 
