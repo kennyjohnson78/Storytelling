@@ -21,9 +21,9 @@
         { "glob": "svg-sprite-image.svg", "input": "../../../node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
         { "glob": "svg-sprite-content.svg", "input": "../../../node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
         { "glob": "svg-sprite-hardware.svg", "input": "../../../node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
-        { "glob": "*", "input": "../../../libs/core/assets/", "output": "assets/" },
-        { "glob": "*", "input": "../../../libs/slides/assets/", "output": "assets/" },
-        { "glob": "**", "input": "../../../libs/charts/assets", "output": "assets/" }
+        { "glob": "*", "input": "../../../libs/core/src/assets/", "output": "assets/" },
+        { "glob": "*", "input": "../../../libs/slides/src/assets/", "output": "assets/" },
+        { "glob": "**/*", "input": "../../../libs/charts/src/assets", "output": "assets/" }
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -69,6 +69,12 @@
     {
       "name": "core-state",
       "root": "libs/core-state/src",
+      "test": "../../../test.js",
+      "appRoot": ""
+    },
+    {
+      "name": "core-routing",
+      "root": "libs/core-routing/src",
       "test": "../../../test.js",
       "appRoot": ""
     },

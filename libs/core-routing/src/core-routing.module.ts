@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CoreGuardService } from './services/core.guard.service';
 import { AuthenticationGuardService } from '@labdat/authentication';
-import { AuthenticationComponent } from '@labdat/authentication/components/authentication/authentication.component';
+import { AuthenticationComponent } from '@labdat/authentication';
 
 const coreRoutes: Routes = [
   {
@@ -32,7 +32,7 @@ const coreRoutes: Routes = [
         path: 'slides',
 //        canActivate: [AuthenticationGuardService],
 //        canLoad: [AuthenticationGuardService],
-        loadChildren: '../../../slides/src/slides.module#SlidesModule'
+        loadChildren: '../../slides/src/slides.module#SlidesModule'
       },
       {
         path: '**',
