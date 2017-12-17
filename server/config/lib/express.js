@@ -20,7 +20,8 @@ var config = require('../config'),
   _ = require('lodash'),
   lusca = require('lusca'),
   authorization = require('./authorization'),
-  swaggerize = require('express-swaggerize');
+//  swaggerize = require('express-swaggerize'),
+  cors = require('cors');
 
 /**
  * Initialize local variables
@@ -97,6 +98,12 @@ module.exports.initMiddleware = function(app) {
 
   // Authorize Request
   app.use(authorization.authorize);
+
+  app.use(cors({
+    origin: ['http://localhost:4200', 'http://localhost:8080'],
+    credentials: true,
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
+  }))
 
 };
 
@@ -251,9 +258,9 @@ module.exports.initMiddlewareSwagger = function(app) {
     apiPaths: [path.resolve('./modules/*/server/routes/*.routes.js'), path.resolve('./modules/*/server/models/*.model.js')]
   };
 
-  var swagger = swaggerize(opts);
+//  var swagger = swaggerize(opts);
 
-  app.use('/v2/api', swagger);
+//  app.use('/v2/api', swagger);
 
 
 };

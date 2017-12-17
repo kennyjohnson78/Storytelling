@@ -8,7 +8,10 @@ var path = require('path'),
   mongoose = require('mongoose'),
   passport = require('passport'),
   User = mongoose.model('User'),
-  authorization = require(path.resolve('./config/lib/authorization'));
+  authorization = require(path.resolve('./config/lib/authorization')),
+  jwt = require('jsonwebtoken'),
+  jwtConfig = require(path.resolve('./config/env/default')).jwt;
+
 
 // URLs for which user can't be redirected on signin
 var noReturnUrls = [
@@ -19,6 +22,14 @@ var noReturnUrls = [
 /**
  * Signup
  */
+
+try {
+
+} catch(err) {
+  return next(new ApiError(err.message))
+}
+
+
 exports.signup = function (req, res) {
   // For security measurement we remove the roles from the req.body object
   delete req.body.roles;
@@ -31,6 +42,7 @@ exports.signup = function (req, res) {
   // Then save the user
   user.save(function (err) {
     if (err) {
+      console.log(err)
       return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -39,11 +51,17 @@ exports.signup = function (req, res) {
       user.password = undefined;
       user.salt = undefined;
 
+      const token = jwt.sign(user, config.jwt.secret)
+      res.status(200)
+        .cookie('TOKEN', token, { maxAge: 900000, httpOnly: true })
+        .json({ user, tokenExpiresIn: 101010010101 });
+/*
       var token = authorization.signToken(user);
       res.json({
         user: user,
         token: token
       });
+*/
     }
   });
 };
@@ -60,11 +78,18 @@ exports.signin = function (req, res, next) {
       user.password = undefined;
       user.salt = undefined;
 
+      const token = jwt.sign(user, jwtConfig.secret);
+      res.status(200)
+        .cookie('TOKEN', token)
+        .json({ user, tokenExpiresIn: 10101010101 });
+
+/*
       var token = authorization.signToken(user);
       res.json({
         user: user,
         token: token
       });
+*/
     }
   })(req, res, next);
 };
