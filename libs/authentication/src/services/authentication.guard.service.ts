@@ -25,29 +25,31 @@ export class AuthenticationGuardService implements CanActivate, CanLoad {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
     const currentUrl = route.url[0].path;
-    return this.hasPermission(currentUrl);
+    const redirectTo = '/slides';
+    return this.hasPermission(currentUrl, redirectTo);
   }
 
   canLoad(route: Route): Observable<boolean>|Promise<boolean>|boolean {
     const currentUrl = route.path;
-    return this.hasPermission(currentUrl);
+    const redirectTo = '/slides';
+    return this.hasPermission(currentUrl, redirectTo);
   }
 
-  hasPermission(path: string) {
+  hasPermission(path: string, redirectTo: string) {
     return Observable.combineLatest(
       this.store.select(getLoggedIn),
       this.store.select(getTokenExpiresIn),
       (loggedIn, tokenExpiresIn) => {
         if (loggedIn) {
           if (path === 'auth') {
-            this.store.dispatch(new fromRouter.Go({ path: ['/', 'home'] }));
+            this.store.dispatch(new fromRouter.Go({ path: redirectTo.split('/') }));
           }
           return true;
         } else {
           if (tokenExpiresIn) {
             if (tokenExpiresIn < Date.now()) {
               if (path === 'auth') {
-                this.store.dispatch(new fromRouter.Go({ path: ['/', 'home'] }));
+                this.store.dispatch(new fromRouter.Go({ path: redirectTo.split('/') }));
               }
               return true;
             } else {

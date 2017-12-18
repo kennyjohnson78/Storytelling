@@ -20,18 +20,17 @@ const coreRoutes: Routes = [
     children: [
       {
         path: 'home',
- //       canActivate: [AuthenticationGuardService],
         component: HomeComponent
       },
       {
         path: 'auth',
         component: AuthenticationComponent,
-//        canActivate: [AuthenticationGuardService]
+        canActivate: [AuthenticationGuardService]
       },
       {
         path: 'slides',
-//        canActivate: [AuthenticationGuardService],
-//        canLoad: [AuthenticationGuardService],
+        canActivate: [AuthenticationGuardService],
+        canLoad: [AuthenticationGuardService],
         loadChildren: '../../slides/src/slides.module#SlidesModule'
       },
       {
