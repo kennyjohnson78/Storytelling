@@ -15,9 +15,8 @@
     "cache:clean": "npm cache clean",
     "install": "npm install",
     "reinstall": "run-p clean cache:clean install",
-    "start": "run-p client server",
+    "start": "run-p client",
     "client": "npm run storytelling",
-    "server": "cd server && npm run-script start",
     "prod": "ng build --prod"
   },
   "private": true,

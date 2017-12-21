@@ -4,9 +4,11 @@
  * Module dependencies
  */
 var path = require('path'),
-  config = require(path.resolve('./config/config'));
+  config = require(path.resolve('./config'));
+
 /**
  * Module init function.
  */
 module.exports = function (app, db) {
+
 };
