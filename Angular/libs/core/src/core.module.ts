@@ -22,6 +22,7 @@ import {
   MatListModule
 } from '@angular/material';
 import { SharedModule } from '@labdat/shared';
+import { SlidesModule } from '@labdat/slides';
 
 export const COMPONENTS = [LayoutComponent, HomeComponent, NotFoundComponent];
 
@@ -40,7 +41,15 @@ const MATERIAL_MODULES = [
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule, SharedModule, AuthenticationModule, ...MATERIAL_MODULES, FlexLayoutModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    SharedModule,
+    AuthenticationModule,
+    ...MATERIAL_MODULES,
+    FlexLayoutModule,
+    SlidesModule
+  ],
   declarations: COMPONENTS,
   exports: COMPONENTS
 })

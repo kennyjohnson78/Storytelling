@@ -31,7 +31,7 @@ const coreRoutes: Routes = [
         path: 'slides',
         canActivate: [AuthenticationGuardService],
         canLoad: [AuthenticationGuardService],
-        loadChildren: '../../slides/src/slides.module#SlidesModule'
+        loadChildren: '../../slides/src/slides.module#RootSlidesModule'
       },
       {
         path: '**',
