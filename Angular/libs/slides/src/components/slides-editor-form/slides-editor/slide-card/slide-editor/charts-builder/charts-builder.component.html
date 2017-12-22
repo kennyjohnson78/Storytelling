@@ -15,8 +15,8 @@
       <span>Copy and paste your tabular (TSV, CSV) data here.<button class="btn btn-link" (click)="useExample()">(Use example data)</button></span>
       <i class="format fa fa-align-left breath-left" [class.checked]="!formatTable" matTooltip="View as Text" matTooltipPosition="above" (click)="formatTable = false"></i>
       <i class="format fa fa-table breath-left" [class.checked]="formatTable" matTooltip="View as Table" matTooltipPosition="above" (click)="formatTable = true"></i>
-      <app-codemirror *ngIf="!formatTable" [(ngModel)]="dataText" [config]="editorConfig">
-      </app-codemirror>
+      <codemirror *ngIf="!formatTable" [(ngModel)]="dataText" [config]="editorConfig">
+      </codemirror>
 
       <app-data-table *ngIf="formatTable" [data]="rawData" [columns]="headerValues" (updatedData)="editData($event)">
       </app-data-table>

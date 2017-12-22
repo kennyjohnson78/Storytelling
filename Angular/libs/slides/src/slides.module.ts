@@ -18,7 +18,7 @@ import { HttpModule, XHRBackend, RequestOptions } from '@angular/http';
 
 // NGX-CHARTS MODULE
 import { PieChartModule, GaugeModule, NgxChartsModule } from '@swimlane/ngx-charts';
-import { CodemirrorModule } from 'ng2-codemirror';
+import { CodemirrorModule } from 'ng4-codemirror';
 
 // DRAG & DROP MODULE
 import { DndModule } from 'ng2-dnd';
