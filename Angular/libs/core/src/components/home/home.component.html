@@ -1,11 +1,31 @@
-<mat-card>
-  <div fxLayout="column" fxLayoutAlign="space-around center">
-    <div class="front-logos" fxLayout="row" fxLayoutAlign="space-around center">
-      <img src="assets/nx-logo.png" height="200px">
-      <span class="plus">&#43;</span>
-      <img src="assets/ngrx-logo.svg" height="200px">
-      <span class="plus">&#43;</span>
-      <img src="assets/material-logo.svg" height="200px">
+<div class="base" fxLayout="column" fxLayoutAlign="center center">
+    <div class="logo" [class.hide]="showSlidesList">
+      <img src="assets/logo.png" width="100%">
+    </div>
+    <div class="search-block" [class.center-mode]="!showSlidesList" [class.side-mode]="showSlidesList">
+      <div class="search-wrap">
+        <app-slides-search (textSearchOpt)="searchSlides($event)" kind="generic"></app-slides-search>
+      </div>
+      <button *ngIf="!showSlidesList" class="buttonBottom floating" (click)="getAllslides()" mat-fab><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
     </div>
   </div>
-</mat-card>
+
+  <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around">
+    <div *ngFor="let s of slides" [class.display-div]="!(loggedIn$|async) && !s.slidesSetting.public" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="33" fxFlex.xl="33">
+      <app-slides-card [slides]="s" [editable]="false"></app-slides-card>
+    </div>
+  </div>
+  <mat-paginator
+    *ngIf="showSlidesList"
+    [length]="length"
+    [pageSize]="pageSize"
+    (page)="nextPage($event)">
+  </mat-paginator>
+  <div class="error">
+    <p *ngIf="noPublish">Sorry, no one publish slides yet! <br>Would you want to be the pioneer?
+      <a href="#/slides/createSlides">
+        <button mat-button color="accent">Create Now</button>
+      </a>
+    </p>
+    <p *ngIf="noResult">Opps, no result for these key words</p>
+  </div>
