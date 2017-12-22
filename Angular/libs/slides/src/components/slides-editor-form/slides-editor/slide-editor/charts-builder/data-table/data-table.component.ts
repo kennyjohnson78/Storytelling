@@ -6,22 +6,25 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./data-table.component.scss']
 })
 export class DataTableComponent implements OnInit {
+
   @Input()
   data: any[] = [];
+
   @Input()
-  columns: string[] = [];
+  columns: any[] = [];
 
   @Output()
   updatedData = new EventEmitter();
-  colHeaders: string[];
+
+  //  colHeaders: string[];
 
   constructor() { }
 
   ngOnInit() {
-    this.colHeaders = this.columns.map((col: any) =>  col.name );
+    //this.colHeaders = this.columns.map((col: any) =>  col.name );
+    console.log('----  data  ---->', this.data);
+    console.log('---- columns ---->', this.columns);
   }
-
-
 
   afterChange(e: any) {
     // tslint:disable-next-line:no-console

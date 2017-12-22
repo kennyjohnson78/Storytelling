@@ -224,6 +224,12 @@ updateData(value = this._dataText) {
         dynamicTyping: true
     });
 
+    console.log(
+      'parsed',
+      parsed,
+      parsed.meta.fields.map(key => ({ data: key, title: key.charAt(0).toUpperCase() + key.slice(1) }))
+    )
+
     this.errors = parsed.errors;
 
     if (this.errors.length) {
@@ -231,10 +237,15 @@ updateData(value = this._dataText) {
     }
 
     this.rawData = parsed.data;
-
+/*
     const headerValues = parsed.meta.fields.map(d => ({
         name: d,
         type: typeof parsed.data[0][d]
+    }));
+*/
+    const headerValues = parsed.meta.fields.map(key => ({
+      data: key,
+      title: key.charAt(0).toUpperCase() + key.slice(1)
     }));
 
     if (JSON.stringify(headerValues) !== JSON.stringify(this.headerValues)) {
@@ -244,5 +255,5 @@ updateData(value = this._dataText) {
     } else {
         this.processData();
     }
-}
+  }
 }
