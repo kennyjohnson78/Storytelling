@@ -107,6 +107,7 @@ export class SlideEditorComponent implements OnInit, OnChanges {
   }
   /*confirm graph setting*/
   confirmeSlideGRaphConfig(data) {
+    console.log('here', data)
     this.dataBuilder.data = data.data;
     this.dataBuilder.chartOptions = data.chartOptions;
   }

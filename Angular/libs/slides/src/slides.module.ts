@@ -24,8 +24,7 @@ import { CodemirrorModule } from 'ng2-codemirror';
 import { DndModule } from 'ng2-dnd';
 
 // HANDSONTABLE MODULE
-//import { HotTableModule } from 'ng2-handsontable';
-
+import { HotTableModule } from 'angular-handsontable';
 
 import {SlidesSearchComponent} from './components/slides-list/slides-search/slides-search.component';
 // SLIDES COMPONENTS
@@ -103,7 +102,7 @@ import { SlideEditorComponent } from './components/slides-editor-form/slides-edi
         CodemirrorModule,
         FlexLayoutModule,
         DndModule.forRoot(),
-//        HotTableModule,
+        HotTableModule,
         FroalaEditorModule.forRoot(),
         FroalaViewModule.forRoot(),
         MatTooltipModule,
