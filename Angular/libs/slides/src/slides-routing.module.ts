@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 // SLIDES COMPONENTS
 import {
-SlidesViewComponent,
+  SlidesViewComponent,
   SlidesEditorFormComponent,
   SlidesListComponent,
   SlideEditorComponent } from './components';

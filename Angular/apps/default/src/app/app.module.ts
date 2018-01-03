@@ -16,7 +16,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { metaReducers } from './+state/app.reducer';
 import { coreConfiguration } from '@labdat/core';
-import { slidesConfiguration } from '@labdat/slides';
+import { slidesConfiguration, SlidesModule } from '@labdat/slides';
 import { environment } from '../environments/environment';
 import { RouterStateModule } from '@labdat/router-state';
 
@@ -37,6 +37,7 @@ import { RouterStateModule } from '@labdat/router-state';
     SharedModule.forRoot(),
     AuthenticationModule.forRoot(),
     CoreModule.forRoot(),
+    SlidesModule.forRoot(),
 
     RouterStateModule.forRoot(),
     AuthenticationStateModule.forRoot(),

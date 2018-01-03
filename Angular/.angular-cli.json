@@ -23,7 +23,7 @@
         { "glob": "svg-sprite-hardware.svg", "input": "../../../node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
         { "glob": "*", "input": "../../../libs/core/src/assets/", "output": "assets/" },
         { "glob": "*", "input": "../../../libs/slides/src/assets/", "output": "assets/" },
-        { "glob": "**/*", "input": "../../../libs/charts/src/assets", "output": "assets/" }
+        { "glob": "**/*", "input": "../../../libs/charts/src/assets/img-graph", "output": "assets/img-graph" }
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -36,7 +36,8 @@
         "./stylesheets/styles.scss",
         "./stylesheets/theme.scss",
         "../../../node_modules/font-awesome/css/font-awesome.css",
-        "../../../node_modules/froala-editor/css/froala_editor.pkgd.min.css"
+        "../../../node_modules/froala-editor/css/froala_editor.pkgd.min.css",
+        "../../../node_modules/codemirror/lib/codemirror.css"
       ],
       "scripts": [
         "../../../node_modules/jquery/dist/jquery.min.js",
