@@ -100,8 +100,8 @@ export class SlidesCardComponent implements OnInit {
     deleteSlides(e, id) {
         e.stopPropagation();
 
-        const dialog = this.dialog.open(DeleteDialogComponent);
-        dialog.afterClosed().subscribe(result => {
+            const dialog = this.dialog.open(DeleteDialogComponent, {height : '20%', width: '20%' });
+            dialog.afterClosed().subscribe(result => {
             if (result === 'YES') {
                 this.slidesService.deleteSlides(id)
                     .subscribe(res => {

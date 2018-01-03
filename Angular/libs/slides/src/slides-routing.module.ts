@@ -37,6 +37,16 @@ const slidesRoutes: Routes = [
     component: SlidesViewComponent,
     data: { title: 'Presentation' }
   },
+  {
+    path: ':idSlides/slide/:id',
+    component: SlideEditorComponent,
+    data: { title: 'Slide editor' }
+  },
+  {
+    path: 'slide/create/:idSlides',
+    component: SlideEditorComponent,
+    data: { title: 'Slide creator' }
+  }
 ];
 
 @NgModule({

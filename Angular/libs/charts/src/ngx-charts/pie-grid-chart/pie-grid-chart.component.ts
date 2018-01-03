@@ -35,7 +35,6 @@ export class PieGridChartComponent extends Chart implements OnInit, OnDestroy, O
     ngOnInit() {
         // Set the config
         this.chartOptions = { ...defaultOptions, ...this.configInput };
-
         this.init();
 
     }
@@ -74,15 +73,10 @@ export class PieGridChartComponent extends Chart implements OnInit, OnDestroy, O
         this.init();
     }
     init() {
+      if (this.configInput != null)
         this.data = PieGridChartComponent.convertData(this.chartOptions.dataDims, this.dataInput);
-    }
-
-    load() {
-        // this.data = [];
-        // this._setIntervalHandler =  setTimeout(() => this.data = this.dataInput);
-    }
-
-    ease() {
+       else
+      this.data = this.dataInput;
     }
 
     select(data) {

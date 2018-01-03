@@ -48,10 +48,10 @@
 @import '../../../../libs/slides/src/components/slides-editor-form/slides-editor/slide-card/slide-card-theme';
 @include slide-card-theme($default-light-theme);
 
-@import '../../../../libs/slides/src/components/slides-editor-form/slides-editor/slide-card/slide-editor/charts-builder/charts-builder-theme';
+@import '../../../../libs/slides/src/components/slides-editor-form/slides-editor/slide-editor/charts-builder/charts-builder-theme';
 @include charts-builder-theme($default-light-theme);
 
-@import '../../../../libs/slides/src/components/slides-editor-form/slides-editor/slide-card/slide-editor/slide-editor-theme';
+@import '../../../../libs/slides/src/components/slides-editor-form/slides-editor/slide-editor/slide-editor-theme';
 @include slide-editor-theme($default-light-theme);
 
 @import '../../../../libs/slides/src/components/slides-editor-form/slides-editor/slides-editor-theme';

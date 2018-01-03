@@ -6,7 +6,7 @@ import { nest } from 'd3-collection';
 import * as _ from 'lodash';
 
 const defaultOptions = {
-    view: [900, 600],
+    view: [2000, 2000],
     colorScheme: colorSets.find(s => { if (s === undefined) return; else return s.name === 'cool' }),
     schemeType: 'ordinal',
     showLegend: true,

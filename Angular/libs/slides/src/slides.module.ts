@@ -5,14 +5,14 @@ import { CommonModule } from '@angular/common';
 // MATERIAL DESIGN MODULES
 import { OverlayContainer } from '@angular/cdk/overlay';
 import {
-    MatTooltipModule,
-    MatInputModule,
-    MatCardModule,
-    MatSelectModule,
-    MatIconModule,
-    MatButtonModule,
-    MatChipsModule,
-    MatToolbarModule } from '@angular/material';
+  MatTooltipModule,
+  MatInputModule,
+  MatCardModule,
+  MatSelectModule,
+  MatIconModule,
+  MatButtonModule,
+  MatChipsModule,
+  MatToolbarModule, MatDialogModule } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpModule, XHRBackend, RequestOptions } from '@angular/http';
 
@@ -26,19 +26,13 @@ import { DndModule } from 'ng2-dnd';
 // HANDSONTABLE MODULE
 //import { HotTableModule } from 'ng2-handsontable';
 
-
 import {SlidesSearchComponent} from './components/slides-list/slides-search/slides-search.component';
 // SLIDES COMPONENTS
 import {
-    SlidesViewComponent,
-    FullScreenGraphSlideComponent,
-    ImageComponent,
-    TitleSlideComponent,
-    LeftGraphRightTextSlideComponent,
-    RightGraphLeftTextSlideComponent,
-    TextSlideComponent,
-    SlidesEditorFormComponent,
-    SlideCardComponent
+  SlidesViewComponent,
+  TitleSlideComponent,
+  SlidesEditorFormComponent,
+  SlideCardComponent
 } from './components';
 
 // SLIDES SERVICES
@@ -54,30 +48,30 @@ import { KeySwitchDirective } from './components/slides-view/key-switch.directiv
 
 import { DragulaModule } from 'ng2-dragula';
 import {
-    BarChartComponent,
-    GaugeChartComponent,
-    NgGraphComponent,
-    TreemapChartComponent,
-    ZoomableTreemapChartComponent,
-    PieGridChartComponent,
-    NumberCardComponent,
-    SunburstChartComponent,
-    AdvancedPieChartComponent,
-    ForceDirectedGraphComponent,
-    LineChartComponent,
-    DendogramComponent,
-    PieChartComponent,
-    HierarchicalEdgeBundlingComponent,
-    BubbleChartComponent,
-    WordCloudComponent,
-    AreaChartComponent
- } from '@labdat/charts';
+  BarChartComponent,
+  GaugeChartComponent,
+  NgGraphComponent,
+  TreemapChartComponent,
+  ZoomableTreemapChartComponent,
+  PieGridChartComponent,
+  NumberCardComponent,
+  SunburstChartComponent,
+  AdvancedPieChartComponent,
+  ForceDirectedGraphComponent,
+  LineChartComponent,
+  DendogramComponent,
+  PieChartComponent,
+  HierarchicalEdgeBundlingComponent,
+  BubbleChartComponent,
+  WordCloudComponent,
+  AreaChartComponent
+} from '@labdat/charts';
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 
-import { ImageUploadComponent } from './components/slides-editor-form/slides-editor/slide-card/slide-editor/image-upload/image-upload.component';
+import { ImageUploadComponent } from './components/slides-editor-form/slides-editor/slide-editor/image-upload/image-upload.component';
 
 import { SlidesSettingComponent } from './components/slides-editor-form/slides-editor/slides-setting/slides-setting.component';
-import { ChartsBuilderComponent, CodeEditorComponent, DataTableComponent } from './components/slides-editor-form/slides-editor/slide-card/slide-editor/charts-builder';
+import { CodeEditorComponent, DataTableComponent } from './components/slides-editor-form/slides-editor/slide-editor/charts-builder';
 import { SlidesEditorComponent } from './components/slides-editor-form/slides-editor/slides-editor.component';
 
 import { SlidesListComponent } from './components/slides-list/slides-list.component';
@@ -86,108 +80,110 @@ import { DeleteDialogComponent } from './components/slides-list/slides-card/dele
 import { ToggleFullscreenDirective } from './components/slides-view/toggle-fullscreen.directive';
 
 import { ValidateOnBlurDirective } from './components/slides-editor-form/slides-editor/slides-setting/validate-on-blur.directive';
-import { SlideEditorComponent } from './components/slides-editor-form/slides-editor/slide-card/slide-editor/slide-editor.component';
-
+import { SlideEditorComponent } from './components';
+import { NgGridModule} from 'angular2-grid';
+import { ChartsBuilderComponent, GraphComponent, TextEditorComponent, TextComponent } from './components/slides-editor-form/slides-editor/slide-editor';
 @NgModule({
-    imports: [
-        CommonModule,
-        MatTooltipModule,
-        FormsModule,
-        ReactiveFormsModule,
-        CoreModule,
-        SlidesRoutingModule,
-        DragulaModule,
-        PieChartModule,
-        GaugeModule,
-        NgxChartsModule,
-        CodemirrorModule,
-        FlexLayoutModule,
-        DndModule.forRoot(),
-//        HotTableModule,
-        FroalaEditorModule.forRoot(),
-        FroalaViewModule.forRoot(),
-        MatTooltipModule,
-        MatCardModule,
-        MatSelectModule,
-        MatIconModule,
-        MatButtonModule,
-        MatChipsModule,
-        MatToolbarModule,
-        MatInputModule,
-        HttpModule
-    ],
-    entryComponents: [
-        BarChartComponent,
-        LineChartComponent,
-        ForceDirectedGraphComponent,
-        HierarchicalEdgeBundlingComponent,
-        PieChartComponent,
-        PieGridChartComponent,
-        NumberCardComponent,
-        FullScreenGraphSlideComponent,
-        GaugeChartComponent,
-        AdvancedPieChartComponent,
-        DeleteDialogComponent,
-        DendogramComponent,
-        NgGraphComponent,
-        TreemapChartComponent,
-        ZoomableTreemapChartComponent,
-        BubbleChartComponent,
-        WordCloudComponent,
-        SunburstChartComponent,
-        AreaChartComponent,
-        ImageComponent,
-        SlideEditorComponent],
+  imports: [
+    CommonModule,
+    MatTooltipModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CoreModule,
+    SlidesRoutingModule,
+    DragulaModule,
+    PieChartModule,
+    GaugeModule,
+    NgxChartsModule,
+    CodemirrorModule,
+    FlexLayoutModule,
+    DndModule.forRoot(),
+//  HotTableModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
+    MatTooltipModule,
+    MatCardModule,
+    MatSelectModule,
+    MatIconModule,
+    MatButtonModule,
+    MatChipsModule,
+    MatToolbarModule,
+    MatInputModule,
+    HttpModule,
+    NgGridModule,
+    MatDialogModule
+  ],
+  entryComponents: [
+    BarChartComponent,
+    LineChartComponent,
+    ForceDirectedGraphComponent,
+    HierarchicalEdgeBundlingComponent,
+    PieChartComponent,
+    PieGridChartComponent,
+    NumberCardComponent,
+    GaugeChartComponent,
+    AdvancedPieChartComponent,
+    DeleteDialogComponent,
+    DendogramComponent,
+    NgGraphComponent,
+    TreemapChartComponent,
+    ZoomableTreemapChartComponent,
+    BubbleChartComponent,
+    WordCloudComponent,
+    SunburstChartComponent,
+    AreaChartComponent,
+    SlideEditorComponent,
+    ChartsBuilderComponent,
+    TextEditorComponent
+  ],
 
-    declarations: [
-        KeySwitchDirective,
-        SlidesViewComponent,
-        SlidesEditorFormComponent,
-        SlideCardComponent,
-        ImageUploadComponent,
-        SlidesSearchComponent,
-        BarChartComponent,
-        ForceDirectedGraphComponent,
-        LineChartComponent,
-        SlidesSettingComponent,
-        CodeEditorComponent,
-        DataTableComponent,
-        ChartsBuilderComponent,
-        SlidesEditorComponent,
-        SlidesListComponent,
-        FullScreenGraphSlideComponent,
-        GaugeChartComponent,
-        AdvancedPieChartComponent,
-        TitleSlideComponent,
-        LeftGraphRightTextSlideComponent,
-        RightGraphLeftTextSlideComponent,
-        TextSlideComponent,
-        PieChartComponent,
-        SlidesCardComponent,
-        HierarchicalEdgeBundlingComponent,
-        AreaChartComponent,
-        PieGridChartComponent,
-        NumberCardComponent,
-        DeleteDialogComponent,
-        NgGraphComponent,
-        TreemapChartComponent,
-        ZoomableTreemapChartComponent,
-        DendogramComponent,
-        BubbleChartComponent,
-        WordCloudComponent,
-        SunburstChartComponent,
-        KeySwitchDirective,
-        ToggleFullscreenDirective,
-        ImageComponent,
-        ValidateOnBlurDirective,
-        SlideEditorComponent
-    ],
-    exports: [
-      SlidesCardComponent,
-      SlidesSearchComponent
-    ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    providers: [OverlayContainer, SlidesService, ImagesService, ChartsService, ValidService]
+  declarations: [
+    KeySwitchDirective,
+    SlidesViewComponent,
+    SlidesEditorFormComponent,
+    SlideCardComponent,
+    ImageUploadComponent,
+    SlidesSearchComponent,
+    BarChartComponent,
+    ForceDirectedGraphComponent,
+    LineChartComponent,
+    SlidesSettingComponent,
+    CodeEditorComponent,
+    DataTableComponent,
+    ChartsBuilderComponent,
+    SlidesEditorComponent,
+    SlidesListComponent,
+    GaugeChartComponent,
+    AdvancedPieChartComponent,
+    TitleSlideComponent,
+    PieChartComponent,
+    SlidesCardComponent,
+    HierarchicalEdgeBundlingComponent,
+    AreaChartComponent,
+    PieGridChartComponent,
+    NumberCardComponent,
+    DeleteDialogComponent,
+    NgGraphComponent,
+    TreemapChartComponent,
+    ZoomableTreemapChartComponent,
+    DendogramComponent,
+    BubbleChartComponent,
+    WordCloudComponent,
+    SunburstChartComponent,
+    KeySwitchDirective,
+    ToggleFullscreenDirective,
+    ValidateOnBlurDirective,
+    SlideEditorComponent,
+    GraphComponent,
+    TextEditorComponent,
+    TextComponent
+  ],
+  exports: [
+    SlidesCardComponent,
+    SlidesSearchComponent
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [OverlayContainer, SlidesService, ImagesService, ChartsService, ValidService]
 
 })
 export class SlidesModule {

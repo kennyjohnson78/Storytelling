@@ -21,12 +21,14 @@ module.exports = function(app) {
     .get(slides.search);
 
   // Single slide routes
-  app.route('/api/slides/:slideId').all(slidesPolicy.isAllowed)
+  app.route('/api/slides/:slidesId').all(slidesPolicy.isAllowed)
     .get(slides.read)
     .put(slides.update)
     .delete(slides.delete);
+  app.route('/api/slides/:slidesId/slide/:slideId').all(slidesPolicy.isAllowed)
+    .post(slides.createSlide)
 
   // Finish by binding the slide middleware
-  app.param('slideId', slides.slideByID);
+  app.param('slidesId', slides.slideByID);
 
 };

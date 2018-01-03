@@ -1,8 +1,10 @@
 import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 import { Slide } from '../../../../models/slide';
-import { SlideEditorComponent } from './slide-editor/slide-editor.component';
+import { SlideEditorComponent } from '../slide-editor/slide-editor.component';
  import { MatDialog } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
     selector: 'app-slide-card',
@@ -34,22 +36,27 @@ export class SlideCardComponent {
     @Output() slideValidateChange: EventEmitter<boolean> = new EventEmitter();
     @Input() slideIndex: number;  //slide index
     @Input() slide: Slide; //if it's not a new slide, the previous setting of the slide
-
-    constructor(private dialog: MatDialog){}
+    id : any;
+    constructor(private dialog: MatDialog, private route : ActivatedRoute){
+      this.route.params.subscribe(params => {
+        this.id = params['id'];
+      });
+    }
     /*delete slide*/
     deleteSlide(e) {
         this.deleteSlideOpt.emit(this.slideIndex);
     }
 
     creatSlide() {
-        const dialog = this.dialog.open(SlideEditorComponent, {  height: '100%', width : '100%'});
-        dialog.componentInstance.slide = this.slide;
-        dialog.componentInstance.slideIndex = this.slideIndex;
-
-        dialog.afterClosed().subscribe(result => {
-            if (result !== 'CANCEL') {
-                this.saveSlide.emit(result);
-            }
-        });
+        // const dialog = this.dialog.open(SlideEditorComponent, {  height: '100%', width : '100%'});
+        // dialog.componentInstance.slide = this.slide;
+        // dialog.componentInstance.slideIndex = this.slideIndex;
+        //
+        // dialog.afterClosed().subscribe(result => {
+        //     if (result !== 'CANCEL') {
+        //         this.saveSlide.emit(result);
+        //     }
+        // });
     }
+
 }

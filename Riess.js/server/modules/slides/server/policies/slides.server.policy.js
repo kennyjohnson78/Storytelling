@@ -18,7 +18,7 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/slides',
       permissions: '*'
     }, {
-      resources: '/api/slides/:slideId',
+      resources: '/api/slides/:slidesId',
       permissions: '*'
     }, {
       resources: '/api/search/slides',
@@ -39,7 +39,7 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/slides',
       permissions: ['*']
     }, {
-      resources: '/api/slides/:slideId',
+      resources: '/api/slides/:slidesId',
       permissions: ['*']
     }, {
       resources: '/api/slidesFix/:slideIdFix',
@@ -53,14 +53,21 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/banner',
       permissions: ['*']
-    }]
+    }, {
+      resources: '/api/slides/:idSlides/slide/:id',
+      permissions: ['*']
+    },
+      {
+        resources: '/api/slides/:slidesId/slide/:slideId',
+        permissions: ['*']
+      }]
   }, {
     roles: ['guest'],
     allows: [{
       resources: '/api/slides',
       permissions: ['*']
     }, {
-      resources: '/api/slides/:slideId',
+      resources: '/api/slides/:slidesId',
       permissions: ['*']
     }, {
       resources: '/api/slidesFix/:slideIdFix',
@@ -74,7 +81,11 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/banner',
       permissions: ['*']
-    }]
+    },
+      {
+        resources: '/api/slides/:slidesId/slide/:slideId',
+        permissions: ['*']
+      }]
   }]);
 };
 

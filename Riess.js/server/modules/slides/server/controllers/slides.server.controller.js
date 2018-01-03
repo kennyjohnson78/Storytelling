@@ -28,7 +28,19 @@ exports.create = function(req, res) {
     }
   });
 };
-
+exports.createSlide = function (req, res) {
+  var slides = req.slide;
+  slides.slides.push(req.body);
+  slides.save(function(err) {
+    if (err) {
+      return res.status(422).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.json(slides);
+    }
+  });
+};
 /**
  * Show the current slide
  */
@@ -123,15 +135,15 @@ exports.slideByID = function(req, res, next, id) {
     });
   }
 
-  Slides.findById(id).exec(function(err, slide) {
+  Slides.findById(id).exec(function(err, slides) {
     if (err) {
       return next(err);
-    } else if (!slide) {
+    } else if (!slides) {
       return res.status(404).send({
         message: 'No slide with that identifier has been found'
       });
     }
-    req.slide = slide;
+    req.slide = slides;
     next();
   });
 };
@@ -474,3 +486,4 @@ exports.search = function(req, res) {
         }
       });
 };
+
