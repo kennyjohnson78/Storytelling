@@ -64,7 +64,7 @@ export class AuthenticationEffectsService {
         verticalPosition: 'top'
       });
     }),
-    mapTo(new fromRouter.Go({ path: ['/', 'test'] }))
+    mapTo(new fromRouter.Go({ path: ['/', 'home'] }))
   );
 
   @Effect({ dispatch: false })
@@ -108,7 +108,7 @@ export class AuthenticationEffectsService {
         verticalPosition: 'top'
       });
     }),
-    mapTo(new fromRouter.Go({ path: ['/', 'test'] }))
+    mapTo(new fromRouter.Go({ path: ['/', 'home'] }))
   );
 
   @Effect({ dispatch: false })
