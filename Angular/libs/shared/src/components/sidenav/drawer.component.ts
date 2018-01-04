@@ -56,7 +56,6 @@ export class Mean2DrawerToggleResult {
     'class': 'mean2-drawer-content',
     '[style.margin-left.px]': '_margin',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
 })
@@ -109,7 +108,6 @@ export class Mean2DrawerContent implements AfterContentInit {
     '[class.mean2-drawer-side]': 'true',
     'tabIndex': '-1',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
 })
@@ -317,7 +315,6 @@ export class Mean2Drawer implements AfterContentInit {
   host: {
     'class': 'mean2-drawer-container',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
 })

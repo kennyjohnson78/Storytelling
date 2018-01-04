@@ -131,14 +131,14 @@ export class SlidesCardComponent implements OnInit {
     }
 
     public showOptions(): Observable<boolean> {
-        return combineLatest(
-            this.loggedIn$,
-            this.userName$,
-            (loggedIn, userName) =>
-              loggedIn
-              && this.editable
-              && this.slides
-              && this.slides.slidesSetting.author === userName
-        )
+      return combineLatest(
+        this.loggedIn$,
+        this.userName$,
+        (loggedIn, userName) =>
+          loggedIn
+          && this.editable
+          && this.slides
+          && this.slides.slidesSetting.author === userName
+      )
     }
 }

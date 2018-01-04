@@ -79,6 +79,7 @@ export class SlidesService {
         params.set('state', textToSearch.filter);
         params.set('favorite', textToSearch.favorite);
         params.set('username', this.user.username);
+        params.set('email', this.user.email);
         params.set('pageIndex', pageIndex);
         params.set('pageSize', pageSize);
         params.set('order', textToSearch.order);

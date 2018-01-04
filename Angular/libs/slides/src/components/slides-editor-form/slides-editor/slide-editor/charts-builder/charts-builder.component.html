@@ -44,8 +44,7 @@
             <mat-card-title class="card-sub-header"> Chart selected : </mat-card-title>
           </mat-card-header>
           <h2>{{chartType.title}}</h2>
-          <div class="mat-card-image image-selected" [style.background-image]="'url('+ chartType.image + ')'">
-          </div>
+          <img mat-card-image class="image-selected" [src]="chartType.image">
           <mat-card-content>
             <p class="categorie">{{chartType.description}}</p>
           </mat-card-content>
@@ -55,8 +54,7 @@
       <div class="content">
         <mat-card class="chart-card" (click)="choseChartType(chart)" *ngFor="let chart of chartTypes">
           <h2>{{chart.title}}</h2>
-          <div class="mat-card-image" [ngStyle]="{'background-image': 'url('+ chart.image+')'}">
-          </div>
+          <img mat-card-image [src]="chart.image">
           <mat-card-content>
             <mat-chip class="categorie">{{chart.categorie}}</mat-chip>
           </mat-card-content>

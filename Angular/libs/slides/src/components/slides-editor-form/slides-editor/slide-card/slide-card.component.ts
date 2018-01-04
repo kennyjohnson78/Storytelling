@@ -43,8 +43,9 @@ export class SlideCardComponent {
       });
     }
     /*delete slide*/
-    deleteSlide(e) {
-        this.deleteSlideOpt.emit(this.slideIndex);
+    deleteSlide(event: Event) {
+      event.preventDefault();
+      this.deleteSlideOpt.emit(this.slideIndex);
     }
 
     creatSlide() {
