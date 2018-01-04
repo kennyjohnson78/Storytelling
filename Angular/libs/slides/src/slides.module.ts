@@ -43,7 +43,6 @@ import { SlidesService, ImagesService, ValidService, ChartsService } from './ser
 
 // SLIDES ROUTES MODULE
 import { SlidesRoutingModule } from './slides-routing.module';
-import { CoreModule } from '@labdat/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 
@@ -84,14 +83,13 @@ import { ToggleFullscreenDirective } from './components/slides-view/toggle-fulls
 import { ValidateOnBlurDirective } from './components/slides-editor-form/slides-editor/slides-setting/validate-on-blur.directive';
 import { SlideEditorComponent } from './components';
 import { NgGridModule} from 'angular2-grid';
-import { ChartsBuilderComponent, GraphComponent, TextEditorComponent, TextComponent } from './components/slides-editor-form/slides-editor/slide-editor';
+import { ChartsBuilderComponent, GraphComponent, TextEditorComponent, TextComponent, ImageUploadComponent } from './components/slides-editor-form/slides-editor/slide-editor';
 @NgModule({
     imports: [
         CommonModule,
         MatTooltipModule,
         FormsModule,
         ReactiveFormsModule,
-        CoreModule,
         SlidesRoutingModule,
         DragulaModule,
         PieChartModule,
@@ -135,7 +133,9 @@ import { ChartsBuilderComponent, GraphComponent, TextEditorComponent, TextCompon
         WordCloudComponent,
         SunburstChartComponent,
         AreaChartComponent,
-        SlideEditorComponent],
+        SlideEditorComponent,
+        TextEditorComponent,
+        ChartsBuilderComponent],
 
     declarations: [
         KeySwitchDirective,
@@ -175,7 +175,8 @@ import { ChartsBuilderComponent, GraphComponent, TextEditorComponent, TextCompon
         SlideEditorComponent,
         GraphComponent,
         TextEditorComponent,
-        TextComponent
+        TextComponent,
+        ImageUploadComponent
     ],
     exports: [
       SlidesCardComponent,
