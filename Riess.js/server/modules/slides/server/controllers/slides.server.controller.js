@@ -30,7 +30,9 @@ exports.create = function(req, res) {
 };
 exports.createSlide = function (req, res) {
   var slides = req.slide;
-  slides.slides.push(req.body);
+  if(slides.slides[req.body.index-1]){
+    slides.slides[req.body.index-1] = req.body
+  } else slides.slides.push(req.body);
   slides.save(function(err) {
     if (err) {
       return res.status(422).send({

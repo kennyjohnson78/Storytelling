@@ -7,10 +7,12 @@ import 'rxjs/add/operator/take';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../../apps/default/src/environments/environment';
 import { Slide } from '../models/index';
+import { Slides } from '../models/index';
 import { getUser, AuthenticationState } from '@labdat/authentication-state';
 import { Store } from '@ngrx/store';
 import { isEmpty } from 'lodash';
 import { filter } from 'rxjs/operators';
+import {User} from '@labdat/data-models'
 
 @Injectable()
 export class SlideService {
@@ -27,7 +29,7 @@ export class SlideService {
     }).share();
     const { protocol, host, port, endpoints } = environment.backend;
     this._baseUrl = `${protocol}://${host}:${port}/${endpoints.basePath}`;
-    this.user$.subscribe(user => {
+    this.user$.subscribe((user: User) => {
       this.user = {
         username: user.firstName + user.lastName,
         firstName: user.firstName,
@@ -38,8 +40,15 @@ export class SlideService {
     });
 
   }
-  confirmSlides(slide: Slide, id: any): Observable<any> {
-    const backendURL = `${this._baseUrl}/${environment.backend.endpoints.slides}/${id}/slide/${slide.index}`;
+  confirmSlides(slide: Slide, id: any, idSlides: any): Observable<any> {
+    const backendURL = `${this._baseUrl}/${environment.backend.endpoints.slides}/${idSlides}/slide/${id}`;
     return this.http.post(backendURL, slide).map((response: Response) => response.json());
+  }
+
+  getSlide(idSlides : any, id: any): Observable<any> {
+    const backendURL = `${this._baseUrl}/${environment.backend.endpoints.slides}/${idSlides}`;
+    return this.http.get(backendURL).map((response: Response) => {
+      return response.json().slides[id-1]?response.json().slides[id-1]:new Slide();
+    })
   }
 }

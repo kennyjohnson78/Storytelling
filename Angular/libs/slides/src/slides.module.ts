@@ -39,7 +39,7 @@ import {
 } from './components';
 
 // SLIDES SERVICES
-import { SlidesService, ImagesService, ValidService, ChartsService } from './services';
+import { SlideService, SlideResolve, SlidesService, ImagesService, ValidService, ChartsService } from './services';
 
 // SLIDES ROUTES MODULE
 import { SlidesRoutingModule } from './slides-routing.module';
@@ -183,7 +183,7 @@ import { ChartsBuilderComponent, GraphComponent, TextEditorComponent, TextCompon
       SlidesSearchComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    providers: [OverlayContainer, SlidesService, ImagesService, ChartsService, ValidService]
+    providers: [OverlayContainer, SlidesService, SlideService, SlideResolve, ImagesService, ChartsService, ValidService]
 
 })
 export class SlidesModule {
@@ -195,7 +195,8 @@ export class SlidesModule {
         SlidesService,
         ImagesService,
         ChartsService,
-        ValidService
+        ValidService,
+        SlideResolve
       ]
     }
   }

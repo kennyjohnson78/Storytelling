@@ -1,7 +1,7 @@
 <div #dragDropElem>
     <div [ngGrid]="gridConfig">
       <div *ngIf="slide && slide.boxes">
-      <div  *ngFor="let box of slide.boxes; let i = index" [(ngGridItem)]="box.config" (onDragStop)="onDragStop(i,$event, box)" (onResize)="onResize(i, $event)">
+        <div  *ngFor="let box of slide.boxes; let i = index" [(ngGridItem)]="box.config" (onDragStop)="onDragStop(i,$event, box)" (onResize)="onResize(i, $event)">
         <div class="handle"><div class="box-header-btns pull-right">
           <a title="edit" (click)="editBox(i);">
             <i class="fa fa-pencil"></i>

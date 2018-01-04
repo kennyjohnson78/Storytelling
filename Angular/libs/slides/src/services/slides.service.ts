@@ -11,7 +11,7 @@ import { getUser, AuthenticationState } from '@labdat/authentication-state';
 import { Store } from '@ngrx/store';
 import { isEmpty } from 'lodash';
 import { filter } from 'rxjs/operators';
-
+import {User} from '@labdat/data-models'
 @Injectable()
 export class SlidesService {
     private _baseUrl: string;
@@ -29,7 +29,7 @@ export class SlidesService {
         }).share();
         const { protocol, host, port, endpoints } = environment.backend;
         this._baseUrl = `${protocol}://${host}:${port}/${endpoints.basePath}`;
-        this.user$.subscribe(user => {
+        this.user$.subscribe((user: User) => {
             this.user = {
                 username: user.firstName + user.lastName,
                 firstName: user.firstName,

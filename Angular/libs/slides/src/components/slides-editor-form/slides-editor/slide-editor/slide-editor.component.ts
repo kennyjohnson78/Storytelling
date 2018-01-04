@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation, ViewChildren, ViewChild, ElementRef, QueryList} from '@angular/core';
+import {Component, ViewEncapsulation, ViewChildren,OnInit, ViewChild, ElementRef, QueryList} from '@angular/core';
 import {NgGrid, NgGridItem, NgGridConfig, NgGridItemConfig, NgGridItemEvent} from 'angular2-grid';
 import { Slide } from '../../../../models/slide';
 import { MatDialog, MatDialogRef } from '@angular/material';
@@ -15,21 +15,22 @@ import { ActivatedRoute } from '@angular/router';
   providers: [SlideService]
 
 })
-export class SlideEditorComponent {
-  public slide: Slide;
+export class SlideEditorComponent implements OnInit{
+  slide: any;
   isOpened =false;
   public slideIndex: number;  // slide index
   boxIndexToResize = -1;
   id: any;
+  idSlides: any;
   event: NgGridItemEvent;
   @ViewChild('dragDropElem') dragDropElem : ElementRef;
   private gridConfig: NgGridConfig = <NgGridConfig>{
     'margins': [5],
     'draggable': true,
     'resizable': true,
-    'max_rows' :100,
-    'visible_rows': 0,
-    'visible_cols': 0,
+    'max_rows': 38,
+    'visible_rows': 90,
+    'visible_cols': 90,
     'min_cols': 1,
     'min_rows': 1,
     'col_width': 1,
@@ -58,10 +59,15 @@ export class SlideEditorComponent {
   }
 
   constructor(private dialog: MatDialog, private slideService : SlideService,   private route : ActivatedRoute){
-    if(!this.slide) this.slide= new Slide();
     this.route.params.subscribe(params => {
-    this.id = params['idSlides'];
-  });
+    this.idSlides = params['idSlides'];
+    this.id = params['id'];
+    });
+
+  }
+  ngOnInit() {
+      this.slide= this.route.snapshot.data.slide;
+      this.slide.index = this.id;
   }
 
   refreshBox(index, box) {
@@ -77,7 +83,6 @@ export class SlideEditorComponent {
   }
 
   addBox(objectToAdd, type) {
-    console.log("slide",this.slide);
     if (type === 'text') {
       const conf: NgGridItemConfig = this._generateItemConfig(1, 1, 30, 30);
       this.slide.boxes.push({config: conf, text: objectToAdd, chart: null, height: 30, width: 30});
@@ -135,7 +140,7 @@ export class SlideEditorComponent {
   }
 
   confirmSlide(slide){
-    this.slideService.confirmSlides(slide, this.id)
+    this.slideService.confirmSlides(slide, this.id, this.idSlides)
       .subscribe(
         res => {
         },

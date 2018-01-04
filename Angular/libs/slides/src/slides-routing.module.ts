@@ -7,7 +7,7 @@ import {
   SlidesEditorFormComponent,
   SlidesListComponent,
   SlideEditorComponent } from './components';
-
+import {SlideResolve} from './services';
 //import { AuthGuard } from 'app/users';
 
 
@@ -40,12 +40,10 @@ const slidesRoutes: Routes = [
   {
     path: ':idSlides/slide/:id',
     component: SlideEditorComponent,
-    data: { title: 'Slide editor' }
-  },
-  {
-    path: 'slide/create/:idSlides',
-    component: SlideEditorComponent,
-    data: { title: 'Slide creator' }
+    data: { title: 'Slide editor'},
+    resolve : {
+      slide : SlideResolve
+    }
   }
 ];
 
