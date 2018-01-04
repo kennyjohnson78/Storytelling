@@ -101,7 +101,7 @@ export class SlidesEditorFormComponent implements OnInit, AfterViewChecked {
          if (arrayMsg.index === index){
              this.errorMsg.splice(i, 1);
          }
-        });
+      });
     }
 
     onShuffle(shuffle) {

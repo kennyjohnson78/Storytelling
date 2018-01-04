@@ -6,9 +6,9 @@
         <div class="banner-mask"><i class="fa fa-pencil-square-o fa-5x" aria-hidden="true"></i></div>
         <div class="options">
           <div class="btn-group">
-            <a class="option-btn" (click)="deleteSlide($event)" class="delete" mdTooltip="Delete">
-              <mat-icon md-ripple mdRippleCentered="true" mdRippleUnbounded="true">delete</mat-icon>
-            </a>
+            <button mat-icon-button (click)="deleteSlide($event)" class="delete" mdTooltip="Delete">
+              <mat-icon svgIcon="action:ic_delete_24px" md-ripple mdRippleCentered="true" mdRippleUnbounded="true"></mat-icon>
+            </button>
           </div>
         </div>
       </div>
