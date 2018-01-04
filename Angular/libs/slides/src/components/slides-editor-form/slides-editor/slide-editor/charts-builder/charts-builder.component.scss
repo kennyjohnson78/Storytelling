@@ -400,13 +400,11 @@ mat-chip {
     width: 100%;
   }
 
-  .mat-card-image {
-    background-position: center;
-    background-size: cover;
-    height: 200px;
-    position: relative;
-    width: 100%;
-  }
+.mat-card-image {
+  height: 200px;
+  width: auto;
+  margin: auto;
+}
 
   .image-selected {
     width: 90% !important;

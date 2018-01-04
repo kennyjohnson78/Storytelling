@@ -17,7 +17,6 @@ import {coerceBooleanProperty, coerceNumberProperty} from '@angular/cdk/coercion
     'class': 'mean2-drawer-content mean2-sidenav-content',
     '[style.margin-left.px]': '_margin',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
 })
@@ -64,7 +63,6 @@ export class Mean2SidenavContent extends Mean2DrawerContent {
     '[style.top.px]': 'fixedInViewport ? fixedTopGap : null',
     '[style.bottom.px]': 'fixedInViewport ? fixedBottomGap : null',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
 })
@@ -104,7 +102,6 @@ export class Mean2Sidenav extends Mean2Drawer {
   host: {
     'class': 'mean2-drawer-container mean2-sidenav-container',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   preserveWhitespaces: false,
 })

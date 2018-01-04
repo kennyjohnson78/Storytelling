@@ -122,6 +122,5 @@ export class SlidesListComponent implements OnInit {
                 this.slides.splice(i, 1);
             }
         });
-        console.log("?????")
     }
 }
