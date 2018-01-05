@@ -143,8 +143,8 @@ export class SlideEditorComponent implements OnInit{
     this.slideService.confirmSlides(slide, this.id, this.idSlides)
       .subscribe(
         res => {
-          this.router.navigate(['/slides/display/', this.idSlides]);
-        }
+          this.router.navigate(['/slides/display/', this.idSlides])
+        });
   }
 
   private _generateItemConfig(col, row, sizex, sizey): NgGridItemConfig {
