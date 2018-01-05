@@ -18,6 +18,7 @@ var path = require('path'),
 exports.create = function(req, res) {
   var slide = new Slides(req.body);
   slide.user = req.user;
+  slide.slidesSetting.title += ' '+ (slide.slidesSetting.index);
   slide.save(function(err) {
     if (err) {
       return res.status(422).send({
@@ -102,7 +103,6 @@ exports.list = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-
       res.json(slides);
     }
   });
@@ -488,4 +488,3 @@ exports.search = function(req, res) {
         }
       });
 };
-

@@ -15,7 +15,7 @@ import {
     MatIconModule,
     MatButtonModule,
     MatChipsModule,
-    MatToolbarModule, MatDialogModule } from '@angular/material';
+    MatToolbarModule, MatDialogModule, MatCheckboxModule } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpModule, XHRBackend, RequestOptions } from '@angular/http';
 
@@ -88,6 +88,7 @@ import { ChartsBuilderComponent, GraphComponent, TextEditorComponent, TextCompon
     imports: [
         CommonModule,
         MatTooltipModule,
+        MatCheckboxModule,
         FormsModule,
         ReactiveFormsModule,
         SlidesRoutingModule,

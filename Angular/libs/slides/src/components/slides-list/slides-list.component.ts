@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 //import { select } from '@angular-redux/store';
 import {Observable} from 'rxjs/Observable';
 import {SlidesService, ImagesService} from '../../services/index';
-import {Slides} from '../../models/index';
+import {Slides, SlidesSetting} from '../../models/index';
 //import {NotifBarService} from "app/core";
 import {PageEvent} from '@angular/material';
 @Component({
@@ -123,4 +123,14 @@ export class SlidesListComponent implements OnInit {
             }
         });
     }
+  createSlides(){
+      var slides = new Slides();
+      slides.slidesSetting = new SlidesSetting();
+      if (this.slides.length>0 && this.slides[this.slides.length -1]){
+        slides.slidesSetting.index =  this.slides[this.slides.length -1].slidesSetting.index+1
+      }
+      this.slidesService.submitSlides(slides).subscribe(slides => {
+       this.slides.push(slides)
+      })
+  }
 }

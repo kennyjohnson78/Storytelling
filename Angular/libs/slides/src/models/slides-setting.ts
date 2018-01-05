@@ -1,11 +1,12 @@
 export class SlidesSetting {
-    title: String = '';
+    title: String = 'Slides '
     description: String = '';
     tags: Array<string> = [];
     public: Boolean = false;
     favorite: Boolean = false;
     author: String = '';
     banner: any;
+    index:any = 1;
     constructor(setting?: SlidesSetting) {
         if (setting) {
             if (setting.title) this.title = setting.title;
