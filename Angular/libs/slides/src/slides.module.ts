@@ -91,7 +91,6 @@ import { ChartsBuilderComponent, GraphComponent, TextEditorComponent, TextCompon
         MatCheckboxModule,
         FormsModule,
         ReactiveFormsModule,
-        SlidesRoutingModule,
         DragulaModule,
         PieChartModule,
         GaugeModule,
