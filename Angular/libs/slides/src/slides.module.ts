@@ -90,7 +90,6 @@ import { ChartsBuilderComponent, GraphComponent, TextEditorComponent, TextCompon
         MatTooltipModule,
         FormsModule,
         ReactiveFormsModule,
-        SlidesRoutingModule,
         DragulaModule,
         PieChartModule,
         GaugeModule,
