@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef, Input , OnChanges} from '@angular/core';
-import {Chart} from '../../chart.class';
+import { Component, OnInit, ViewChild, ElementRef, Input, OnChanges } from '@angular/core';
+import { Chart } from '../../chart.class';
 import { nest } from 'd3-collection';
 import * as d3 from 'd3';
 @Component({
@@ -8,7 +8,6 @@ import * as d3 from 'd3';
   styleUrls: ['./gauge-chart.component.scss']
 })
 export class GaugeChartComponent extends Chart implements OnInit, OnChanges {
-
   data: Array<any> = [];
 
   private width: number;
@@ -21,7 +20,7 @@ export class GaugeChartComponent extends Chart implements OnInit, OnChanges {
   colorScheme: any;
   gaugeMin: number = 0;
   gaugeMax: number = 100;
-  gaugeUnits: string ;
+  gaugeUnits: string;
   gaugeAngleSpan: number = 240;
   gaugeStartAngle: number = -120;
   gaugeShowAxis: boolean = true;
@@ -38,8 +37,8 @@ export class GaugeChartComponent extends Chart implements OnInit, OnChanges {
   tooltipDisabled = false;
 
   constructor() {
-       super()
-    }
+    super();
+  }
 
   ngOnInit() {
     this.colorScheme = {
@@ -47,17 +46,26 @@ export class GaugeChartComponent extends Chart implements OnInit, OnChanges {
       selectable: true,
       group: 'Ordinal',
       domain: [
-        '#a8385d', '#7aa3e5', '#a27ea8', '#aae3f5', '#adcded', '#a95963', '#8796c0', '#7ed3ed', '#50abcc', '#ad6886'
+        '#a8385d',
+        '#7aa3e5',
+        '#a27ea8',
+        '#aae3f5',
+        '#adcded',
+        '#a95963',
+        '#8796c0',
+        '#7ed3ed',
+        '#50abcc',
+        '#ad6886'
       ]
-    }
+    };
 
     // Set data
     this.chartOptions = { ...this.configInput };
     this.init();
   }
 
-  ngOnChanges(){
-    d3.select("#GaugeChartComponent").remove();
+  ngOnChanges() {
+    d3.select('#GaugeChartComponent').remove();
     this.init();
   }
 
@@ -67,13 +75,12 @@ export class GaugeChartComponent extends Chart implements OnInit, OnChanges {
     // this.view = [this.width, this.height];
     if (this.configInput != null)
       this.data = GaugeChartComponent.convertData(this.chartOptions.dataDims, this.dataInput);
-    else
-      this.data = this.dataInput;
+    else this.data = this.dataInput;
     this.load();
   }
 
   load() {
-    if(this.data===undefined) return;
+    if (this.data === undefined) return;
     this.data = [...this.data];
   }
   public static convertData(dataDims: string[], rawData: any) {
@@ -81,21 +88,20 @@ export class GaugeChartComponent extends Chart implements OnInit, OnChanges {
     const value$ = d => d3.sum(d, (s: any) => s[dataDims[1]]);
 
     return (<any>nest())
-        .key(key$)
-        .rollup(value$)
-        .entries(rawData)
-        .map(seriesPoints);
+      .key(key$)
+      .rollup(value$)
+      .entries(rawData)
+      .map(seriesPoints);
 
     function seriesPoints(d) {
       return {
         name: d.key,
-        value: d.value,
+        value: d.value
       };
     }
   }
 
-  ease() {
-  }
+  ease() {}
 
   select(data) {
     console.log('Item clicked', data);
@@ -104,5 +110,4 @@ export class GaugeChartComponent extends Chart implements OnInit, OnChanges {
   onLegendLabelClick(entry) {
     console.log('Legend clicked', entry);
   }
-
 }

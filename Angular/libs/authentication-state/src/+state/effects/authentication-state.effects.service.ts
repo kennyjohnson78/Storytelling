@@ -84,12 +84,14 @@ export class AuthenticationEffectsService {
   register$ = this.actions$.ofType(fromAuthentication.REGISTER).pipe(
     map(toPayload),
     exhaustMap(auth =>
-      this.authenticationApiService.register({ ...auth, username: auth.firstName + auth.lastName, roles: ['user', 'admin'] }).pipe(
-        catchError(error => {
-          this.store.dispatch(new fromAuthentication.RegisterFailure('Register Error'));
-          return empty();
-        })
-      )
+      this.authenticationApiService
+        .register({ ...auth, username: auth.firstName + auth.lastName, roles: ['user', 'admin'] })
+        .pipe(
+          catchError(error => {
+            this.store.dispatch(new fromAuthentication.RegisterFailure('Register Error'));
+            return empty();
+          })
+        )
     ),
     tap((payload: any) => {
       sessionStorage.setItem('user', JSON.stringify(payload.user));

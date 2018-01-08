@@ -6,33 +6,36 @@ import {
   SlidesViewComponent,
   SlidesEditorFormComponent,
   SlidesListComponent,
-  SlideEditorComponent } from './components';
-import {SlideResolve} from './services';
+  SlideEditorComponent
+} from './components';
+import { SlideResolve } from './services';
 //import { AuthGuard } from 'app/users';
-
 
 const slidesRoutes: Routes = [
   {
     path: '',
     component: SlidesListComponent,
-//    canActivate: [AuthGuard],
+    //    canActivate: [AuthGuard],
     data: {
-      roles: ['user',  'admin'],
+      roles: ['user', 'admin'],
       title: 'slides List'
     },
     pathMatch: 'full'
-  }, {
+  },
+  {
     path: 'createSlides',
     component: SlidesEditorFormComponent,
-    data: { roles: ['user',  'admin'], title: 'Slides Creator' }
-  }, {
+    data: { roles: ['user', 'admin'], title: 'Slides Creator' }
+  },
+  {
     path: 'display/:id',
     component: SlidesEditorFormComponent,
     data: {
-      roles: ['user',  'admin'],
+      roles: ['user', 'admin'],
       title: 'Slides Editor'
     }
-  }, {
+  },
+  {
     path: 'slidesPresentation/:id',
     component: SlidesViewComponent,
     data: { title: 'Presentation' }
@@ -40,19 +43,15 @@ const slidesRoutes: Routes = [
   {
     path: ':idSlides/slide/:id',
     component: SlideEditorComponent,
-    data: { title: 'Slide editor'},
-    resolve : {
-      slide : SlideResolve
+    data: { title: 'Slide editor' },
+    resolve: {
+      slide: SlideResolve
     }
   }
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(slidesRoutes)
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [RouterModule.forChild(slidesRoutes)],
+  exports: [RouterModule]
 })
-export class SlidesRoutingModule { }
+export class SlidesRoutingModule {}

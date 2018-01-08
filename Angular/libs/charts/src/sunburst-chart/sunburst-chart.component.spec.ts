@@ -6,12 +6,13 @@ describe('SunburstChartComponent', () => {
   let component: SunburstChartComponent;
   let fixture: ComponentFixture<SunburstChartComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SunburstChartComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [SunburstChartComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SunburstChartComponent);

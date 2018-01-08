@@ -1,1 +1,1 @@
-export *  from './pie-grid-chart.component'
+export * from './pie-grid-chart.component';

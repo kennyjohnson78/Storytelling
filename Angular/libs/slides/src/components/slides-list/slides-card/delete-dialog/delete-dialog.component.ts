@@ -3,13 +3,10 @@ import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-delete-dialog',
-  templateUrl: './delete-dialog.component.html',
+  templateUrl: './delete-dialog.component.html'
 })
 export class DeleteDialogComponent implements OnInit {
+  constructor(public dialogRef: MatDialogRef<DeleteDialogComponent>) {}
 
-  constructor(public dialogRef: MatDialogRef<DeleteDialogComponent>) { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

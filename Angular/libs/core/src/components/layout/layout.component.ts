@@ -15,7 +15,7 @@ import { map } from 'rxjs/operators/map';
 @Component({
   selector: 'layout-root',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss'],
+  styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent {
   public menuItems$;

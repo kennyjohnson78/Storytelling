@@ -1,18 +1,32 @@
-import { Component, OnInit, Inject, ViewChildren, ViewChild, ViewContainerRef, ViewEncapsulation, HostListener } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Inject,
+  ViewChildren,
+  ViewChild,
+  ViewContainerRef,
+  ViewEncapsulation,
+  HostListener
+} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { WindowResizeService } from '../../services/window-resize.service';
 
-import {DOCUMENT, DomSanitizer} from '@angular/platform-browser';
-import {SlidesService} from '../../services/slides.service';
-import {ImagesService} from '../../services/images.service';
-import { BarChartComponent, ForceDirectedGraphComponent, LineChartComponent, HierarchicalEdgeBundlingComponent} from '../../../../charts';
+import { DOCUMENT, DomSanitizer } from '@angular/platform-browser';
+import { SlidesService } from '../../services/slides.service';
+import { ImagesService } from '../../services/images.service';
+import {
+  BarChartComponent,
+  ForceDirectedGraphComponent,
+  LineChartComponent,
+  HierarchicalEdgeBundlingComponent
+} from '../../../../charts';
 
-import { PageConfig, HALF_HALF_LAYOUT, FULL_LAYOUT} from './pageConfig';
-import {NgGrid, NgGridItem, NgGridConfig, NgGridItemConfig, NgGridItemEvent} from 'angular2-grid';
+import { PageConfig, HALF_HALF_LAYOUT, FULL_LAYOUT } from './pageConfig';
+import { NgGrid, NgGridItem, NgGridConfig, NgGridItemConfig, NgGridItemEvent } from 'angular2-grid';
 
-import { slideTransition } from "./slide.animation";
+import { slideTransition } from './slide.animation';
 import * as screenfull from 'screenfull';
 @Component({
   selector: 'app-slides-view',
@@ -21,15 +35,14 @@ import * as screenfull from 'screenfull';
   animations: [slideTransition()],
   providers: [WindowResizeService, SlidesService]
 })
-
 export class SlidesViewComponent implements OnInit {
   slides: Array<any> = [];
   slideTitle: String;
   slideHeight_style: any = {
-    'height': '72px'
+    height: '72px'
   };
   contentHeight_style: any = {
-    'height': '72px'
+    height: '72px'
   };
   slideHeight: number;
   curSlideIndex: number = 0;
@@ -40,26 +53,26 @@ export class SlidesViewComponent implements OnInit {
   screenfull: any;
   showFullScreen: boolean = false;
   private gridConfig: NgGridConfig = <NgGridConfig>{
-    'margins': [5],
-    'draggable': false,
-    'resizable': false,
-    'max_rows': 38,
-    'visible_rows': 90,
-    'visible_cols': 90,
-    'min_cols': 1,
-    'min_rows': 1,
-    'col_width': 1,
-    'row_height': 1,
-    'cascade': 'off',
-    'min_width': 1,
-    'min_height': 1,
-    'fix_to_grid': true,
-    'auto_style': true,
-    'auto_resize': true,
-    'maintain_ratio': false,
-    'prefer_new': false,
-    'zoom_on_drag': false,
-    'limit_to_screen': false
+    margins: [5],
+    draggable: false,
+    resizable: false,
+    max_rows: 38,
+    visible_rows: 90,
+    visible_cols: 90,
+    min_cols: 1,
+    min_rows: 1,
+    col_width: 1,
+    row_height: 1,
+    cascade: 'off',
+    min_width: 1,
+    min_height: 1,
+    fix_to_grid: true,
+    auto_style: true,
+    auto_resize: true,
+    maintain_ratio: false,
+    prefer_new: false,
+    zoom_on_drag: false,
+    limit_to_screen: false
   };
   slideload$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   slideease$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
@@ -69,7 +82,6 @@ export class SlidesViewComponent implements OnInit {
   @ViewChild('slider', { read: ViewContainerRef })
   slider: ViewContainerRef;
 
-
   constructor(
     private windowResizeService: WindowResizeService,
     private slidesService: SlidesService,
@@ -77,19 +89,18 @@ export class SlidesViewComponent implements OnInit {
     @Inject(DOCUMENT) private document: any,
     private sanitizer: DomSanitizer,
     private router: Router,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {
     this.windowResizeService.height$.subscribe(height => {
       this.slideHeight_style = {
-        'height': (height - 70) + 'px' //70 is the height of header
+        height: height - 70 + 'px' //70 is the height of header
       };
       this.contentHeight_style = {
-        'height': (height - 70 - 50) + 'px'
-      }
-      this.slideHeight = (height - 70);
-    })
+        height: height - 70 - 50 + 'px'
+      };
+      this.slideHeight = height - 70;
+    });
     this.screenfull = screenfull;
-
   }
   ngOnInit() {
     let id;
@@ -104,11 +115,10 @@ export class SlidesViewComponent implements OnInit {
         this.slideNum = this.slides.length;
         this.slideTitle = slide.slidesSetting.title;
       },
-      error => {
-      });
-    window.scrollTo(0, 0);//scroll to top everytime open the slides
+      error => {}
+    );
+    window.scrollTo(0, 0); //scroll to top everytime open the slides
   }
-
 
   lastSlide() {
     this.curSlideIndex = this.getCurSlideIndex();
@@ -116,7 +126,6 @@ export class SlidesViewComponent implements OnInit {
       this.slideease$.next(this.curSlideIndex);
       this.curSlideIndex--;
       this.slideload$.next(this.curSlideIndex);
-
     }
   }
 
@@ -152,7 +161,6 @@ export class SlidesViewComponent implements OnInit {
   }
 
   animationDone(event: any) {
-
     //  this.direction = 0; ==> if add this line, will get error:ExpressionChangedAfterItHasBeenCheckedError
   }
 
@@ -166,14 +174,11 @@ export class SlidesViewComponent implements OnInit {
     this.showFullScreen = false;
   }
 
-  staySlideProcess() {
-
-  }
+  staySlideProcess() {}
 
   onClick() {
     if (this.screenfull.enabled) {
       this.screenfull.toggle(this.slider.element.nativeElement);
-
     }
   }
 

@@ -19,7 +19,7 @@ export class AuthenticationComponent {
   public pending$ = this.store.select(getLoginPagePending);
   public error$ = this.store.select(getLoginPageError);
 
-  constructor(private store: Store<AuthenticationState>) { }
+  constructor(private store: Store<AuthenticationState>) {}
 
   onLogin(authenticate: Authenticate) {
     this.store.dispatch(new fromAuthentication.Login(authenticate));

@@ -6,12 +6,13 @@ describe('WordCloudComponent', () => {
   let component: WordCloudComponent;
   let fixture: ComponentFixture<WordCloudComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ WordCloudComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [WordCloudComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WordCloudComponent);

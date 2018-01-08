@@ -1,6 +1,6 @@
-import { ActionReducer, MetaReducer } from "@ngrx/store";
-import { ApplicationState } from "./app.state";
-import { environment } from "../../environments/environment";
+import { ActionReducer, MetaReducer } from '@ngrx/store';
+import { ApplicationState } from './app.state';
+import { environment } from '../../environments/environment';
 import { storeFreeze } from 'ngrx-store-freeze';
 
 export function logger(reducer: ActionReducer<ApplicationState>): ActionReducer<ApplicationState> {
@@ -11,6 +11,4 @@ export function logger(reducer: ActionReducer<ApplicationState>): ActionReducer<
   };
 }
 
-export const metaReducers: MetaReducer<ApplicationState>[] = !environment.production
-  ? [logger, storeFreeze]
-  : [];
+export const metaReducers: MetaReducer<ApplicationState>[] = !environment.production ? [logger, storeFreeze] : [];

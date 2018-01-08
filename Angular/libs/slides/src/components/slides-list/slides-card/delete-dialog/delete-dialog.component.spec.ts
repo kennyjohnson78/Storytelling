@@ -6,16 +6,15 @@ describe('DeleteDialogComponent', () => {
   let component: DeleteDialogComponent;
   let fixture: ComponentFixture<DeleteDialogComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DeleteDialogComponent ],
-      providers: [
-          { provide: MatDialogRef}
-        ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [DeleteDialogComponent],
+        providers: [{ provide: MatDialogRef }]
+      })
+      .compileComponents();
     })
-
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DeleteDialogComponent);
@@ -23,7 +22,7 @@ describe('DeleteDialogComponent', () => {
     fixture.detectChanges();
   });
 
-/*  it('should create', () => {
+  /*  it('should create', () => {
     //expect(component).toBeTruthy();
   });*/
 });

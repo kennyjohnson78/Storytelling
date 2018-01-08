@@ -5,11 +5,9 @@ import { MatIconRegistry } from '@angular/material';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.scss']
 })
-
 export class AppComponent {
-
   @HostBinding('class.mat-typography')
   matTypo() {
     return true;
@@ -25,14 +23,13 @@ export class AppComponent {
     event.preventDefault();
   }
 
-  constructor(
-    private mdIconRegistry: MatIconRegistry,
-    private sanitizer: DomSanitizer
-  ) {
-    ['file', 'editor', 'action', 'navigation', 'av', 'image', 'content', 'hardware']
-    .forEach(iconSet =>
-      mdIconRegistry.addSvgIconSetInNamespace(iconSet, sanitizer.bypassSecurityTrustResourceUrl(`assets/svg-sprite-${iconSet}.svg`
-    )));
+  constructor(private mdIconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {
+    ['file', 'editor', 'action', 'navigation', 'av', 'image', 'content', 'hardware'].forEach(iconSet =>
+      mdIconRegistry.addSvgIconSetInNamespace(
+        iconSet,
+        sanitizer.bypassSecurityTrustResourceUrl(`assets/svg-sprite-${iconSet}.svg`)
+      )
+    );
     mdIconRegistry.addSvgIcon('file-image', sanitizer.bypassSecurityTrustResourceUrl(`assets/file.svg`));
   }
 }

@@ -23,7 +23,7 @@ import { RouterStateModule } from '@labdat/router-state';
 @NgModule({
   imports: [
     NxModule.forRoot(),
-//    RouterModule.forRoot([], { initialNavigation: 'enabled' }),
+    //    RouterModule.forRoot([], { initialNavigation: 'enabled' }),
     BrowserModule,
     RouterModule,
     BrowserAnimationsModule,
@@ -41,10 +41,7 @@ import { RouterStateModule } from '@labdat/router-state';
 
     RouterStateModule.forRoot(),
     AuthenticationStateModule.forRoot(),
-    CoreStateModule.forRoot([
-      ...coreConfiguration.self,
-      ...slidesConfiguration.core,
-    ])
+    CoreStateModule.forRoot([...coreConfiguration.self, ...slidesConfiguration.core])
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]

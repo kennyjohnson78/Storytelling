@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { MatDialogRef} from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 import { environment } from '../../../../../../../../apps/default/src/environments/environment';
 
 @Component({
@@ -8,7 +8,7 @@ import { environment } from '../../../../../../../../apps/default/src/environmen
   styleUrls: ['./text-editor.component.scss']
 })
 export class TextEditorComponent implements OnInit {
-  private editorOptions: Object;//option of the text editor
+  private editorOptions: Object; //option of the text editor
   @Input() text: any;
   @Input() width: number;
   @Input() height: number;
@@ -20,7 +20,7 @@ export class TextEditorComponent implements OnInit {
     this.editorOptions = {
       heightMin: 200,
       heightMax: 400,
-      widthMax : 1000,
+      widthMax: 1000,
       charCounterMax: 3000,
       toolbarSticky: false,
       imageUploadURL: `${baseURL}${environment.backend.endpoints.imagesServer}`,
@@ -28,7 +28,5 @@ export class TextEditorComponent implements OnInit {
     };
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

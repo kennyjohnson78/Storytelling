@@ -7,33 +7,60 @@ import { FormsModule } from '@angular/forms';
 import { DndModule } from 'ng2-dnd';
 //import { HotTableModule } from 'ng2-handsontable';
 
-import { BarChartComponent, BubbleChartComponent, DendogramComponent, ForceDirectedGraphComponent, HierarchicalEdgeBundlingComponent,
-  LineChartComponent, PieChartComponent, SunburstChartComponent,
-  WordCloudComponent, ZoomableTreemapChartComponent, AdvancedPieChartComponent, AreaChartComponent, GaugeChartComponent, NumberCardComponent,
-  PieGridChartComponent, TreemapChartComponent
+import {
+  BarChartComponent,
+  BubbleChartComponent,
+  DendogramComponent,
+  ForceDirectedGraphComponent,
+  HierarchicalEdgeBundlingComponent,
+  LineChartComponent,
+  PieChartComponent,
+  SunburstChartComponent,
+  WordCloudComponent,
+  ZoomableTreemapChartComponent,
+  AdvancedPieChartComponent,
+  AreaChartComponent,
+  GaugeChartComponent,
+  NumberCardComponent,
+  PieGridChartComponent,
+  TreemapChartComponent
 } from '@labdat/charts';
 
 import { CodeEditorComponent } from './code-editor';
-import {NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 describe('ChartsBuilderComponent', () => {
   let component: ChartsBuilderComponent;
   let fixture: ComponentFixture<ChartsBuilderComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ChartsBuilderComponent, DataTableComponent, CodeEditorComponent, BarChartComponent, BubbleChartComponent, DendogramComponent, ForceDirectedGraphComponent, HierarchicalEdgeBundlingComponent,
-        LineChartComponent, PieChartComponent, SunburstChartComponent, WordCloudComponent, ZoomableTreemapChartComponent, AdvancedPieChartComponent, AreaChartComponent, GaugeChartComponent, NumberCardComponent,
-        PieGridChartComponent, TreemapChartComponent ],
-      imports: [
-        NgxChartsModule,
-        CodemirrorModule,
-        FormsModule,
-        DndModule.forRoot(),
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [
+          ChartsBuilderComponent,
+          DataTableComponent,
+          CodeEditorComponent,
+          BarChartComponent,
+          BubbleChartComponent,
+          DendogramComponent,
+          ForceDirectedGraphComponent,
+          HierarchicalEdgeBundlingComponent,
+          LineChartComponent,
+          PieChartComponent,
+          SunburstChartComponent,
+          WordCloudComponent,
+          ZoomableTreemapChartComponent,
+          AdvancedPieChartComponent,
+          AreaChartComponent,
+          GaugeChartComponent,
+          NumberCardComponent,
+          PieGridChartComponent,
+          TreemapChartComponent
         ],
+        imports: [NgxChartsModule, CodemirrorModule, FormsModule, DndModule.forRoot()]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ChartsBuilderComponent);

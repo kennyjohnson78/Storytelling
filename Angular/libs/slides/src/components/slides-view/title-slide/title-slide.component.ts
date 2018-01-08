@@ -6,12 +6,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./title-slide.component.scss']
 })
 export class TitleSlideComponent implements OnInit {
-
   @Input() slideTitle: string;
-  
-  constructor() { }
 
-  ngOnInit() {
-  }
+  constructor() {}
 
+  ngOnInit() {}
 }

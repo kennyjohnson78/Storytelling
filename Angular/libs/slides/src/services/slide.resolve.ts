@@ -4,7 +4,6 @@ import { SlideService } from './slide.service';
 
 @Injectable()
 export class SlideResolve implements Resolve<any> {
-
   constructor(private slideService: SlideService) {}
 
   resolve(route: ActivatedRouteSnapshot) {
