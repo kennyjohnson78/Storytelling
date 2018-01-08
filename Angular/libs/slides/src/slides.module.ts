@@ -34,7 +34,7 @@ import { SlidesViewComponent, TitleSlideComponent, SlidesEditorFormComponent, Sl
 import { SlideService, SlideResolve, SlidesService, ImagesService, ValidService, ChartsService } from './services';
 
 // SLIDES ROUTES MODULE
-import { SlidesRoutingModule } from './slides-routing.module';
+import { SlidesRoutingModule } from '@labdat/slides-routing';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { KeySwitchDirective } from './components/slides-view/key-switch.directive';
@@ -83,13 +83,8 @@ import {
   TextComponent,
   ImageUploadComponent
 } from './components/slides-editor-form/slides-editor/slide-editor';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { slidesReducer } from '@labdat/slides-state/slides.reducer';
-import { slidesInitialState } from '@labdat/slides-state/slides.init';
-import { SlidesEffects } from '@labdat/slides-state/slides.effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
+import { environment } from '../../../apps/default/src/environments/environment';
+
 @NgModule({
     imports: [
         CommonModule,

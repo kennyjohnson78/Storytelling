@@ -19,6 +19,7 @@ import { coreConfiguration } from '@labdat/core';
 import { slidesConfiguration, SlidesModule } from '@labdat/slides';
 import { environment } from '../environments/environment';
 import { RouterStateModule } from '@labdat/router-state';
+import { SlidesStateModule } from '@labdat/slides-state';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { RouterStateModule } from '@labdat/router-state';
 
     RouterStateModule.forRoot(),
     AuthenticationStateModule.forRoot(),
-    CoreStateModule.forRoot([...coreConfiguration.self, ...slidesConfiguration.core])
+    CoreStateModule.forRoot([...coreConfiguration.self, ...slidesConfiguration.core]),
+    SlidesStateModule.forRoot()
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]

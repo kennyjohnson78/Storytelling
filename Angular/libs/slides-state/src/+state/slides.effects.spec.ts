@@ -23,7 +23,7 @@ describe('SlidesEffects', () => {
   describe('someEffect', () => {
     it('should work', async () => {
       actions = hot('-a-|', { a: { type: 'LOAD_DATA' } });
-      expect(await readAll(effects.loadData)).toEqual([{ type: 'DATA_LOADED', payload: {} }]);
+      expect(await readAll(effects.load)).toEqual([{ type: 'DATA_LOADED', payload: {} }]);
     });
   });
 });

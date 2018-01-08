@@ -108,6 +108,7 @@ export class SlidesListComponent implements OnInit {
         return { noResult: true, noPublish: false, noSlides: false, noPrivate: false };
       }
     }
+    return { noResult: false, noPublish: false, noSlides: false, noPrivate: false };
   }
 
   duplicate(id) {

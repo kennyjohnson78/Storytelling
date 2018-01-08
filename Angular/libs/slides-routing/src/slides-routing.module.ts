@@ -7,8 +7,8 @@ import {
   SlidesEditorFormComponent,
   SlidesListComponent,
   SlideEditorComponent
-} from './components';
-import { SlideResolve } from './services';
+} from '@labdat/slides/components';
+// import { SlideResolve } from './services/slide.resolve';
 //import { AuthGuard } from 'app/users';
 
 const slidesRoutes: Routes = [
@@ -44,9 +44,9 @@ const slidesRoutes: Routes = [
     path: ':idSlides/slide/:id',
     component: SlideEditorComponent,
     data: { title: 'Slide editor' },
-    resolve: {
-      slide: SlideResolve
-    }
+//    resolve: {
+//      slide: SlideResolve
+//    }
   }
 ];
 

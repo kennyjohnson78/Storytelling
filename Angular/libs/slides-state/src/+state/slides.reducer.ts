@@ -1,9 +1,9 @@
 import { Slides } from './slides.interfaces';
-import { SlidesAction } from './slides.actions';
+import * as fromSlides from './slides.actions';
 
-export function slidesReducer(state: Slides, action: SlidesAction): Slides {
+export function slidesReducer(state: Slides, action: fromSlides.Actions): Slides {
   switch (action.type) {
-    case 'DATA_LOADED': {
+    case fromSlides.LOAD_SUCCESS: {
       return { ...state, ...action.payload };
     }
     default: {
