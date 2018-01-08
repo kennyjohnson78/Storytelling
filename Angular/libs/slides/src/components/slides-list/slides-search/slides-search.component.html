@@ -12,7 +12,6 @@
     </mat-placeholder>
     <input matInput [(ngModel)]="textToSearch" name="textToSearch" (ngModelChange)="onChange(textToSearch)">
   </mat-form-field>
-
   <div *ngIf="kind === 'advanced'" class="filter-container" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="40">
     <mat-checkbox name="checkFavor" [(ngModel)]="states.checkFavor" [disabled]="states.checkFavor&&!states.checkNotFavor" (change)="onChangeState($event)" ngDefaultControl>Favorite</mat-checkbox>
     <mat-checkbox name="checkNotFavor" [(ngModel)]="states.checkNotFavor" (change)="onChangeState($event)" [disabled]="!states.checkFavor&&states.checkNotFavor" ngDefaultControl>Unfavorite</mat-checkbox>

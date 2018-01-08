@@ -2,11 +2,12 @@ import { Component, ViewEncapsulation, ViewChildren, OnInit, ViewChild, ElementR
 import { NgGrid, NgGridItem, NgGridConfig, NgGridItemConfig, NgGridItemEvent } from 'angular2-grid';
 import { Slide } from '../../../../models/slide';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { SlideService } from '../../../../services';
-import { ChartsBuilderComponent } from './charts-builder';
-import { TextEditorComponent } from './text-editor/text-editor.component';
-import { Chart } from '../../../../../../charts';
-import { ActivatedRoute } from '@angular/router';
+
+import {SlideService} from '../../../../services';
+import {ChartsBuilderComponent} from './charts-builder';
+import {TextEditorComponent} from './text-editor/text-editor.component';
+import {Chart} from '../../../../../../charts';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-slides-drag-drop',
@@ -57,7 +58,8 @@ export class SlideEditorComponent implements OnInit {
     });
   }
 
-  constructor(private dialog: MatDialog, private slideService: SlideService, private route: ActivatedRoute) {
+
+  constructor(private dialog: MatDialog, private slideService : SlideService, private route : ActivatedRoute, private router: Router){
     this.route.params.subscribe(params => {
       this.idSlides = params['idSlides'];
       this.id = params['id'];
@@ -137,8 +139,13 @@ export class SlideEditorComponent implements OnInit {
     this.boxIndexToResize = index;
   }
 
-  confirmSlide(slide) {
-    this.slideService.confirmSlides(slide, this.id, this.idSlides).subscribe(res => {}, error => {});
+
+  confirmSlide(slide){
+    this.slideService.confirmSlides(slide, this.id, this.idSlides)
+      .subscribe(
+        res => {
+          this.router.navigate(['/slides/display/', this.idSlides])
+        });
   }
 
   private _generateItemConfig(col, row, sizex, sizey): NgGridItemConfig {

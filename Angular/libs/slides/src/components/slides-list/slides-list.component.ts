@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 //import { select } from '@angular-redux/store';
-import { Observable } from 'rxjs/Observable';
-import { SlidesService, ImagesService } from '../../services/index';
-import { Slides } from '../../models/index';
+
+import {Observable} from 'rxjs/Observable';
+import {SlidesService, ImagesService} from '../../services/index';
+import {Slides, SlidesSetting} from '../../models/index';
 //import {NotifBarService} from "app/core";
 import { PageEvent } from '@angular/material';
 @Component({
@@ -107,18 +108,30 @@ export class SlidesListComponent implements OnInit {
         return { noResult: true, noPublish: false, noSlides: false, noPrivate: false };
       }
     }
-    return { noResult: false, noPublish: false, noSlides: false, noPrivate: false };
   }
+
   duplicate(id) {
     this.slidesService.getSlides(id).subscribe(slides => {
       this.slides.push(slides);
     });
   }
+
   deletedSlides(id) {
     this.slides.forEach((slide, i) => {
       if (slide._id === id) {
         this.slides.splice(i, 1);
       }
     });
+  }
+
+  createSlides(){
+      var slides = new Slides();
+      slides.slidesSetting = new SlidesSetting();
+      if (this.slides.length>0 && this.slides[this.slides.length -1]){
+        slides.slidesSetting.index =  this.slides[this.slides.length -1].slidesSetting.index+1
+      }
+      this.slidesService.submitSlides(slides).subscribe(slides => {
+       this.slides.push(slides)
+      })
   }
 }
