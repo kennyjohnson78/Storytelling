@@ -11,9 +11,17 @@ import { switchMap } from 'rxjs/operators/switchMap';
 import { catchError } from 'rxjs/operators/catchError';
 import { toPayload } from '@ngrx/effects';
 import { SlidesApiService } from '../services/slides.api.service';
+import { fromAuthentication } from '@labdat/authentication-state';
+import { mapTo } from 'rxjs/operators/mapTo';
 
 @Injectable()
 export class SlidesEffects {
+
+  @Effect()
+  loginSuccess$ = this.actions
+    .ofType(fromAuthentication.LOGIN_SUCCESS)
+    .pipe(mapTo(new fromSlides.Load()))
+
   @Effect()
   load = this.dataPersistence.fetch(fromSlides.LOAD, {
     run: (action: fromSlides.Load, state: SlidesState) => {

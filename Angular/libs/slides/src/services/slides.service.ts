@@ -7,7 +7,7 @@ import 'rxjs/add/operator/take';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../../apps/default/src/environments/environment';
 import { Slides } from '../models/index';
-import { getUser, AuthenticationState } from '@labdat/authentication-state';
+import { selectUser, AuthenticationState } from '@labdat/authentication-state';
 import { Store } from '@ngrx/store';
 import { isEmpty } from 'lodash';
 import { filter } from 'rxjs/operators';
@@ -21,7 +21,7 @@ export class SlidesService {
   private progressObserver;
   private progress;
   //    @select(['session', 'user']) user$: Observable<IUser>;
-  public user$ = this.store.select(getUser).pipe(filter(user => !isEmpty(user)));
+  public user$ = this.store.select(selectUser).pipe(filter(user => !isEmpty(user)));
 
   constructor(private http: Http, private store: Store<AuthenticationState>) {
     this.progress$ = Observable.create(observer => {

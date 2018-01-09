@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../../apps/default/src/environments/environment';
 import { Slide } from '../models/index';
 import { Slides } from '../models/index';
-import { getUser, AuthenticationState } from '@labdat/authentication-state';
+import { selectUser, AuthenticationState } from '@labdat/authentication-state';
 import { Store } from '@ngrx/store';
 import { isEmpty } from 'lodash';
 import { filter } from 'rxjs/operators';
@@ -21,7 +21,7 @@ export class SlideService {
   private user: any;
   private progress$;
   private progressObserver;
-  public user$ = this.store.select(getUser).pipe(filter(user => !isEmpty(user)));
+  public user$ = this.store.select(selectUser).pipe(filter(user => !isEmpty(user)));
 
   constructor(private http: Http, private store: Store<AuthenticationState>) {
     this.progress$ = Observable.create(observer => {

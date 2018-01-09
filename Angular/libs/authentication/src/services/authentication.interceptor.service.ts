@@ -13,7 +13,7 @@ import { Observable } from 'rxjs/Observable';
 import { empty } from 'rxjs/observable/empty';
 import { _throw } from 'rxjs/observable/throw';
 import { catchError } from 'rxjs/operators/catchError';
-import { fromAuthentication, getTokenExpiresIn, AuthenticationState } from '@labdat/authentication-state';
+import { fromAuthentication, selectTokenExpiresIn, AuthenticationState } from '@labdat/authentication-state';
 import { isEmpty } from 'lodash';
 
 @Injectable()
@@ -22,7 +22,7 @@ export class AuthenticationInterceptorService implements HttpInterceptor {
   private tokenExpiresIn$;
 
   constructor(private store: Store<AuthenticationState>) {
-    this.tokenExpiresIn$ = this.store.select(getTokenExpiresIn);
+    this.tokenExpiresIn$ = this.store.select(selectTokenExpiresIn);
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {

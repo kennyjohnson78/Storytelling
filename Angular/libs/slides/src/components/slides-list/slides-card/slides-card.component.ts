@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 //import { NotifBarService } from 'app/core';
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
-import { getUser, getLoggedIn, AuthenticationState } from '@labdat/authentication-state';
+import { selectUser, selectIsLoggedIn, AuthenticationState } from '@labdat/authentication-state';
 import { Store } from '@ngrx/store';
 import { isEmpty } from 'lodash';
 import { combineLatest } from 'rxjs/observable/combineLatest';
@@ -51,9 +51,9 @@ export class SlidesCardComponent implements OnInit {
   //    @select(['session', 'token']) loggedIn$: Observable<string>;
   //    @select(['session', 'user', 'username']) username$: Observable<Object>;
 
-  public loggedIn$: Observable<boolean> = this.store.select(getLoggedIn);
+  public loggedIn$: Observable<boolean> = this.store.select(selectIsLoggedIn);
   public userName$ = this.store
-    .select(getUser)
+    .select(selectUser)
     .pipe(filter(user => !isEmpty(user)), map(user => user.firstName + user.lastName));
 
   private banner: string; // banner picture of the slides card

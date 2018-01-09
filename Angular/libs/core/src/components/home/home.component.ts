@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
-import { AuthenticationState, getLoggedIn } from '@labdat/authentication-state';
+import { AuthenticationState, selectIsLoggedIn } from '@labdat/authentication-state';
 
 import { SlidesService, Slides } from '@labdat/slides';
 import { PageEvent } from '@angular/material';
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
     this.states = ['Public'];
     this.selectedValue = 'Public';
     this.toSearch = { title: '', filter: 'Public' };
-    this.loggedIn$ = this.store.select(getLoggedIn);
+    this.loggedIn$ = this.store.select(selectIsLoggedIn);
   }
 
   searchSlides(searchText) {

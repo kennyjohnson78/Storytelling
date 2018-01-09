@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/take';
-import { AuthenticationState, getLoggedIn, getTokenExpiresIn, fromAuthentication } from '@labdat/authentication-state';
+import { AuthenticationState, selectIsLoggedIn, selectTokenExpiresIn, fromAuthentication } from '@labdat/authentication-state';
 import { fromRouter } from '@labdat/router-state';
 
 @Injectable()
@@ -23,8 +23,8 @@ export class AuthenticationGuardService implements CanActivate, CanLoad {
 
   hasPermission(path: string) {
     return Observable.combineLatest(
-      this.store.select(getLoggedIn),
-      this.store.select(getTokenExpiresIn),
+      this.store.select(selectIsLoggedIn),
+      this.store.select(selectTokenExpiresIn),
       (loggedIn, tokenExpiresIn) => {
         if (loggedIn) {
           if (path === 'auth') {

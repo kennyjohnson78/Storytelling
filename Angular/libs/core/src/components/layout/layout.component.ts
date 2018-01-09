@@ -9,7 +9,7 @@ import { combineLatest } from 'rxjs/operators/combineLatest';
 import { startWith } from 'rxjs/operators/startWith';
 import { values, difference, isEmpty } from 'lodash';
 import { fromCore, CoreState, getShowSidenav, getMenuItems } from '@labdat/core-state';
-import { getLoggedIn, getUser } from '@labdat/authentication-state';
+import { selectIsLoggedIn, selectUser } from '@labdat/authentication-state';
 import { map } from 'rxjs/operators/map';
 
 @Component({
@@ -20,13 +20,13 @@ import { map } from 'rxjs/operators/map';
 export class LayoutComponent {
   public menuItems$;
   public isSidenavOpened$ = this.store.select(getShowSidenav);
-  public isLoggedIn$ = this.store.select(getLoggedIn);
+  public isLoggedIn$ = this.store.select(selectIsLoggedIn);
 
   constructor(private store: Store<CoreState>, private router: Router) {}
 
   ngOnInit() {
     const items$ = this.store.select(getMenuItems);
-    const user$ = this.store.select(getUser);
+    const user$ = this.store.select(selectUser);
     this.menuItems$ = items$.pipe(
       combineLatest(user$),
       map(([items, user]) =>

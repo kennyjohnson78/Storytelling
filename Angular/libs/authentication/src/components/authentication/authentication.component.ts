@@ -3,8 +3,8 @@ import { FormControl, Validators } from '@angular/forms';
 import {
   fromAuthentication,
   AuthenticationState,
-  getLoginPagePending,
-  getLoginPageError
+  selectLoginPagePending,
+  selectLoginPageError
 } from '@labdat/authentication-state';
 import { Store } from '@ngrx/store';
 import { Authenticate } from '../../models/user.model';
@@ -16,8 +16,8 @@ import { Authenticate } from '../../models/user.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuthenticationComponent {
-  public pending$ = this.store.select(getLoginPagePending);
-  public error$ = this.store.select(getLoginPageError);
+  public pending$ = this.store.select(selectLoginPagePending);
+  public error$ = this.store.select(selectLoginPageError);
 
   constructor(private store: Store<AuthenticationState>) {}
 
