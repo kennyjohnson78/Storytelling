@@ -3,50 +3,64 @@ import { Effect, Actions } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/nx';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/do';
 import { SlidesState } from './slides.interfaces';
 import * as fromSlides from './slides.actions';
+import { map } from 'rxjs/operators/map';
+import { switchMap } from 'rxjs/operators/switchMap';
+import { catchError } from 'rxjs/operators/catchError';
+import { toPayload } from '@ngrx/effects';
+import { SlidesApiService } from '../services/slides.api.service';
 
 @Injectable()
 export class SlidesEffects {
   @Effect()
   load = this.dataPersistence.fetch(fromSlides.LOAD, {
-    run: (action: fromSlides.LoadSuccess, state: SlidesState) => {
-      return new fromSlides.LoadSuccess({ slides: action.payload });
+    run: (action: fromSlides.Load, state: SlidesState) => {
+      return this.slidesApiService.getSlidesList(0, 10)
+        .map(slides => slides[0].map(slide => ({...slide, id: slide._id})))
+        .map(slides => new fromSlides.LoadSuccess({ slides })  )
     },
-    onError: (action: fromSlides.LoadFailure, error) => {
+    onError: (action: fromSlides.Load, error) => {
       console.error('Error', error);
+      return new fromSlides.LoadFailure(error);
     }
   });
 
   @Effect()
-  add = this.dataPersistence.fetch(fromSlides.ADD, {
-    run: (action: fromSlides.AddSuccess, state: SlidesState) => {
-      return new fromSlides.AddSuccess({ slides: action.payload });
-    },
-    onError: (action: fromSlides.AddFailure, error) => {
-      console.error('Error', error);
-    }
-  });
+  add = this.actions
+    .ofType(fromSlides.ADD)
+    .pipe(
+      map(toPayload),
+      switchMap((payload) => this.slidesApiService.submitSlides(payload.slides)),
+      map((response: any) => new fromSlides.AddSuccess({ slide: response })),
+      catchError(error => of(new fromSlides.AddFailure(error)))
+    )
+;
 
   @Effect()
-  update = this.dataPersistence.fetch(fromSlides.UPDATE, {
+  update = this.dataPersistence.optimisticUpdate(fromSlides.UPDATE, {
     run: (action: fromSlides.Update, state: SlidesState) => {
-      return new fromSlides.UpdateSuccess({slides});
+      return new fromSlides.UpdateSuccess(action.payload);
     },
-    onError: (action: fromSlides.Update, error) => {
+    undoAction: (action: fromSlides.Update, error) => {
       console.error('Error', error);
+      return new fromSlides.UpdateFailure(error);
     }
   });
 
   @Effect()
-  delete = this.dataPersistence.fetch(fromSlides.DELETE, {
-    run: (action: fromSlides.Delete, state: SlidesState) => {
-      return new fromSlides.DeleteSuccess({slides});
-    },
-    onError: (action: fromSlides.Delete, error) => {
-      console.error('Error', error);
-    }
-  });
+  delete$ = this.actions
+    .ofType(fromSlides.DELETE)
+    .pipe(
+      map(toPayload),
+      switchMap((payload) => this.slidesApiService.deleteSlides(payload.slideId)),
+      map((response: any) => new fromSlides.DeleteSuccess({slideId: response.id})),
+      catchError(error => of(new fromSlides.DeleteFailure(error)))
+    )
 
-  constructor(private actions: Actions, private dataPersistence: DataPersistence<SlidesState>) {}
+  constructor(
+    private actions: Actions,
+    private dataPersistence: DataPersistence<SlidesState>,
+    private slidesApiService: SlidesApiService) {}
 }

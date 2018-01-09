@@ -44,6 +44,7 @@ export class SlidesSetting {
 }
 
 export class Slide {
+  id: string;
   boxes: [{
     config: NgGridItemConfig;
     text: any;
@@ -67,6 +68,7 @@ export class Slide {
 
 export class Slides {
   _id: string;
+  id: string;
   slidesSetting: SlidesSetting;
   slides: Array<Slide> = [];
   constructor(slides?: Slides) {

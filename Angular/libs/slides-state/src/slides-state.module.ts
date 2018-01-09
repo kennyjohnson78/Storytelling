@@ -1,6 +1,6 @@
 import { NgModule, APP_INITIALIZER, ModuleWithProviders, InjectionToken } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { SlidesService } from './services/slides.api.service';
+import { SlidesApiService } from './services/slides.api.service';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { slidesReducer } from './+state/slides.reducer';
@@ -25,7 +25,7 @@ export class SlidesStateModule {
     return {
       ngModule: SlidesStateModule,
       providers: [
-        SlidesService,
+        SlidesApiService,
         SlidesInitializationService,
         {
           provide: APP_INITIALIZER,

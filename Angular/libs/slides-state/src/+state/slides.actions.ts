@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Slides } from '@labdat/data-models';
+import { Slide } from '@labdat/data-models';
 
 export const LOAD = '[Slides] Load';
 export const LOAD_SUCCESS = '[Slides] Load Success';
@@ -35,7 +35,7 @@ export class Load implements Action {
 
 export class LoadSuccess implements Action {
   readonly type = LOAD_SUCCESS;
-  constructor(public payload: { commands: Slides[]}) {}
+  constructor(public payload: { slides: Slide[]}) {}
 }
 
 export class LoadFailure implements Action {
@@ -45,12 +45,12 @@ export class LoadFailure implements Action {
 
 export class Add implements Action {
   readonly type = ADD;
-  constructor(public payload: { command: Slides }) {}
+  constructor(public payload: { slide: Slide }) {}
 }
 
 export class AddSuccess implements Action {
   readonly type = ADD_SUCCESS;
-  constructor(public payload: { command: Slides }) {}
+  constructor(public payload: { slide: Slide }) {}
 }
 
 export class AddFailure implements Action {
@@ -60,12 +60,12 @@ export class AddFailure implements Action {
 
 export class Update implements Action {
   readonly type = UPDATE;
-  constructor(public payload: { command: { id: number, changes: any }}) {}
+  constructor(public payload: { slide: { id: number, changes: any }}) {}
 }
 
 export class UpdateSuccess implements Action {
   readonly type = UPDATE_SUCCESS;
-  constructor(public payload: { command: { id: number, changes: any }}) {}
+  constructor(public payload: { slide: { id: number, changes: any }}) {}
 }
 
 export class UpdateFailure implements Action {
@@ -75,12 +75,12 @@ export class UpdateFailure implements Action {
 
 export class Delete implements Action {
   readonly type = DELETE;
-  constructor(public payload: { commandId: string }) {}
+  constructor(public payload: { slideId: string }) {}
 }
 
 export class DeleteSuccess implements Action {
   readonly type = DELETE_SUCCESS;
-  constructor(public payload: { commandId: string }) {}
+  constructor(public payload: { slideId: string }) {}
 }
 
 export class DeleteFailure implements Action {

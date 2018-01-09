@@ -1,10 +1,15 @@
-import { Slides } from './slides.interfaces';
+import { SlidesState, slidesAdapter } from './slides.interfaces';
 import * as fromSlides from './slides.actions';
 
-export function slidesReducer(state: Slides, action: fromSlides.Actions): Slides {
+export const slidesInitialState: SlidesState = slidesAdapter.getInitialState({
+  loaded: false,
+  loading: false
+});
+
+export function slidesReducer(state: SlidesState = slidesInitialState, action: fromSlides.Actions): SlidesState {
   switch (action.type) {
     case fromSlides.LOAD_SUCCESS: {
-      return { ...state, ...action.payload };
+      return slidesAdapter.addAll(action.payload.slides, state);
     }
     default: {
       return state;
