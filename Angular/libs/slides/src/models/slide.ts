@@ -1,23 +1,6 @@
-import { NgGridItemConfig } from 'angular2-grid';
-
+import { GridsterConfig, GridsterItem }  from 'angular-gridster2';
 export class Slide {
-  boxes: [
-    {
-      config: NgGridItemConfig;
-      text: any;
-      chart: any;
-      width: number;
-      height: number;
-    }
-  ] = [
-    {
-      config: {},
-      text: '',
-      chart: '',
-      width: 0,
-      height: 0
-    }
-  ];
+  boxes: [GridsterItem];
   title: string = '';
   index: number = 1;
   isValid: boolean = false;
