@@ -82,7 +82,8 @@ import { ToggleFullscreenDirective } from './components/slides-view/toggle-fulls
 
 import { ValidateOnBlurDirective } from './components/slides-editor-form/slides-editor/slides-setting/validate-on-blur.directive';
 import { SlideEditorComponent } from './components';
-import { NgGridModule} from 'angular2-grid';
+import { GridsterModule } from 'angular-gridster2';
+
 import { ChartsBuilderComponent, GraphComponent, TextEditorComponent, TextComponent, ImageUploadComponent } from './components/slides-editor-form/slides-editor/slide-editor';
 @NgModule({
     imports: [
@@ -110,10 +111,10 @@ import { ChartsBuilderComponent, GraphComponent, TextEditorComponent, TextCompon
         MatToolbarModule,
         MatInputModule,
         HttpModule,
-        NgGridModule,
         MatDialogModule,
-        RouterModule
-    ],
+        RouterModule,
+        GridsterModule
+          ],
     entryComponents: [
         BarChartComponent,
         LineChartComponent,
