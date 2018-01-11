@@ -110,7 +110,7 @@ ngOnInit() {
      this.idSlides = params['idSlides'];
      this.id = params['id'];
    });
-   this.slide = this.route.snapshot.data.slide;
+   this.slide = this.route.snapshot.data.slide || {boxes : []};
    this.slide.index = this.id;
    if(!this.slide.boxes) {
      this.slide.boxes = []

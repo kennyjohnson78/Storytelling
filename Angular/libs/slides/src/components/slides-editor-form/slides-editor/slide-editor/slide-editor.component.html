@@ -1,6 +1,6 @@
 <ng-template #menubar ></ng-template>
 <gridster [options]="gridConfig">
-  <gridster-item [item]="box" *ngFor="let box of slide.boxes; let i = index">
+  <gridster-item [item]="box" *ngFor="let box of slide?.boxes; let i = index">
     <div class="gridster-item-content">
       <ng-template #texteditor ></ng-template>
       <div class="handle ">
