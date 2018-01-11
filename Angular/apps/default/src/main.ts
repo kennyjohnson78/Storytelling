@@ -9,6 +9,10 @@ if (environment.production) {
   enableProdMode();
 }
 
+import * as $ from 'jquery';
+window["$"] = $;
+window["jQuery"] = $;
+
 platformBrowserDynamic()
   .bootstrapModule(AppModule)
   .catch(err => console.log(err));

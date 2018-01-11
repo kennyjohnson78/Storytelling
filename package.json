@@ -12,8 +12,5 @@
 		"lerna": "^2.5.1",
 		"npm-run-all": "^4.1.2"
 	},
-	"dependencies": {
-		"angular-gridster2": "^4.3.3",
-		"ng4-codemirror": "0.0.1"
-	}
+	"dependencies": {}
 }

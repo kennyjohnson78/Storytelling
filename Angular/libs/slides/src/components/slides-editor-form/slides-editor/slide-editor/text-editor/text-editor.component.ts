@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+
+import { Component, OnInit, Input, Inject, HostListener, Output, EventEmitter} from '@angular/core';
 import { environment } from '../../../../../../../../apps/default/src/environments/environment';
 
 @Component({
@@ -8,16 +8,23 @@ import { environment } from '../../../../../../../../apps/default/src/environmen
   styleUrls: ['./text-editor.component.scss']
 })
 export class TextEditorComponent implements OnInit {
-  private editorOptions: Object; //option of the text editor
-  @Input() text: any;
+  @HostListener('document:click', ['$event']) clickedOutside($event){
+   this.textTosave.emit(this.editorContent);
+ }
+  private editorOptions: Object;//option of the text editor
   @Input() width: number;
   @Input() height: number;
-  constructor(public dialogRef: MatDialogRef<TextEditorComponent>) {
+  @Input() editorContent : any;
+  @Output() textTosave: EventEmitter<string> = new EventEmitter();
+  constructor() {
     let baseURL = `${environment.backend.protocol}://${environment.backend.host}`;
     if (environment.backend.port) {
       baseURL += `:${environment.backend.port}`;
     }
     this.editorOptions = {
+      toolbarInline: true,
+      iframe: true,
+      initOnClick :false,
       heightMin: 200,
       heightMax: 400,
       widthMax: 1000,

@@ -49,6 +49,7 @@ export class ChartsBuilderComponent implements OnInit, DoCheck {
   };
   constructor(public dialogRef: MatDialogRef<ChartsBuilderComponent>) {}
 
+
   formatTable: boolean = false;
   data: any[];
   rawData: any[];

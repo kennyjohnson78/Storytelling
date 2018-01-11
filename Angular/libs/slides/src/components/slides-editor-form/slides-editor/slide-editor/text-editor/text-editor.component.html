@@ -1,8 +1,1 @@
-
-<div mat-dialog-content>
-  <textarea  [froalaEditor]='editorOptions' [(froalaModel)]="text"></textarea>
-</div>
-<div mat-dialog-actions>
-  <button md-button [mat-dialog-close]="text" tabindex="2">Ok</button>
-  <button md-button (click)="close()" tabindex="-1">No Thanks</button>
-</div>
+<textarea class="froalaEditor" [froalaEditor]='editorOptions' [(froalaModel)]="editorContent"></textarea>
