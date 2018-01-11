@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response, URLSearchParams } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/share';
@@ -15,78 +16,32 @@ import { environment } from '../../../../apps/default/src/environments/environme
 
 @Injectable()
 export class SlidesApiService {
-  private _baseUrl: string;
-  private slides: any = {};
-  private user: any;
-  private progress$;
-  private progressObserver;
-  private progress;
   private baseUrl: string;
   private endpoints: any;
-  public user$ = this.store.select(selectUser).pipe(filter(user => !isEmpty(user)));
 
-  constructor(private http: Http, private store: Store<AuthenticationState>) {
-    this.progress$ = Observable.create(observer => {
-      this.progressObserver = observer;
-    }).share();
-    this.user$.subscribe((user: User) => {
-      this.user = {
-        username: user.firstName + user.lastName,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        roles: user.roles,
-        email: user.email
-      };
-    });
+  constructor(private http: HttpClient, private store: Store<AuthenticationState>) {
     const { protocol, host, port, endpoints } = environment.backend;
     this.endpoints = endpoints;
     this.baseUrl = `${protocol}://${host}:${port}/${endpoints.basePath}`;
   }
-  me(): Observable<any> {
-    const backendURL = `${this.baseUrl}/${this.endpoints.users}/me`;
-    return this.http.get(backendURL).map((response: Response) => response.json());
+
+  add(slides: Slides): Observable<any> {
+    const backendURL = `${this.baseUrl}/${environment.backend.endpoints.slides}`;
+    return this.http.post(backendURL, slides);
   }
 
-  submitSlides(slides: Slides): Observable<any> {
-    slides.slidesSetting.author = this.user.username;
-    const backendURL = `${this._baseUrl}/${environment.backend.endpoints.slides}`;
-    return this.http.post(backendURL, slides).map((response: Response) => response.json());
-  }
-  getSlidesList(pageIndex, pageSize): Observable<any> {
-    const params: URLSearchParams = new URLSearchParams();
-    if (this.user !== undefined) params.set('username', this.user.username);
-    params.set('pageIndex', pageIndex);
-    params.set('pageSize', pageSize);
-    const backendURL = `${this.baseUrl}/${this.endpoints.search}`;
-    return this.http
-      .get(backendURL, { search: params })
-      .map((response: Response) => response.json())
-      .take(1);
-  }
-  getSlides(id): Observable<any> {
-    const backendURL = `${this.baseUrl}/${this.endpoints.slides}/${id}`;
-    return this.http.get(backendURL).map((response: Response) => response.json());
+  getAll(): Observable<any> {
+    const backendURL = `${this.baseUrl}/${this.endpoints.slides}`;
+    return this.http.get(backendURL);
   }
 
-  updateSlide(slide, id): Observable<any> {
+  update(slide, id): Observable<any> {
     const backendURL = `${this.baseUrl}/${this.endpoints.slides}/${id}`;
-    return this.http.put(backendURL, slide).map((response: Response) => response.json());
+    return this.http.put(backendURL, slide);
   }
-  deleteSlides(id): Observable<any> {
-    const backendURL = `${this._baseUrl}/${environment.backend.endpoints.slides}/${id}`;
-    return this.http.delete(backendURL).map((response: Response) => response.json());
-  }
-  getSlideToSearch(textToSearch, pageIndex, pageSize): Observable<any> {
-    const params: URLSearchParams = new URLSearchParams();
-    params.set('title', textToSearch.title);
-    params.set('state', textToSearch.filter);
-    params.set('favorite', textToSearch.favorite);
-    params.set('username', this.user.username);
-    params.set('email', this.user.email);
-    params.set('pageIndex', pageIndex);
-    params.set('pageSize', pageSize);
-    params.set('order', textToSearch.order);
-    const backendURL = `${this.baseUrl}/${this.endpoints.search}`;
-    return this.http.get(backendURL, { params: params }).map((response: Response) => response.json());
+
+  delete(id): Observable<any> {
+    const backendURL = `${this.baseUrl}/${environment.backend.endpoints.slides}/${id}`;
+    return this.http.delete(backendURL);
   }
 }
