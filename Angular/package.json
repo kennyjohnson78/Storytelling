@@ -53,12 +53,9 @@
     "screenfull": "^3.3.2",
     "zone.js": "^0.8.14",
     "angular2-grid": "^2.0.7",
-<<<<<<< c4c7e9e1b1c2b7616811acd8769555e68d783154
-    "@ngrx/store-devtools": "4.1.1"
-=======
+    "@ngrx/store-devtools": "4.1.1",
     "angular-gridster2": "^4.3.3",
 		"ng4-codemirror": "0.0.1"
->>>>>>> add editor dnd
   },
   "devDependencies": {
     "@angular/cli": "github:nrwl/fix-cli-build#release16",

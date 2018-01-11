@@ -28,9 +28,7 @@ import { HotTableModule } from 'angular-handsontable';
 
 import { SlidesSearchComponent } from './components/slides-list/slides-search/slides-search.component';
 // SLIDES COMPONENTS
-<<<<<<< c4c7e9e1b1c2b7616811acd8769555e68d783154
-import { SlidesViewComponent, TitleSlideComponent, SlidesEditorFormComponent, SlideCardComponent } from './components';
-=======
+
 import {
   SlidesViewComponent,
   TitleSlideComponent,
@@ -38,7 +36,6 @@ import {
   SlideCardComponent,
   MenuBarComponent
 } from './components';
->>>>>>> add editor dnd
 
 // SLIDES SERVICES
 import { SlideService, SlideResolve, SlidesService, ImagesService, ValidService, ChartsService } from './services';
