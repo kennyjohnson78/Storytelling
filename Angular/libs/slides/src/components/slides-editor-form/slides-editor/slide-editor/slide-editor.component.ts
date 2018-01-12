@@ -98,9 +98,7 @@ emptyCellClick(event, item) {
       if (result !== 'CANCEL') {
         console.log('The dialog was closed');
          this.slide.boxes[this.slide.boxes.length-1].chart = result;
-         this.slide.boxes[this.slide.boxes.length-1].width = result;
-          this.slide.boxes[this.slide.boxes.length-1].height = result;
-      }
+        }
     });
    }
     this.menubar.clear();

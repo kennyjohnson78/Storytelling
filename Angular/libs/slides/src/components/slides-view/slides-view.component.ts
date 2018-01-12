@@ -51,29 +51,6 @@ export class SlidesViewComponent implements OnInit {
   charts: Array<any> = [];
   screenfull: any;
   showFullScreen: boolean = false;
-
-  // private gridConfig: NgGridConfig = <NgGridConfig>{
-  //   'margins': [5],
-  //   'draggable': false,
-  //   'resizable': false,
-  //   'max_rows': 38,
-  //   'visible_rows': 90,
-  //   'visible_cols': 90,
-  //   'min_cols': 1,
-  //   'min_rows': 1,
-  //   'col_width': 1,
-  //   'row_height': 1,
-  //   'cascade': 'off',
-  //   'min_width': 1,
-  //   'min_height': 1,
-  //   'fix_to_grid': true,
-  //   'auto_style': true,
-  //   'auto_resize': true,
-  //   'maintain_ratio': false,
-  //   'prefer_new': false,
-  //   'zoom_on_drag': false,
-  //   'limit_to_screen': false
-  // };
   slideload$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   slideease$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
@@ -118,6 +95,61 @@ export class SlidesViewComponent implements OnInit {
       error => {}
     );
     window.scrollTo(0, 0); //scroll to top everytime open the slides
+    this.gridConfig = {
+      gridType: 'fit',
+      compactType: 'none',
+      margin: 5,
+      outerMargin: true,
+      mobileBreakpoint: 640,
+      minCols: 10,
+      maxCols: 20,
+      minRows: 10,
+      maxRows: 20,
+      maxItemCols: 100,
+      minItemCols: 1,
+      maxItemRows: 100,
+      minItemRows: 1,
+      maxItemArea: 2500,
+      minItemArea: 1,
+      defaultItemCols: 1,
+      defaultItemRows: 1,
+      fixedColWidth: 25,
+      fixedRowHeight: 25,
+      keepFixedHeightInMobile: false,
+      keepFixedWidthInMobile: false,
+      scrollSensitivity: 10,
+      scrollSpeed: 20,
+      draggable: {
+        delayStart: 0,
+        enabled: false,
+        ignoreContentClass: 'gridster-item-content',
+        ignoreContent: false,
+        dragHandleClass: 'drag-handler',
+        stop: undefined
+      },
+      resizable: {
+        delayStart: 0,
+        enabled: false,
+        stop: undefined,
+        handles: {
+          s: true,
+          e: true,
+          n: true,
+          w: true,
+          se: true,
+          ne: true,
+          sw: true,
+          nw: true
+        }
+      },
+      pushDirections: {north: true, east: true, south: true, west: true},
+      pushResizeItems: false,
+      displayGrid: 'onDrag&Resize',
+      disableWindowResize: false,
+      disableWarnings: false,
+      scrollToNewItems: false
+    };
+
   }
 
   lastSlide() {
