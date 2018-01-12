@@ -11,19 +11,19 @@ var mongoose = require('mongoose'),
  */
 var BoxSchema = new Schema({
   grid: {
-    width: {
+    cols: {
       type: Number,
       default: '10'
     },
-    height: {
+    rows: {
       type: Number,
       default: '10'
     },
-    top: {
+    y: {
       type: Number,
       default: 50
     },
-    left: {
+    x: {
       type: Number,
       default: 60
     }

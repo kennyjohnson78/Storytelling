@@ -46,7 +46,7 @@ export class PresentationsApiService {
 
   me(): Observable<any> {
     const backendURL = `${this.baseUrl}/${this.endpoints.users}/me`;
-    return this.http.get(backendURL));
+    return this.http.get(backendURL);
   }
 
   add(presentation: Presentation): Observable<any> {
@@ -68,17 +68,17 @@ export class PresentationsApiService {
 
   getOne(id): Observable<any> {
     const backendURL = `${this.baseUrl}/${this.endpoints.presentations}/${id}`;
-    return this.http.get(backendURL).map((response: Response) => response.json());
+    return this.http.get(backendURL);
   }
 
   update(presentation, id): Observable<any> {
     const backendURL = `${this.baseUrl}/${this.endpoints.presentations}/${id}`;
-    return this.http.put(backendURL, presentation).map((response: Response) => response.json());
+    return this.http.put(backendURL, presentation);
   }
 
   delete(id): Observable<any> {
     const backendURL = `${this._baseUrl}/${environment.backend.endpoints.presentations}/${id}`;
-    return this.http.delete(backendURL).map((response: Response) => response.json());
+    return this.http.delete(backendURL);
   }
   getPresentationToSearch(textToSearch, pageIndex, pageSize): Observable<any> {
     const params: URLSearchParams = new URLSearchParams();
@@ -91,6 +91,7 @@ export class PresentationsApiService {
     params.set('pageSize', pageSize);
     params.set('order', textToSearch.order);
     const backendURL = `${this.baseUrl}/${this.endpoints.search}`;
-    return this.http.get(backendURL, { params: params }).map((response: Response) => response.json());
-  }
+//    return this.http.get(backendURL, { params: params });
+    return this.http.get(backendURL);
+}
 }

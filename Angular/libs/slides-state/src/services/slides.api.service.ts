@@ -26,17 +26,17 @@ export class SlidesApiService {
   }
 
   add(slides: Slides): Observable<any> {
-    const backendURL = `${this.baseUrl}/${environment.backend.endpoints.slides}`;
+    const backendURL = `${this.baseUrl}/slide`;
     return this.http.post(backendURL, slides);
   }
 
   getAll(): Observable<any> {
-    const backendURL = `${this.baseUrl}/${this.endpoints.slides}`;
+    const backendURL = `${this.baseUrl}/slide`;
     return this.http.get(backendURL);
   }
 
   update(slide, id): Observable<any> {
-    const backendURL = `${this.baseUrl}/${this.endpoints.slides}/${id}`;
+    const backendURL = `${this.baseUrl}/slide/${id}`;
     return this.http.put(backendURL, slide);
   }
 
