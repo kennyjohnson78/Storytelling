@@ -68,21 +68,17 @@ var SlidesSchema = new Schema({
           chart: {
             type: Object
           },
-          width: {
-            type: Number,
-            default: '10'
+          x:{
+            type: Number
           },
-          height: {
-            type: Number,
-            default: '10'
+          y: {
+            type: Number
           },
-          top: {
-            type: Number,
-            default: 50
+          cols: {
+            type: Number
           },
-          left: {
-            type: Number,
-            default: 60
+          rows:{
+            type: Number
           }
         }]
       },
