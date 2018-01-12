@@ -33,6 +33,8 @@ export class SlideEditorComponent implements OnInit, OnChanges, AfterViewInit{
   idSlides: any;
   private itemPositions: Array<any> = [];
   gridConfig:any;
+  remove;
+  options;
   constructor(
     private dialog: MatDialog,
     private slideService : SlideService,
@@ -42,8 +44,6 @@ export class SlideEditorComponent implements OnInit, OnChanges, AfterViewInit{
     private viewContainerRef: ViewContainerRef,
     private componentFactoryResolver: ComponentFactoryResolver
   ) {}
-  options :any;
-remove: boolean;
 
 static itemChange(item, itemComponent) {
   console.info('itemChanged', item, itemComponent);
@@ -87,14 +87,28 @@ emptyCellClick(event, item) {
            componentEditorRef = this.texteditor.toArray()[i].createComponent(componentEditorFactory);
            (<TextEditorComponent>componentEditorRef.instance).textTosave.subscribe((text)=>{
              this.slide.boxes[this.slide.boxes.length-1].text = text;
-           })
+           });
          }
         else this.texteditor.toArray()[i].clear();
        }
      }
    })
+   if (type==='chart'){
+    const dialog = this.dialog.open(ChartsBuilderComponent, {height: '95%', width: '90%'});
+    dialog.afterClosed().subscribe(result => {
+      if (result !== 'CANCEL') {
+        console.log('The dialog was closed');
+         this.slide.boxes[this.slide.boxes.length-1].chart = result;
+         this.slide.boxes[this.slide.boxes.length-1].width = result;
+          this.slide.boxes[this.slide.boxes.length-1].height = result;
+      }
+    });
+   }
     this.menubar.clear();
   });
+}
+saveItem(event, item){
+
 }
 ngAfterViewInit(){
   console.log('texteditor after', this.texteditor);
@@ -110,7 +124,8 @@ ngOnInit() {
      this.id = params['id'];
    });
 
-   this.slide = this.route.snapshot.data.slide || {boxes : []};
+   this.slide = this.route.snapshot.data.slide || {}
+   console.log(this.route.snapshot.data.slide);
    this.slide.index = this.id;
    if(!this.slide.boxes) {
      this.slide.boxes = []
@@ -174,10 +189,10 @@ ngOnInit() {
         nw: true
       }
     },
-    swap: true,
-    pushItems: true,
-    disablePushOnDrag: false,
-    disablePushOnResize: false,
+    swap: false,
+    pushItems: false,
+    disablePushOnDrag: true,
+    disablePushOnResize: true,
     pushDirections: {north: true, east: true, south: true, west: true},
     pushResizeItems: false,
     displayGrid: 'onDrag&Resize',
@@ -288,13 +303,14 @@ destroy() {
   //   this.boxIndexToResize = index;
   // }
   //
-  // confirmSlide(slide){
-  //   this.slideService.confirmSlides(slide, this.id, this.idSlides)
-  //     .subscribe(
-  //       res => {
-  //         this.router.navigate(['/slides/display/', this.idSlides])
-  //       });
-  // }
+  confirmSlide(slide){
+    console.log("slide", slide);
+    this.slideService.confirmSlides(slide, this.id, this.idSlides)
+      .subscribe(
+        res => {
+          this.router.navigate(['/slides/display/', this.idSlides])
+        });
+  }
   //
   // private _generateItemConfig(col, row, sizex, sizey): NgGridItemConfig {
   //   return {'dragHandle': '.handle', 'col': col, 'row': row, 'sizex': sizex, 'sizey': sizey};

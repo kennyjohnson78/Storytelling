@@ -35,5 +35,7 @@ export class TextEditorComponent implements OnInit {
     };
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 }

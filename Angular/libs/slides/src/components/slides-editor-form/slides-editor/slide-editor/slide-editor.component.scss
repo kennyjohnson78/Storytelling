@@ -13,6 +13,7 @@ gridster-grid{
 
 .delete {
   display: none;
+  z-index: 10000;
 }
 gridster-item {
   border : none !important;
