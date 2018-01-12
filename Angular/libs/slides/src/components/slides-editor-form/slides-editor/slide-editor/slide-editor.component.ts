@@ -1,4 +1,6 @@
+
 import {Component, ViewEncapsulation, ViewChildren,OnInit, OnChanges,AfterViewInit, ViewChild, ElementRef, QueryList, HostListener, ChangeDetectionStrategy, ViewContainerRef, ComponentFactoryResolver} from '@angular/core';
+
 import { Slide } from '../../../../models/slide';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
@@ -16,7 +18,6 @@ import { MenuBarComponent } from '../../../menu-bar/menu-bar.component'
   styleUrls: ['./slide-editor.component.scss'],
   providers: [SlideService],
   changeDetection: ChangeDetectionStrategy.OnPush
-
 })
 export class SlideEditorComponent implements OnInit, OnChanges, AfterViewInit{
   @ViewChild('menubar', { read: ViewContainerRef }) menubar: ViewContainerRef;
@@ -120,6 +121,7 @@ ngOnInit() {
      this.idSlides = params['idSlides'];
      this.id = params['id'];
    });
+
    this.slide = this.route.snapshot.data.slide || {}
    console.log(this.route.snapshot.data.slide);
    this.slide.index = this.id;
@@ -196,14 +198,13 @@ ngOnInit() {
     disableWarnings: false,
     scrollToNewItems: false
   };
-
-
 }
 changedOptions() {
   if (this.options.api && this.options.api.optionsChanged) {
     this.options.api.optionsChanged();
   }
 }
+
 static eventStop(item, itemComponent, event) {
     console.info('eventStop', item, itemComponent, event);
   }
@@ -211,6 +212,7 @@ static eventStop(item, itemComponent, event) {
 removeItem($event, item) {
   $event.preventDefault();
   $event.stopPropagation();
+
   this.slide.boxes.splice(this.slide.boxes.indexOf(item), 1);
 }
 
@@ -277,6 +279,7 @@ destroy() {
   //       }
   //     });
   //   }
+
   //   if (item.chart) {
   //     const dialog = this.dialog.open(ChartsBuilderComponent, {height: '95%', width: '95%'});
   //     dialog.componentInstance.chartType = this.slide.boxes[index].chart.chartType;

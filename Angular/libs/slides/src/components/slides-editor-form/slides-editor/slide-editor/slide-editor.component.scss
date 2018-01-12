@@ -10,6 +10,7 @@ gridster {
 gridster-grid{
   display: block !important;
 }
+
 .delete {
   display: none;
   z-index: 10000;
@@ -24,6 +25,7 @@ gridster-item {
   }
   background: transparent !important;
 }
+
 .container {
   overflow: hidden;
 }

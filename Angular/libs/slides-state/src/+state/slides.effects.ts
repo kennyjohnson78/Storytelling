@@ -25,9 +25,10 @@ export class SlidesEffects {
   @Effect()
   load = this.dataPersistence.fetch(fromSlides.LOAD, {
     run: (action: fromSlides.Load, state: SlidesState) => {
-      return this.slidesApiService.getSlidesList(0, 10)
-        .map(slides => slides[0].map(slide => ({...slide, id: slide._id})))
-        .map(slides => new fromSlides.LoadSuccess({ slides })  )
+      return this.slidesApiService.getAll()
+        .map(slides => slides.map(slide => ({...slide, id: slide._id})))
+        .do(console.log)
+        .map(slides => new fromSlides.LoadSuccess({slides}))
     },
     onError: (action: fromSlides.Load, error) => {
       console.error('Error', error);
@@ -40,7 +41,7 @@ export class SlidesEffects {
     .ofType(fromSlides.ADD)
     .pipe(
       map(toPayload),
-      switchMap((payload) => this.slidesApiService.submitSlides(payload.slides)),
+      switchMap((payload) => this.slidesApiService.add(payload.slides)),
       map((response: any) => new fromSlides.AddSuccess({ slide: response })),
       catchError(error => of(new fromSlides.AddFailure(error)))
     )
@@ -62,7 +63,7 @@ export class SlidesEffects {
     .ofType(fromSlides.DELETE)
     .pipe(
       map(toPayload),
-      switchMap((payload) => this.slidesApiService.deleteSlides(payload.slideId)),
+      switchMap((payload) => this.slidesApiService.delete(payload.slideId)),
       map((response: any) => new fromSlides.DeleteSuccess({slideId: response.id})),
       catchError(error => of(new fromSlides.DeleteFailure(error)))
     )

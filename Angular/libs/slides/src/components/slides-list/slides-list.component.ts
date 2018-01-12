@@ -32,7 +32,7 @@ export class SlidesListComponent implements OnInit {
     order: '0'
   };
   pageEvent: PageEvent;
-  private slides: Array<Slides> = [];
+  public slides: Array<Slides> = [];
   private length = this.slides.length;
 
   constructor(

@@ -83,6 +83,7 @@ import { ToggleFullscreenDirective } from './components/slides-view/toggle-fulls
 import { ValidateOnBlurDirective } from './components/slides-editor-form/slides-editor/slides-setting/validate-on-blur.directive';
 import { SlideEditorComponent } from './components';
 import { GridsterModule } from 'angular-gridster2';
+
 import {
   ChartsBuilderComponent,
   GraphComponent,

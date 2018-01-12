@@ -70,7 +70,7 @@ export class SlidesCardComponent implements OnInit {
 
   ngOnInit() {
     /*after load slides info, load slides banner*/
-    if (this.slides.slidesSetting.banner) {
+    if (this.slides.slidesSetting && this.slides.slidesSetting.banner) {
       this.imagesService.getImage(this.slides.slidesSetting.banner).subscribe(_banner => {
         this.banner = _banner;
       });

@@ -1,4 +1,5 @@
 import { GridsterConfig, GridsterItem }  from 'angular-gridster2';
+
 export class Slide {
   boxes: [GridsterItem];
   title: string = '';

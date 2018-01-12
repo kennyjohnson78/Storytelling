@@ -70,9 +70,6 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/slides/:slidesId',
       permissions: ['*']
     }, {
-      resources: '/api/slidesFix/:slideIdFix',
-      permissions: ['*']
-    }, {
       resources: '/api/search/slides',
       permissions: ['*']
     },{

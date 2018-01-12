@@ -47,6 +47,7 @@ export class SlidesViewComponent implements OnInit {
   curSlideIndex: number = 0;
   direction: number = 1;
   currentSlide: any;
+  gridConfig : any;
   slideNum: number;
   charts: Array<any> = [];
   screenfull: any;
