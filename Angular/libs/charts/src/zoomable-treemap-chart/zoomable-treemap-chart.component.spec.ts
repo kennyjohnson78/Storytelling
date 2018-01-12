@@ -6,12 +6,13 @@ describe('ZoomableTreemapChartComponent', () => {
   let component: ZoomableTreemapChartComponent;
   let fixture: ComponentFixture<ZoomableTreemapChartComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ZoomableTreemapChartComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [ZoomableTreemapChartComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ZoomableTreemapChartComponent);

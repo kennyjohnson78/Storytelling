@@ -8,18 +8,15 @@ describe('SlidesViewComponent', () => {
   let component: SlidesViewComponent;
   let fixture: ComponentFixture<SlidesViewComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SlidesViewComponent],
-      imports : [
-        HttpModule,
-        RouterTestingModule,
-        BrowserAnimationsModule
-      ],
-      providers :[]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [SlidesViewComponent],
+        imports: [HttpModule, RouterTestingModule, BrowserAnimationsModule],
+        providers: []
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SlidesViewComponent);

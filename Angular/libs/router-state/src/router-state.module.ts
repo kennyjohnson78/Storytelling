@@ -13,10 +13,8 @@ export class RouterStateModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: RootRouterStateModule,
-      providers: [
-        { provide: RouterStateSerializer, useClass: CustomSerializer }
-      ]
-    }
+      providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }]
+    };
   }
 }
 
@@ -24,9 +22,7 @@ export class RouterStateModule {
   imports: [
     StoreModule.forFeature('router', routerReducer),
     EffectsModule.forFeature([RouterEffects]),
-    StoreRouterConnectingModule,
+    StoreRouterConnectingModule
   ]
 })
 export class RootRouterStateModule {}
-
-

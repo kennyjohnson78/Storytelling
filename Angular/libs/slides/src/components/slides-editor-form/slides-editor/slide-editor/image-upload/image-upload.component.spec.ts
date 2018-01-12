@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { SlidesService } from '../../../../../../services/slides.service';
 import { ImageUploadComponent } from './image-upload.component';
@@ -9,14 +9,15 @@ describe('ImageUploadComponent', () => {
   let fixture: ComponentFixture<ImageUploadComponent>;
   let slidesServiceStub = {};
   let slidesService;
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ImageUploadComponent ],
-      imports: [FormsModule, HttpModule],
-      providers: [{provide: SlidesService, useValue:slidesServiceStub }/*, NotifBarService*/]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [ImageUploadComponent],
+        imports: [FormsModule, HttpModule],
+        providers: [{ provide: SlidesService, useValue: slidesServiceStub } /*, NotifBarService*/]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ImageUploadComponent);

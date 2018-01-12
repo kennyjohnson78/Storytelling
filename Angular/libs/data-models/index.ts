@@ -1,1 +1,1 @@
-export { User, Authenticate, MenuItem } from './src/data-models';
+export { User, Authenticate, MenuItem, Slides, Slide } from './src/data-models';

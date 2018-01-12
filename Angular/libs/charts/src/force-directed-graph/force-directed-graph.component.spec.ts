@@ -6,12 +6,13 @@ describe('ForceDirectedGraphComponent', () => {
   let component: ForceDirectedGraphComponent;
   let fixture: ComponentFixture<ForceDirectedGraphComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ForceDirectedGraphComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [ForceDirectedGraphComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ForceDirectedGraphComponent);

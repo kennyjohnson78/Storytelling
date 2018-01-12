@@ -19,11 +19,13 @@ import { coreConfiguration } from '@labdat/core';
 import { slidesConfiguration, SlidesModule } from '@labdat/slides';
 import { environment } from '../environments/environment';
 import { RouterStateModule } from '@labdat/router-state';
+import { SlidesStateModule } from '@labdat/slides-state';
+import "froala-editor/js/froala_editor.pkgd.min.js";
 
 @NgModule({
   imports: [
     NxModule.forRoot(),
-//    RouterModule.forRoot([], { initialNavigation: 'enabled' }),
+    //    RouterModule.forRoot([], { initialNavigation: 'enabled' }),
     BrowserModule,
     RouterModule,
     BrowserAnimationsModule,
@@ -41,10 +43,8 @@ import { RouterStateModule } from '@labdat/router-state';
 
     RouterStateModule.forRoot(),
     AuthenticationStateModule.forRoot(),
-    CoreStateModule.forRoot([
-      ...coreConfiguration.self,
-      ...slidesConfiguration.core,
-    ])
+    CoreStateModule.forRoot([...coreConfiguration.self, ...slidesConfiguration.core]),
+    SlidesStateModule.forRoot()
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]

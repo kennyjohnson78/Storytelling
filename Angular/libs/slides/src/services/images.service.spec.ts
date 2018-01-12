@@ -9,7 +9,10 @@ describe('ImagesService', () => {
     });
   });
 
-  it('should ...', inject([ImagesService], (service: ImagesService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should ...',
+    inject([ImagesService], (service: ImagesService) => {
+      expect(service).toBeTruthy();
+    })
+  );
 });

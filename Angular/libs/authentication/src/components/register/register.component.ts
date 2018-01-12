@@ -8,25 +8,18 @@ import { Authenticate } from '../../models/user.model';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
   public hide = true;
   public form = this.formBuilder.group({
-//    gender: this.formBuilder.control(''),
+    //    gender: this.formBuilder.control(''),
     firstName: this.formBuilder.control(''),
     lastName: this.formBuilder.control(''),
-    email: this.formBuilder.control('', [
-      Validators.required,
-      Validators.email
-    ]),
+    email: this.formBuilder.control('', [Validators.required, Validators.email]),
     password: this.formBuilder.control('')
   });
 
-  @Output()
-  public submitted = new EventEmitter<Authenticate>();
+  @Output() public submitted = new EventEmitter<Authenticate>();
 
-  constructor(
-    private formBuilder: FormBuilder) {
-  }
+  constructor(private formBuilder: FormBuilder) {}
 
   get visibility() {
     return this.hide ? 'action:ic_visibility_off_24px' : 'action:ic_visibility_24px';
@@ -43,12 +36,11 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-   this.form.valueChanges.subscribe(() => ({}));
+    this.form.valueChanges.subscribe(() => ({}));
   }
 
   onSubmit() {
     const { firstName, lastName, email, password } = this.form.value;
     this.submitted.emit(this.form.value);
   }
-
 }

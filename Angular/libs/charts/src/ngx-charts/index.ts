@@ -6,4 +6,4 @@ export * from './treemap-chart';
 
 export * from './number-card';
 
-export * from './area-chart'
+export * from './area-chart';

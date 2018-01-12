@@ -5,10 +5,24 @@
 }
 
 gridster {
-//background : transparent !important;
+  background : transparent !important;
 }
 gridster-grid{
   display: block !important;
+}
+
+.delete {
+  display: none;
+}
+gridster-item {
+  border : none !important;
+  &:hover{
+    border : dotted 1px !important;
+    .delete {
+      display: block;
+    }
+  }
+  background: transparent !important;
 }
 
 .container {

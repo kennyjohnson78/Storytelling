@@ -6,12 +6,13 @@ describe('HierarchicalEdgeBundlingComponent', () => {
   let component: HierarchicalEdgeBundlingComponent;
   let fixture: ComponentFixture<HierarchicalEdgeBundlingComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ HierarchicalEdgeBundlingComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [HierarchicalEdgeBundlingComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HierarchicalEdgeBundlingComponent);

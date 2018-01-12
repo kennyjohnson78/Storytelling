@@ -1,5 +1,5 @@
 export const environment = {
-production: true,
+  production: true,
   backend: {
     protocol: 'http',
     host: 'localhost',
@@ -8,15 +8,15 @@ production: true,
       basePath: 'api',
       signup: '/api/auth/signup',
       signin: '/api/auth/signin',
-      articles : '/api/articles',
-      users : '/api/users',
+      articles: '/api/articles',
+      users: '/api/users',
       slides: '/api/slides',
-      slide : 'slide',
+      slide: 'slide',
       slidesFix: '/api/slidesFix',
       images: '/api/images',
-      imagesServer : '/api/imagesServer',
-      search : '/api/search/slides',
-      banner : '/api/banner'
+      imagesServer: '/api/imagesServer',
+      search: '/api/search/slides',
+      banner: '/api/banner'
     }
   }
 };

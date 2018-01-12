@@ -13,20 +13,16 @@ import { Observable } from 'rxjs/Observable';
 import { empty } from 'rxjs/observable/empty';
 import { _throw } from 'rxjs/observable/throw';
 import { catchError } from 'rxjs/operators/catchError';
-import {
-  fromAuthentication,
-  getTokenExpiresIn,
-  AuthenticationState } from '@labdat/authentication-state';
+import { fromAuthentication, selectTokenExpiresIn, AuthenticationState } from '@labdat/authentication-state';
 import { isEmpty } from 'lodash';
 
 @Injectable()
 export class AuthenticationInterceptorService implements HttpInterceptor {
-
   private urlFilters = ['/api'];
   private tokenExpiresIn$;
 
   constructor(private store: Store<AuthenticationState>) {
-    this.tokenExpiresIn$ = this.store.select(getTokenExpiresIn)
+    this.tokenExpiresIn$ = this.store.select(selectTokenExpiresIn);
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
@@ -34,23 +30,20 @@ export class AuthenticationInterceptorService implements HttpInterceptor {
       return next.handle(request);
     }
 
-    return this.tokenExpiresIn$
-    .first()
-    .switchMap(tokenExpiresIn => {
+    return this.tokenExpiresIn$.first().switchMap(tokenExpiresIn => {
       if (tokenExpiresIn && tokenExpiresIn < Date.now()) {
         this.store.dispatch(new fromAuthentication.Logout('Token Expired'));
         return empty();
       }
-      return next
-      .handle(request).pipe(
+      return next.handle(request).pipe(
         catchError(error => {
           if (error instanceof HttpErrorResponse && error.status === 403 && !error.url.includes('/auth')) {
             this.store.dispatch(new fromAuthentication.Logout('Unauthorized Operation'));
             return empty();
           }
-          return _throw(error);            
+          return _throw(error);
         })
-      )
+      );
     });
   }
 }

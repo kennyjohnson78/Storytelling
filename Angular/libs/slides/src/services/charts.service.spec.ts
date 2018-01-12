@@ -9,7 +9,10 @@ describe('ChartsService', () => {
     });
   });
 
-  it('should ...', inject([ChartsService], (service: ChartsService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should ...',
+    inject([ChartsService], (service: ChartsService) => {
+      expect(service).toBeTruthy();
+    })
+  );
 });

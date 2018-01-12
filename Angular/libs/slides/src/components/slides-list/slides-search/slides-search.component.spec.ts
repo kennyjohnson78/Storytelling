@@ -6,16 +6,14 @@ describe('SlidesSearchComponent', () => {
   let component: SlidesSearchComponent;
   let fixture: ComponentFixture<SlidesSearchComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-          FormsModule,
-          BrowserAnimationsModule
-      ],
-      declarations: [ SlidesSearchComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [FormsModule, BrowserAnimationsModule],
+        declarations: [SlidesSearchComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SlidesSearchComponent);

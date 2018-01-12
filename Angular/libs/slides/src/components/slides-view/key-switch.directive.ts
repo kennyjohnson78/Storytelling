@@ -1,5 +1,5 @@
 import { Directive, HostListener, Output, EventEmitter, OnInit } from '@angular/core';
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 
 @Directive({
   selector: '[appKeySwitch]'
@@ -10,19 +10,19 @@ export class KeySwitchDirective implements OnInit {
   private static ArrowLeftCode: number = 37;
   @Output() keySwitch: EventEmitter<number> = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    let events = Observable.fromEvent(document, 'keydown', (e) => e);
+    let events = Observable.fromEvent(document, 'keydown', e => e);
     let firstEventObservable = events.take(1);
-    let remainingEventsObservable = events.timeInterval()
+    let remainingEventsObservable = events
+      .timeInterval()
       .filter(x => x.interval >= this.delayDuration)
       .map(x => x.value);
     let pageChangeObservable = firstEventObservable.concat(remainingEventsObservable);
 
     pageChangeObservable.subscribe(e => this.keySwitchFunc(e));
   }
-
 
   private keySwitchFunc(event: KeyboardEvent) {
     switch (event.keyCode) {
@@ -36,5 +36,4 @@ export class KeySwitchDirective implements OnInit {
         break;
     }
   }
-
 }

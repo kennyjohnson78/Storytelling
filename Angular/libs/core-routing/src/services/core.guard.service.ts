@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { getUser } from '@labdat/authentication-state';
+import { selectUser } from '@labdat/authentication-state';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { take } from 'rxjs/operators/take';
@@ -13,7 +13,7 @@ export class CoreGuardService implements CanActivate {
   constructor(private store: Store<any>, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | boolean {
-    return this.store.select(getUser).pipe(map(user => this.hasExpectedRoles(user, route)), take(1));
+    return this.store.select(selectUser).pipe(map(user => this.hasExpectedRoles(user, route)), take(1));
   }
 
   hasExpectedRoles(user, route) {

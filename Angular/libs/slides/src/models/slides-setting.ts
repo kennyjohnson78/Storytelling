@@ -18,4 +18,4 @@ export class SlidesSetting {
             if (setting.banner && setting.banner._id) this.banner = setting.banner._id;
         }
     }
-}
+  }

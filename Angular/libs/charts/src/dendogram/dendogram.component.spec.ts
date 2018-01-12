@@ -6,12 +6,13 @@ describe('DendogramComponent', () => {
   let component: DendogramComponent;
   let fixture: ComponentFixture<DendogramComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DendogramComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [DendogramComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DendogramComponent);

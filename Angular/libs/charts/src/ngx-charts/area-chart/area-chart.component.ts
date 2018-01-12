@@ -23,19 +23,21 @@ export class AreaChartComponent extends Chart implements OnInit, OnChanges, OnDe
 
   data: any[];
   private _setIntervalHandler: any;
-  colorScheme : any;
-  constructor() { super() }
+  colorScheme: any;
+  constructor() {
+    super();
+  }
 
   ngOnInit() {
     // Set the config
     this.colorScheme = {
-      domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']}
+      domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    };
     this.chartOptions = { ...this.configInput };
     this.init();
-
   }
-  ngOnChanges(){
-    d3.select("#AreaChartComponent").remove();
+  ngOnChanges() {
+    d3.select('#AreaChartComponent').remove();
     this.init();
   }
   /**
@@ -44,15 +46,14 @@ export class AreaChartComponent extends Chart implements OnInit, OnChanges, OnDe
    * @param rawData : array<Object> Json data
    */
   public static convertData(dataDims: string[], rawData: any) {
-
     const key$ = d => d[dataDims[0]];
     const name$ = d => d[dataDims[1]];
     const value$ = d => d[dataDims[2]];
 
     return nest()
-        .key(key$)
-        .entries(rawData)
-        .map(series);
+      .key(key$)
+      .entries(rawData)
+      .map(series);
 
     function series(d) {
       return {
@@ -77,8 +78,7 @@ export class AreaChartComponent extends Chart implements OnInit, OnChanges, OnDe
   init() {
     if (this.configInput != null)
       this.data = AreaChartComponent.convertData(this.chartOptions.dataDims, this.dataInput);
-    else
-      this.data = this.dataInput;
+    else this.data = this.dataInput;
   }
 
   load() {
@@ -86,8 +86,7 @@ export class AreaChartComponent extends Chart implements OnInit, OnChanges, OnDe
     // this._setIntervalHandler =  setTimeout(() => this.data = this.dataInput);
   }
 
-  ease() {
-  }
+  ease() {}
 
   select(data) {
     console.log('Item clicked', data);
@@ -100,6 +99,4 @@ export class AreaChartComponent extends Chart implements OnInit, OnChanges, OnDe
   ngOnDestroy() {
     clearTimeout(this._setIntervalHandler);
   }
-
-
 }

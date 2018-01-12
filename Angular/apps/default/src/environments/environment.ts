@@ -13,13 +13,13 @@ export const environment = {
       basePath: 'api',
       signup: 'auth/signup',
       signin: 'auth/signin',
-      users : 'users',
+      users: 'users',
       slides: 'slides',
       slidesFix: 'slidesFix',
       images: 'images',
-      imagesServer : 'imagesServer',
-      search : 'search/slides',
-      banner : 'banner'
+      imagesServer: 'imagesServer',
+      search: 'search/slides',
+      banner: 'banner'
     }
   }
 };

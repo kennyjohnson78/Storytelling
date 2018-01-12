@@ -1,46 +1,16 @@
-<!-- <div [ngGrid]="gridConfig" class="grid">
-  <div *ngIf="slide && slide.boxes">
-    <div  *ngFor="let box of slide.boxes; let i = index" [(ngGridItem)]="box.config" (onDragStop)="onDragStop(i,$event, box)" (onResize)="onResize(i, $event)">
-      <div class="handle">
-        <div class="box-header-btns pull-right">
-          <a title="edit" (click)="editBox(i);"><i class="fa fa-pencil"></i></a>
-          <a title="Remove" (click)="removeBox(i);"><i class="fa fa-trash"></i></a>
-        </div>
+
+<ng-template #menubar ></ng-template>
+<gridster [options]="gridConfig">
+  <gridster-item [item]="box" *ngFor="let box of slide?.boxes; let i = index">
+    <div class="gridster-item-content">
+      <ng-template #texteditor ></ng-template>
+      <div class="handle ">
         <app-text *ngIf="box.text" class="text-box" [currentIndex]="i" [boxIndexToResize]="boxIndexToResize" [event]="event" [text]="box.text"></app-text>
         <app-graph [width]="box.width" [height]="box.height" *ngIf="box.chart" [chart]="box.chart"></app-graph>
       </div>
     </div>
-  </div>
-</div> -->
-<gridster [options]="gridConfig">
-  <gridster-item [item]="box" *ngFor="let box of slide.boxes; let i = index">
-    <!-- your content here -->
-    <div class="handle">
-      <div class="box-header-btns pull-right">
-        <a title="edit" (click)="editBox(i);"><i class="fa fa-pencil"></i></a>
-        <button mat-mini-fab (click)="removeItem($event, box)" matTooltip="Remove">
-        <mat-icon>delete</mat-icon>
-      </button>
-      </div>
-      <app-text *ngIf="box.text" class="text-box" [currentIndex]="i" [boxIndexToResize]="boxIndexToResize" [event]="event" [text]="box.text"></app-text>
-      <app-graph [width]="box.width" [height]="box.height" *ngIf="box.chart" [chart]="box.chart"></app-graph>
+    <div class="delete box-header-btns pull-right">
+      <a title="Remove" (click)="removeItem($event, box)"><i class="fa fa-trash"></i></a>
     </div>
   </gridster-item>
 </gridster>
-<!-- <a mat-fab class="fixed" (click)="isOpened=!isOpened" >
-  <mat-icon svgIcon="content:ic_add_24px"></mat-icon>
-</a> -->
-<!--ul *ngIf="isOpened">
-  <li> <a mat-fab class=" fixed fixed-1" (click)="addText()"> <mat-icon svgIcon="content:ic_font_download_24px"></mat-icon> </a></li>
-  <li>
-    <a mat-fab class="fixed fixed-2" (click)="openChartBuilder()">
-      <mat-icon svgIcon="editor:ic_multiline_chart_24px"></mat-icon>
-
-    </a>
-  </li>
-  <li>
-    <a mat-fab class="fixed fixed-3" (click)="confirmSlide(slide)">
-      <mat-icon class="check-icon" svgIcon="action:ic_done_24px"></mat-icon>
-    </a>
-  </li>
-</ul-->

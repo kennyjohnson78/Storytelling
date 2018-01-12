@@ -11,7 +11,10 @@ describe('SlidesService', () => {
     });
   });
 
-  it('should ...', inject([SlidesService], (service: SlidesService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should ...',
+    inject([SlidesService], (service: SlidesService) => {
+      expect(service).toBeTruthy();
+    })
+  );
 });

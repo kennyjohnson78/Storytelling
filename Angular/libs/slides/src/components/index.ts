@@ -4,3 +4,4 @@ export * from './slides-editor-form/slides-editor/slide-card/slide-card.componen
 export * from './slides-list/slides-list.component';
 export * from './slides-list/slides-search/slides-search.component';
 export * from './slides-editor-form/slides-editor/slide-editor'
+export * from './menu-bar/menu-bar.component'

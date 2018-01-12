@@ -6,12 +6,13 @@ describe('BubbleChartComponent', () => {
   let component: BubbleChartComponent;
   let fixture: ComponentFixture<BubbleChartComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ BubbleChartComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [BubbleChartComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BubbleChartComponent);

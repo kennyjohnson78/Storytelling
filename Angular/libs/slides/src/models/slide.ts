@@ -8,5 +8,4 @@ export class Slide {
   constructor(index?: number) {
     if (index) this.index = index;
   }
-
 }

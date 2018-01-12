@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
-import { AuthenticationState, getLoggedIn } from '@labdat/authentication-state';
+import { AuthenticationState, selectIsLoggedIn } from '@labdat/authentication-state';
 
 import { SlidesService, Slides } from '@labdat/slides';
 import { PageEvent } from '@angular/material';
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   private pageIndex = 0;
   pageEvent: PageEvent;
 
-  constructor(private slidesService: SlidesService, private store: Store<AuthenticationState>) { }
+  constructor(private slidesService: SlidesService, private store: Store<AuthenticationState>) {}
 
   ngOnInit() {
     this.showSlidesList = false;
@@ -34,52 +34,45 @@ export class HomeComponent implements OnInit {
     this.states = ['Public'];
     this.selectedValue = 'Public';
     this.toSearch = { title: '', filter: 'Public' };
-    this.loggedIn$ = this.store.select(getLoggedIn);
+    this.loggedIn$ = this.store.select(selectIsLoggedIn);
   }
-
 
   searchSlides(searchText) {
     //show slides and hide logo
     this.showSlidesList = true;
     //get search result
     this.toSearch.title = searchText;
-    this.slidesService.getSlideToSearch(this.toSearch, this.pageIndex, this.pageSize)
-      .subscribe(slides => {
-        this.slides = slides[0];
-        this.length = slides[1];
-        if (this.slides.length === 0) this.noResult = true;
-        else {
-          this.noResult = false;
-        }
-      });
+    this.slidesService.getSlideToSearch(this.toSearch, this.pageIndex, this.pageSize).subscribe(slides => {
+      this.slides = slides[0];
+      this.length = slides[1];
+      if (this.slides.length === 0) this.noResult = true;
+      else {
+        this.noResult = false;
+      }
+    });
   }
-
 
   getAllslides() {
     this.showSlidesList = true;
     this.toSearch.title = '';
-    this.slidesService.getSlideToSearch(this.toSearch, this.pageIndex, this.pageSize)
-      .subscribe(slides => {
-        this.slides = slides[0];
-        this.length = slides[1];
-        if (this.slides.length === 0) {
-          this.noPublish = true;
-        } else {
-          this.noPublish = false;
-        }
-      });
+    this.slidesService.getSlideToSearch(this.toSearch, this.pageIndex, this.pageSize).subscribe(slides => {
+      this.slides = slides[0];
+      this.length = slides[1];
+      if (this.slides.length === 0) {
+        this.noPublish = true;
+      } else {
+        this.noPublish = false;
+      }
+    });
   }
 
   nextPage($event) {
-        this.pageEvent = $event;
-        this.pageIndex = $event.pageIndex;
-        console.log('next', $event.pageIndex);
-        this.slidesService.getSlideToSearch(this.toSearch, this.pageIndex, this.pageSize )
-            .subscribe(
-                slides => {
-                    this.slides = slides[0];
-                    this.length = slides[1];
-                });
-    }
-
+    this.pageEvent = $event;
+    this.pageIndex = $event.pageIndex;
+    console.log('next', $event.pageIndex);
+    this.slidesService.getSlideToSearch(this.toSearch, this.pageIndex, this.pageSize).subscribe(slides => {
+      this.slides = slides[0];
+      this.length = slides[1];
+    });
+  }
 }

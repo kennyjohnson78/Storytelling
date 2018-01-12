@@ -1,12 +1,16 @@
-import {Component, ViewEncapsulation, ViewChildren,OnInit, ViewChild, ElementRef, QueryList, HostListener, ChangeDetectionStrategy} from '@angular/core';
+
+import {Component, ViewEncapsulation, ViewChildren,OnInit, OnChanges,AfterViewInit, ViewChild, ElementRef, QueryList, HostListener, ChangeDetectionStrategy, ViewContainerRef, ComponentFactoryResolver} from '@angular/core';
+
 import { Slide } from '../../../../models/slide';
 import { MatDialog, MatDialogRef } from '@angular/material';
+
 import {SlideService} from '../../../../services';
 import {ChartsBuilderComponent} from './charts-builder';
 import {TextEditorComponent} from './text-editor/text-editor.component';
 import {Chart} from '../../../../../../charts';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GridsterConfig, GridsterItem, GridsterConfigS }  from 'angular-gridster2';
+import { GridsterConfig, GridsterItem }  from 'angular-gridster2';
+import { MenuBarComponent } from '../../../menu-bar/menu-bar.component'
 
 @Component({
   selector: 'app-slides-drag-drop',
@@ -14,33 +18,32 @@ import { GridsterConfig, GridsterItem, GridsterConfigS }  from 'angular-gridster
   styleUrls: ['./slide-editor.component.scss'],
   providers: [SlideService],
   changeDetection: ChangeDetectionStrategy.OnPush
-
-
 })
-export class SlideEditorComponent implements OnInit{
+export class SlideEditorComponent implements OnInit, OnChanges, AfterViewInit{
+  @ViewChild('menubar', { read: ViewContainerRef }) menubar: ViewContainerRef;
+  @ViewChildren('texteditor', {read: ViewContainerRef}) public texteditor: QueryList<ViewContainerRef>;
+  editors;
   slide: any;
-  isOpened =false;
-  public slideIndex: number;  // slide index
+  isOpened = false;
+  public slideIndex: number; // slide index
   boxIndexToResize = -1;
   id: any;
+  texteditorArray =[];
   private width;
   idSlides: any;
   private itemPositions: Array<any> = [];
-
+  gridConfig:any;
   constructor(
     private dialog: MatDialog,
     private slideService : SlideService,
     private route : ActivatedRoute,
     private router: Router,
-    private element: ElementRef) {}
-
-options: GridsterConfigS;
-dashboard: Array<GridsterItem>;
+    private element: ElementRef,
+    private viewContainerRef: ViewContainerRef,
+    private componentFactoryResolver: ComponentFactoryResolver
+  ) {}
+  options :any;
 remove: boolean;
-
-static eventStop(item, itemComponent, event) {
-  console.info('eventStop', item, itemComponent, event);
-}
 
 static itemChange(item, itemComponent) {
   console.info('itemChanged', item, itemComponent);
@@ -54,12 +57,7 @@ static itemInit(item, itemComponent) {
   console.info('itemInitialized', item, itemComponent);
 }
 
-static itemRemoved(item, itemComponent) {
-  console.info('itemRemoved', item, itemComponent);
-  if (this.slide.boxes[index]) {
-    this.slide.boxes.splice(index, 1);
-  }
-}
+
 
 static gridInit(grid) {
   console.info('gridInit', grid);
@@ -71,31 +69,62 @@ static gridDestroy(grid) {
 
 emptyCellClick(event, item) {
   console.info('empty cell click', event, item);
-  this.slide.boxes.push(item);
+  let componentFactory = this.componentFactoryResolver.resolveComponentFactory(MenuBarComponent);
+  if (this.menubar) {
+        this.menubar.clear();
+     }
+  let componentRef = this.menubar.createComponent(componentFactory);
+  (<MenuBarComponent>componentRef.instance).top = event.clientY-50;
+  (<MenuBarComponent>componentRef.instance).left = event.clientX-50;
+  (<MenuBarComponent>componentRef.instance).isOpen.subscribe((type)=>{
+    this.slide.boxes.push(item);
+    let componentEditorRef;
+    this.texteditor.changes.subscribe((a)=>{
+    if(type==='text'){
+      for (let i = 0; i < this.texteditor.toArray().length; i++) {
+        if(i===this.slide.boxes.length-1 && !componentEditorRef){
+           let componentEditorFactory = this.componentFactoryResolver.resolveComponentFactory(TextEditorComponent);
+           componentEditorRef = this.texteditor.toArray()[i].createComponent(componentEditorFactory);
+           (<TextEditorComponent>componentEditorRef.instance).textTosave.subscribe((text)=>{
+             this.slide.boxes[this.slide.boxes.length-1].text = text;
+           })
+         }
+        else this.texteditor.toArray()[i].clear();
+       }
+     }
+   })
+    this.menubar.clear();
+  });
 }
+ngAfterViewInit(){
+  console.log('texteditor after', this.texteditor);
 
+}
+ngOnChanges(){
+  console.log('texteditor', this.texteditor);
+}
 ngOnInit() {
+  console.log('texteditor init ', this.texteditor);
   this.route.params.subscribe(params => {
      this.idSlides = params['idSlides'];
      this.id = params['id'];
    });
-   this.slide = this.route.snapshot.data.slide;
+
+   this.slide = this.route.snapshot.data.slide || {boxes : []};
    this.slide.index = this.id;
    if(!this.slide.boxes) {
      this.slide.boxes = []
    }
   this.gridConfig = {
-    gridType: 'fixed',
+    gridType: 'fit',
     compactType: 'none',
-    itemInitCallback: SlideEditorComponent.itemInit,
-    itemRemovedCallback: SlideEditorComponent.itemRemoved,
-    margin: 20,
+    margin: 5,
     outerMargin: true,
     mobileBreakpoint: 640,
-    minCols: 1,
-    maxCols: 100,
-    minRows: 1,
-    maxRows: 100,
+    minCols: 10,
+    maxCols: 20,
+    minRows: 10,
+    maxRows: 20,
     maxItemCols: 100,
     minItemCols: 1,
     maxItemRows: 100,
@@ -104,8 +133,8 @@ ngOnInit() {
     minItemArea: 1,
     defaultItemCols: 1,
     defaultItemRows: 1,
-    fixedColWidth: 50,
-    fixedRowHeight: 50,
+    fixedColWidth: 25,
+    fixedRowHeight: 25,
     keepFixedHeightInMobile: false,
     keepFixedWidthInMobile: false,
     scrollSensitivity: 10,
@@ -125,6 +154,11 @@ ngOnInit() {
       dragHandleClass: 'drag-handler',
       stop: undefined
     },
+    api: {
+        resize: SlideEditorComponent.eventStop,
+        optionsChanged: SlideEditorComponent.eventStop,
+        getNextPossiblePosition: SlideEditorComponent.eventStop,
+      },
     resizable: {
       delayStart: 0,
       enabled: true,
@@ -151,25 +185,26 @@ ngOnInit() {
     disableWarnings: false,
     scrollToNewItems: false
   };
-
-  this.dashboard = [
-  ];
 }
-
 changedOptions() {
   if (this.options.api && this.options.api.optionsChanged) {
     this.options.api.optionsChanged();
   }
 }
 
+static eventStop(item, itemComponent, event) {
+    console.info('eventStop', item, itemComponent, event);
+  }
+
 removeItem($event, item) {
   $event.preventDefault();
   $event.stopPropagation();
-  this.dashboard.splice(this.dashboard.indexOf(item), 1);
+
+  this.slide.boxes.splice(this.slide.boxes.indexOf(item), 1);
 }
 
 addItem() {
-  this.dashboard.push({});
+  this.slide.boxes.push({});
 }
 
 destroy() {
@@ -219,14 +254,10 @@ destroy() {
   //   });
   // }
   //
-  // removeBox(index: number) {
-  //   if (this.slide.boxes[index]) {
-  //     this.slide.boxes.splice(index, 1);
-  //   }
-  // }
   //
-  // editBox(index: number) {
-  //   if (this.slide.boxes[index].text) {
+  // editBox(event, item) {
+  //   console.log(item);
+  //   if (item.text) {
   //     const dialog = this.dialog.open(TextEditorComponent, {height: '60%', width: '95%'});
   //     dialog.componentInstance.text = this.slide.boxes[index].text;
   //     dialog.afterClosed().subscribe(result => {
@@ -235,7 +266,8 @@ destroy() {
   //       }
   //     });
   //   }
-  //   if (this.slide.boxes[index].chart) {
+
+  //   if (item.chart) {
   //     const dialog = this.dialog.open(ChartsBuilderComponent, {height: '95%', width: '95%'});
   //     dialog.componentInstance.chartType = this.slide.boxes[index].chart.chartType;
   //     dialog.componentInstance.inputOptions = this.slide.boxes[index].chart.chartOptions;

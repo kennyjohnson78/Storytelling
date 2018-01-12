@@ -1,14 +1,16 @@
 import { MenuItem } from '@labdat/data-models';
 
 interface SlidesConfiguration {
-  core: MenuItem[]
+  core: MenuItem[];
 }
 
 export const slidesConfiguration: SlidesConfiguration = {
-  core: [{
-    order: 4,
-    link: '/slides',
-    name: 'Slides',
-    icon: 'hardware:ic_desktop_mac_24px'
-  }]
+  core: [
+    {
+      order: 4,
+      link: '/slides',
+      name: 'Slides',
+      icon: 'hardware:ic_desktop_mac_24px'
+    }
+  ]
 };

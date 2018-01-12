@@ -10,11 +10,11 @@ const selectAuthenticationStatusState = createSelector(
 );
 const selectLoginPageState = createSelector(selectAuthenticationState, (state: AuthenticationState) => state.loginPage);
 
-export const getLoggedIn = createSelector(selectAuthenticationStatusState, (state: StatusState) => state.loggedIn);
-export const getUser = createSelector(selectAuthenticationStatusState, (state: StatusState) => state.user);
-export const getTokenExpiresIn = createSelector(
+export const selectIsLoggedIn = createSelector(selectAuthenticationStatusState, (state: StatusState) => state.loggedIn);
+export const selectUser = createSelector(selectAuthenticationStatusState, (state: StatusState) => state.user);
+export const selectTokenExpiresIn = createSelector(
   selectAuthenticationStatusState,
   (state: StatusState) => state.tokenExpiresIn
 );
-export const getLoginPageError = createSelector(selectLoginPageState, (state: LoginPageState) => state.error);
-export const getLoginPagePending = createSelector(selectLoginPageState, (state: LoginPageState) => state.pending);
+export const selectLoginPageError = createSelector(selectLoginPageState, (state: LoginPageState) => state.error);
+export const selectLoginPagePending = createSelector(selectLoginPageState, (state: LoginPageState) => state.pending);

@@ -6,13 +6,14 @@ describe('DataTableComponent', () => {
   let component: DataTableComponent;
   let fixture: ComponentFixture<DataTableComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DataTableComponent ],
-      imports: []
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [DataTableComponent],
+        imports: []
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DataTableComponent);

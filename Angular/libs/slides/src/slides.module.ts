@@ -1,9 +1,4 @@
-import {
-  NgModule,
-  CUSTOM_ELEMENTS_SCHEMA,
-  APP_INITIALIZER,
-  ModuleWithProviders
-} from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { OverlayContainer } from '@angular/cdk/overlay';
@@ -15,7 +10,9 @@ import {
     MatIconModule,
     MatButtonModule,
     MatChipsModule,
-    MatToolbarModule, MatDialogModule, MatCheckboxModule } from '@angular/material';
+    MatToolbarModule,
+    MatDialogModule,
+    MatCheckboxModule } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpModule, XHRBackend, RequestOptions } from '@angular/http';
 
@@ -31,48 +28,51 @@ import { HotTableModule } from 'angular-handsontable';
 
 import { SlidesSearchComponent } from './components/slides-list/slides-search/slides-search.component';
 // SLIDES COMPONENTS
+
 import {
   SlidesViewComponent,
   TitleSlideComponent,
   SlidesEditorFormComponent,
-  SlideCardComponent
+  SlideCardComponent,
+  MenuBarComponent
 } from './components';
 
 // SLIDES SERVICES
 import { SlideService, SlideResolve, SlidesService, ImagesService, ValidService, ChartsService } from './services';
 
 // SLIDES ROUTES MODULE
-import { SlidesRoutingModule } from './slides-routing.module';
+import { SlidesRoutingModule } from '@labdat/slides-routing';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
 
 import { KeySwitchDirective } from './components/slides-view/key-switch.directive';
 
 import { DragulaModule } from 'ng2-dragula';
 import {
-    BarChartComponent,
-    GaugeChartComponent,
-    NgGraphComponent,
-    TreemapChartComponent,
-    ZoomableTreemapChartComponent,
-    PieGridChartComponent,
-    NumberCardComponent,
-    SunburstChartComponent,
-    AdvancedPieChartComponent,
-    ForceDirectedGraphComponent,
-    LineChartComponent,
-    DendogramComponent,
-    PieChartComponent,
-    HierarchicalEdgeBundlingComponent,
-    BubbleChartComponent,
-    WordCloudComponent,
-    AreaChartComponent
- } from '@labdat/charts';
+  BarChartComponent,
+  GaugeChartComponent,
+  NgGraphComponent,
+  TreemapChartComponent,
+  ZoomableTreemapChartComponent,
+  PieGridChartComponent,
+  NumberCardComponent,
+  SunburstChartComponent,
+  AdvancedPieChartComponent,
+  ForceDirectedGraphComponent,
+  LineChartComponent,
+  DendogramComponent,
+  PieChartComponent,
+  HierarchicalEdgeBundlingComponent,
+  BubbleChartComponent,
+  WordCloudComponent,
+  AreaChartComponent
+} from '@labdat/charts';
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 
-
 import { SlidesSettingComponent } from './components/slides-editor-form/slides-editor/slides-setting/slides-setting.component';
-import { CodeEditorComponent, DataTableComponent } from './components/slides-editor-form/slides-editor/slide-editor/charts-builder';
+import {
+  CodeEditorComponent,
+  DataTableComponent
+} from './components/slides-editor-form/slides-editor/slide-editor/charts-builder';
 import { SlidesEditorComponent } from './components/slides-editor-form/slides-editor/slides-editor.component';
 
 import { SlidesListComponent } from './components/slides-list/slides-list.component';
@@ -84,7 +84,15 @@ import { ValidateOnBlurDirective } from './components/slides-editor-form/slides-
 import { SlideEditorComponent } from './components';
 import { GridsterModule } from 'angular-gridster2';
 
-import { ChartsBuilderComponent, GraphComponent, TextEditorComponent, TextComponent, ImageUploadComponent } from './components/slides-editor-form/slides-editor/slide-editor';
+import {
+  ChartsBuilderComponent,
+  GraphComponent,
+  TextEditorComponent,
+  TextComponent,
+  ImageUploadComponent
+} from './components/slides-editor-form/slides-editor/slide-editor';
+import { environment } from '../../../apps/default/src/environments/environment';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -136,7 +144,9 @@ import { ChartsBuilderComponent, GraphComponent, TextEditorComponent, TextCompon
         AreaChartComponent,
         SlideEditorComponent,
         TextEditorComponent,
-        ChartsBuilderComponent],
+        ChartsBuilderComponent,
+        MenuBarComponent
+      ],
 
     declarations: [
         KeySwitchDirective,
@@ -177,7 +187,8 @@ import { ChartsBuilderComponent, GraphComponent, TextEditorComponent, TextCompon
         GraphComponent,
         TextEditorComponent,
         TextComponent,
-        ImageUploadComponent
+        ImageUploadComponent,
+        MenuBarComponent
     ],
     exports: [
       SlidesCardComponent,
@@ -185,26 +196,17 @@ import { ChartsBuilderComponent, GraphComponent, TextEditorComponent, TextCompon
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     providers: [OverlayContainer, SlidesService, SlideService, SlideResolve, ImagesService, ChartsService, ValidService]
-
 })
 export class SlidesModule {
   public static forRoot() {
     return {
       ngModule: SlidesModule,
-      providers: [
-        OverlayContainer,
-        SlidesService,
-        ImagesService,
-        ChartsService,
-        ValidService,
-        SlideResolve
-      ]
-    }
+      providers: [OverlayContainer, SlidesService, ImagesService, ChartsService, ValidService, SlideResolve]
+    };
   }
 }
 
 @NgModule({
-  imports: [ SlidesModule, SlidesRoutingModule ]
+  imports: [SlidesModule, SlidesRoutingModule]
 })
-export class RootSlidesModule {
-}
+export class RootSlidesModule {}

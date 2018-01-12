@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http,  Response } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/share';
@@ -8,11 +8,11 @@ import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../../apps/default/src/environments/environment';
 import { Slide } from '../models/index';
 import { Slides } from '../models/index';
-import { getUser, AuthenticationState } from '@labdat/authentication-state';
+import { selectUser, AuthenticationState } from '@labdat/authentication-state';
 import { Store } from '@ngrx/store';
 import { isEmpty } from 'lodash';
 import { filter } from 'rxjs/operators';
-import {User} from '@labdat/data-models'
+import { User } from '@labdat/data-models';
 
 @Injectable()
 export class SlideService {
@@ -21,7 +21,7 @@ export class SlideService {
   private user: any;
   private progress$;
   private progressObserver;
-  public user$ = this.store.select(getUser).pipe(filter(user => !isEmpty(user)));
+  public user$ = this.store.select(selectUser).pipe(filter(user => !isEmpty(user)));
 
   constructor(private http: Http, private store: Store<AuthenticationState>) {
     this.progress$ = Observable.create(observer => {
@@ -38,17 +38,16 @@ export class SlideService {
         email: user.email
       };
     });
-
   }
   confirmSlides(slide: Slide, id: any, idSlides: any): Observable<any> {
     const backendURL = `${this._baseUrl}/${environment.backend.endpoints.slides}/${idSlides}/slide/${id}`;
     return this.http.post(backendURL, slide).map((response: Response) => response.json());
   }
 
-  getSlide(idSlides : any, id: any): Observable<any> {
+  getSlide(idSlides: any, id: any): Observable<any> {
     const backendURL = `${this._baseUrl}/${environment.backend.endpoints.slides}/${idSlides}`;
     return this.http.get(backendURL).map((response: Response) => {
-      return response.json().slides[id-1]?response.json().slides[id-1]:new Slide();
-    })
+      return response.json().slides[id - 1] ? response.json().slides[id - 1] : new Slide();
+    });
   }
 }

@@ -1,16 +1,15 @@
-import {Directive, HostListener, Output, EventEmitter} from '@angular/core';
+import { Directive, HostListener, Output, EventEmitter } from '@angular/core';
 
 @Directive({
-    selector: '[validateOnBlur]',
+  selector: '[validateOnBlur]'
 })
-
 export class ValidateOnBlurDirective {
-    @Output() addTagOpt: EventEmitter<any> = new EventEmitter();
+  @Output() addTagOpt: EventEmitter<any> = new EventEmitter();
 
-    constructor() { }
+  constructor() {}
 
-    @HostListener('focusout', ['$event.target'])
-    onFocusout(target) {
-        this.addTagOpt.emit();
-    }
+  @HostListener('focusout', ['$event.target'])
+  onFocusout(target) {
+    this.addTagOpt.emit();
+  }
 }
