@@ -21,6 +21,8 @@ import { environment } from '../environments/environment';
 import { RouterStateModule } from '@labdat/router-state';
 import { SlidesStateModule } from '@labdat/slides-state';
 import "froala-editor/js/froala_editor.pkgd.min.js";
+import { PresentationsStateModule } from '@labdat/presentations-state';
+import { BoxesStateModule } from '@labdat/boxes-state';
 
 @NgModule({
   imports: [
@@ -44,7 +46,9 @@ import "froala-editor/js/froala_editor.pkgd.min.js";
     RouterStateModule.forRoot(),
     AuthenticationStateModule.forRoot(),
     CoreStateModule.forRoot([...coreConfiguration.self, ...slidesConfiguration.core]),
-    SlidesStateModule.forRoot()
+    BoxesStateModule.forRoot(),
+    SlidesStateModule.forRoot(),
+    PresentationsStateModule.forRoot()
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]

@@ -81,3 +81,25 @@ export class Slides {
     }
   }
 }
+
+export interface Box {
+  grid: {
+    width: Number,
+    height:  Number,
+    top: Number,
+    left: Number,
+  },
+  mime: String,
+  content: any
+}
+
+export interface Presentation {
+  title: string
+  public: boolean,
+  favorite: boolean,
+  description: string,
+  tags: string[],
+  author: string,
+  banner: any,
+  slides: string[]
+}

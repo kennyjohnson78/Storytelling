@@ -108,6 +108,18 @@
       "root": "libs/slides-routing/src",
       "test": "../../../test.js",
       "appRoot": ""
+    },
+    {
+      "name": "boxes-state",
+      "root": "libs/boxes-state/src",
+      "test": "../../../test.js",
+      "appRoot": ""
+    },
+    {
+      "name": "presentations-state",
+      "root": "libs/presentations-state/src",
+      "test": "../../../test.js",
+      "appRoot": ""
     }
   ],
   "e2e": {
